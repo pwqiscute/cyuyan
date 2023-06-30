@@ -1,0 +1,15 @@
+
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#define MAS 201
+#define MIN (a,b) (a>b?b:a)
+int main() {
+	int a = 2;
+	int b = 3;
+	int m = MIN(a, b);
+	printf("%d", MIN);
+	return 0;
+
+
+}
