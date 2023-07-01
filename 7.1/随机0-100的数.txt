@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+	int a = 1;
+
+	while (a) {
+		srand((unsigned int)time(NULL));
+		int a = rand() % 100 + 1;
+		printf("%d", a);
+		scanf_s("%d", &a);
+	}
+	return 0;
+}

@@ -1,0 +1,13 @@
+#include <iostream>
+
+int main()
+{
+    int n = 18;
+    int m = 24;
+    while (m % n) {
+      int  k = m % n;
+      m = n;
+      n = k;
+    }
+    printf("%d", n);
+}

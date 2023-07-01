@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string.h>
+
+int main()
+{
+	int a[] = { 1,2,3,4,7,6 };
+	int max = 0;
+	int sz = sizeof(a) / sizeof(a[0]);
+	for (int i = 0; i < sz-1;i++){
+		if (a[i] > max) {
+			max = a[i];
+		}
+	}
+	printf("%d", max);
+}

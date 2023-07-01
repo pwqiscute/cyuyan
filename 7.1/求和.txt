@@ -1,0 +1,11 @@
+int main()
+{
+	int flag = 1;
+	int n = 0;
+	double sum = 0;
+	for (n = 1; n < 101; n++) {
+		sum = flag * 1.0 / n+sum;
+		flag = -flag;
+	
+	}	printf("%lf", sum);
+}

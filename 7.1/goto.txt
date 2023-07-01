@@ -1,0 +1,6 @@
+int main()
+//µ÷µ½againsÓï¾äÖĞ£»
+{
+agains:
+	printf("hehe");
+	goto agains;
