@@ -1,0 +1,12 @@
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+	char a[] = "QWEADFFG";
+	memset(a, 'w', 3);
+	printf("%s", a);
+	
+}

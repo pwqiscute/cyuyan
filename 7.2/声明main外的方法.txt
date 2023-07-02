@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include "addd.cpp"
+int main(){
+	int a = 1;
+	int b = 2;
+	int c=add(a, b);
+	printf("%d", c);
+
+
+}
+#ifndef add_h
+#define add_h
+int add(int a, int c);
+#endif // !add_h
+//头文件的写法；
+然后在源文件中写这个方法；
+最后在int main()中#include "add.h"用来带入这个方法的声明；
