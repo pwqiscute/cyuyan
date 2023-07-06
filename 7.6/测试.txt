@@ -1,0 +1,37 @@
+#include "game.h"
+void menu() {
+	printf("欢迎来到扫雷游戏，输入‘1’开始游戏，输入‘0’退出游戏\n");
+}
+void game() {
+	char ray[Acoss][Row] = { 0 };//布雷
+	char show[Acoss][Row] = { 0 };//排雷
+	Initialize(ray, '0');//初始化雷
+	Initialize(show, '*');//初始化页面
+	Makeray(ray);//制雷
+	Print(show);//打印玩家页面
+	Pairay(ray, show);//排雷
+}
+void test() {
+	srand((unsigned int)time(NULL));
+		int input = 0;
+	do {
+	    menu();
+		scanf_s("%d", &input);
+		switch (input) {
+		case 1:
+			printf("扫雷开始！\n");
+			game();
+			break;
+		case 0:
+			printf("退出游戏\n");
+			break;
+		default:
+			printf("输入错误，请重新输入！\n");
+			break;
+		}
+	} while (input);
+}
+int main() {
+	test();
+	return 0;
+}
