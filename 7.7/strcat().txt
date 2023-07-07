@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+void Strcat(char* a, const char* b) {
+	while (*a != '\0') {
+		++a;
+	}
+	while (*a = *b) {//将*b赋值给*a就是*b不等于’\0，while循环不结束；\0也是0；		
+		b++;
+                a++;
+	}
+	*a = '\0';
+}
+int main() {
+	char p1[20] = "hello";
+	const char* p2 = "world";
+	Strcat(p1, p2);
+	printf( "%s",p1);
+}
