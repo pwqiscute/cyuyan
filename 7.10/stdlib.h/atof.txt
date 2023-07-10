@@ -1,0 +1,2 @@
+double atof(char* a)
+将字符串“a”转化为双精度的字符串；

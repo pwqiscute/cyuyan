@@ -1,0 +1,8 @@
+int count(int n){
+int count=0;
+while(n){
+n=n&(n-1);
+count++;}
+return count;
+}
+这个代码每执行一次都去除2进制最后的1，如果是2的次方，count的值为‘1’；

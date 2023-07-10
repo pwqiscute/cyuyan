@@ -1,0 +1,18 @@
+头文件：<stdlib.h>
+
+函数原型： char *ecvt(double f,int n,int *p,int *c);
+
+功能：把浮点数转换为字符串
+
+参数：double f  要转换的浮点数
+
+          int n  显示的位数
+
+          int *p  一个指向变量返回数值的小数点的地址的指针
+
+          int *c  表示数值正负的指针
+
+返回值：返回字符串指针    
+
+
+函数名: fcvt 功 能: 把一个浮点数转换为字符串 用 法: char *fcvt (double value, int ndigit, int *decpt, int *sign); 参数： value：要转换的浮点数，输入参数 ndigit：小数点后面的位数，输入参数 decpt：表示小数点的位置,输出参数 sign：表示符号，0为正数，1为负数
