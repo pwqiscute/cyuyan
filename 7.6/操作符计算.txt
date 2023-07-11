@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main() {
+	int a = 7;
+	static int count = 0;
+	while (a >= 1) {
+		int c = a & 1;
+		if (c == 1) {
+			count++;
+		}
+		a = a >> 1;
+	}
+	printf("%d", count);
+}
