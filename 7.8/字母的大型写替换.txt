@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>//这是函数的头文件
+int main(){
+	char a = 0;
+	while (scanf_s("%c", &a) == 1) {
+		if (a >= 'a' && a <= 'z') {
+			printf("%c", a - 32);
+		}
+		else {
+			printf("%c", a + 32);
+		}
+		getchar();
+	}
+	}
+判断是否小写的函数：islower
+判断是否大写的函数：issupper
+将小写转为大写的函数：toupper
+将大写转为小写的函数：tolower
+  
+isalpha-->判断是否为字母；
