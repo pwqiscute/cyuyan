@@ -1,9 +1,0 @@
-#include <iostream>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main(){
-	printf("%d", printf("%d", printf("%d", 23)));
-	return 0;
-}

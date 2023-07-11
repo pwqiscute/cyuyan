@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<assert.h>//头文件
+char* strcpy(char* a,const char* b) {//const 修饰的数不可修改；
+	char* c = a;
+	assert(b != NULL);
+	assert(a != NULL);
+	//断言 如果满足（）的条件，就可以往下执行，一个好的代码assert必不可少，可以省去很多的if循环；
+	while (*a++ = *b++) {
+	}
+	return c;
+}
+
+int main() {
+	char arr1[14] = "matherland";
+	char arr2[10] = "earth";
+	char* d=strcpy(arr1, arr2);
+	printf("%s",d);
+	return 0;
+}
