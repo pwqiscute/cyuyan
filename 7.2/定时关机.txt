@@ -1,0 +1,15 @@
+
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+	char a[20] = { 0 };
+	system("shutdown -s -t 600000");
+	scanf_s("%s", a);
+	if (0 == strcmp(a, "xiaochou")) {
+		system("shutdown -a");
+	}
+}
