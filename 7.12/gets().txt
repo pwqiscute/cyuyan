@@ -1,0 +1,6 @@
+因为scanf_s从键盘得到字符串时一旦读到空格会截止；
+gets()函数可以避免；
+int main(){
+char a[10]={0};
+gets_s(a);
+printf("%s",a);

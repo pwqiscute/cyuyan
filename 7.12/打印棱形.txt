@@ -1,0 +1,29 @@
+int main() {
+		int lina = 0;
+		scanf_s("%d", &lina);
+		for (int i = 0; i < lina; i++) {
+			for (int j = i; j < lina - 1; j++) {
+				printf(" ");
+			}
+			for (int n = 0; n < (2 * i + 1); n++) {
+				printf("*");
+			}
+			for (int j = i; j < lina - 1; j++) {
+				printf(" ");
+			}
+			printf("\n");
+		}
+		for (int m = 0; m < lina - 1; m++) {
+			for (int y = 0; y < m + 1; y++) {
+				printf(" ");
+			}
+			for (int o = 0; o < 2 * (lina - 1 - m) - 1; o++) {
+				printf("*");
+			}
+			for (int y = 0; y < m + 1; y++) {
+				printf(" ");
+			}
+			printf("\n");
+		}
+	
+	}

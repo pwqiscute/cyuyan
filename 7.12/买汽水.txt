@@ -1,0 +1,13 @@
+int main() {
+    int n = 0;
+    int c = 1;
+    scanf_s("%d", &n);
+    int sum = n /c;
+    int sum1 = 0;
+    int a = sum;
+    while (a>1) {
+        sum1 += a/2;
+       a = a - a/ 2;
+    }
+    printf("%d", sum + sum1);
+}

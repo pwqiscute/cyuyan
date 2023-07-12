@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include<stdlib.h> 
+void reverse(char* start, char* end) {
+	while (end > start) {
+		int tem = *start;
+		*start = *end;
+		*end = tem;
+		end--;
+		start++;
+	}
+}
+int main() {
+	char arr[100] = { 0 };
+	gets_s(arr);
+	char* start = arr;
+	char* end = arr + strlen(arr) - 1;
+	reverse(start, end);
+	while (*start) {
+		end = start;
+		while (*end != ' ' && *end != '\0') {
+			end++;
+		}
+		reverse(start, end - 1);
+		if(*end!='\0')
+		end++;
+		start = end;
+	}
+	printf("%s", arr);
+	return 0;
+}
