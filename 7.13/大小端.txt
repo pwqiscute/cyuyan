@@ -1,0 +1,9 @@
+int main(){
+	int a = 1;
+	if (*(char*)&a == 1) {
+		printf("小端");
+	}
+	else {
+		printf("大端");
+	}
+}

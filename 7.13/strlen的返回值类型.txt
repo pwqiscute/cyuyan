@@ -1,0 +1,6 @@
+int main(){
+	if (strlen("abc") - strlen("abcdef") >= 0)
+		printf(">");
+	else { printf("<"); }
+}
+-----------------------unsigned int

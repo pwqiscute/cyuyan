@@ -1,0 +1,3 @@
+void test(void)
+第一个void表示函数不会反回值；
+第2个void表示函数不需要传任何参数
