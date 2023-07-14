@@ -1,0 +1,35 @@
+int main() {
+	int n = 0;
+	int m = 0;
+	scanf_s("%d %d", &n, &m);
+	int arr1[1000];
+	int arr2[1000];
+	for (int i = 0; i < n; i++) {
+		scanf_s("%d", arr1 + i);
+	}
+	for (int y = 0; y < m; y++) {
+		scanf_s("%d", arr2 + y);
+	}
+	int j = 0;
+	int k = 0;
+	while (j < n && j < m) {
+		if (arr1[j] < arr2[k]) {
+			printf("%d", arr1[j]);
+			j++;
+		}
+		else {
+			printf("%d", arr2[k]);
+			k++;
+		}
+	}
+	if (j < n) {
+		for (; j < n; j++) {
+			printf("%d ", arr1[j]);
+		}
+	}
+		if (k < m) {
+			for (; k < m; k++) {
+				printf("%d", arr2[k]);
+			}
+		}
+}

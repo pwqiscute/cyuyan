@@ -1,0 +1,40 @@
+函数指针：指向函数的指针；
+每个函数都有地址；
+存放函数地址的数组就是函数指针；
+对于函数来说，&函数名和函数名都是函数的地址；
+int a(int x, int y){
+	return x + y;
+}
+int main() {
+	int (*p)(int, int) = &a;
+}
+
+int a(int x, int y){
+	return x + y;
+}
+int main() {
+	int (*p)(int, int) = &a;
+	int ret = (*p)(2, 3);
+	printf("%d", ret);
+}
+
+
+int a(int x, int y) {
+			return x + y;
+		}
+		void b(int(*p)(int, int)) {
+			int n = 2;
+			int m = 3;
+			int ret = p(n, m);
+			printf("%d", ret);
+		}
+		int main() {
+			
+		b(a);
+
+}
+
+
+
+函数名就是整个函数的地址；类型是    返回类型（*）（参数类型，参数类型）；
+函数有类型，就可以做为一个参数传入另外一个函数中，在那个函数中可以调用传入的函数；

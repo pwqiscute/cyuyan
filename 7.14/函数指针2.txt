@@ -1,0 +1,72 @@
+（*(void(*)())0)();------->1.把0强制类型转化为：无参，返回类型是void的函数的地址；2.调用0地址处的这个函数；
+
+void (* signal (int ,void(*)(int) ) (int)
+signal的第一个参数是int类型，第2个参数是函数指针类型---》其参数是int类型，其返回值是void（*）（int）；也是一个函数指针；
+
+
+typedef void(*pf_t)(int);---->把void(*)(int)类型重命名为 pf_t;
+第2个代码可以改为----pf_t signal(int,pf_t);
+
+
+int ADD(int x, int y) {
+	return x + y;
+		}
+int sub(int x, int y) {
+	return x - y;
+}
+int mul(int x, int y) {
+	return x * y;
+}
+int DIV(int x, int y) {
+	return x / y;
+}
+void calu(int (*p)(int x, int y)) {
+	int x = 0;
+	int y = 0;
+	scanf_s("%d %d", &x, &y);
+	int ret = p(x, y);
+	printf("%d", ret);
+}
+int main() {
+	int input = 0;
+	scanf_s("%d", &input);
+	do {
+		switch (input) {
+		case 1:
+			calu(ADD);
+			break;
+		case 2:
+			calu(sub);
+			break;
+		case 3:
+			calu(mul);
+			break;
+		case 4:
+			calu(DIV);
+			break;
+		}
+	} while (input);
+	return 0;
+}
+
+
+
+
+
+int main() {
+	int input = 0;
+	scanf_s("%d", &input);
+
+	int (*p[])(int, int) = { 0,ADD,sub,mul,DIV };
+	if (input==0) {
+		printf("退出系统");
+	}
+	else if (input >= 1 && input <= 4) {
+		int x = 0;
+		int y = 0;
+		scanf_s("%d,%d", &x, &y);
+		int m = p[input](x, y);
+		printf("%d", m);
+	}
+	return 0;
+}
