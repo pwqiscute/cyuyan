@@ -1,0 +1,35 @@
+int cmp_int(const void* a, const void* b) {
+	return (*(int*)a-*(int*)b);
+}
+void test() {
+	int a[10] = { 1,2,3,4,5,6,7,8,9,0};
+	int sz = sizeof(a) / sizeof(a[0]);
+	qsort(a, sz,sizeof(a[0]), cmp_int);
+	for (int i = 0; i < sz; i++) {
+		printf("%d", a[i]);
+	}
+}
+int main() {
+	test();
+		return 0;
+}
+-------------------------------------------------------------------------------------------------------------------------
+struct student {
+	char name[20];
+	int age;
+};
+int cmp_name(const void* e1, const void* e2) {
+	return strcmp(((struct student*)e2)->name, ((struct student*)e1)->name);
+}
+void test() {
+	struct student s[3] = { {"张三",17},{"xiaohong",19},{"xiaomin",18} };
+	int sz = sizeof(s) / sizeof(s[0]);
+	qsort(s, sz, sizeof(s[0]), cmp_name);
+	for (int i = 0; i < sz; i++) {
+		printf("%s", s[i].name);
+	}
+}
+int main() {
+	test();
+	return 0;
+}

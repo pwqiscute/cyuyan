@@ -1,0 +1,46 @@
+struct student {
+	char name[20];
+	int age;
+};
+//-----------------------------------冒号排序之函数指针
+int cmp_str(const void* e1, const void* e2) {
+	return (*(int*)e2) - (*(int*)e1);
+}
+int cmp_name(const void* e1, const void* e2) {
+	return strcmp(((struct student*)e1)->name,((struct student*)e2)->name);
+}
+int cmp_age(const void* e1, const void* e2) {
+	return ((struct student*)e1)->age- ((struct student*)e2)->age;
+}
+//----------------------------------------------比较；
+void exchange(char* e1, char* e2, int width) {
+	for (int i = 0; i < width; i++) {
+		char temp = 0;
+		temp = *e1;
+		*e1 = *e2;
+		*e2 = temp;
+		e1++;
+		e2++;
+	}
+}
+//----------------------------------------------------------交换
+void maohao(void* base, int sz, int width, int(*cmp)(const void* e1, const void* e2)) {
+	int i = 0;
+	for (i = 0; i < sz - 1; i++) {
+		int j = 0;
+		for (j = 0; j < sz - 1 - i; j++) {
+			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0) {
+				exchange((char*)base + j * width, (char*)base + (j + 1) * width, width);
+			}
+		}
+	}
+}
+int main() {
+	struct student s[3] = { {"张三",17},{"xiaohong",19},{"xiaomin",18} };
+	int sz = sizeof(s) / sizeof(s[0]);
+	maohao(s, sz, sizeof(s[0]), cmp_name);
+	for (int i = 0; i < sz; i++) {
+		printf("%d", s[i].age);
+	}
+	return 0;
+}
