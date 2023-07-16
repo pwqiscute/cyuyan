@@ -1,0 +1,22 @@
+char* str_ncpy(char* a,const char* b, int c) {
+	assert(a && b);
+	char* tem = a;
+	while (c--) {
+		if (*b != '\0') {
+			*a = *b;
+			a++;
+			b++;
+		}
+		else {
+			*a = '\0';
+			a++;
+		}
+	}
+	return tem;
+}
+int main() {
+	char a1[] = "hallo world";
+	char a2[] = "yes";
+	char* ret = str_ncpy(a1,a2,3);
+	printf("%s", ret);
+} 

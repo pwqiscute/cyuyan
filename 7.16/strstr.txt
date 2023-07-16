@@ -1,0 +1,34 @@
+int main() {
+	char a[] = "aaasssdddffg";
+	char b[] = "aaaa";
+	char*n=strstr(a, b);//----strstr函数在a中找b，如果存在返回a等于b部分的第一个地址；如果不存在，返回NULL；
+	printf("%s", n);
+	return 0;
+}
+
+
+
+char* str_str(const char* a, const char* b) {
+	assert(a && b);
+	const char* str1 = a;
+	const char* str2 = b;
+	const char* p = a;
+	while (*p) {
+		str1 = p;
+		str2 = b;
+		while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2) {
+			str1++;
+			str2++;
+		}
+		if (*str2 == '\0') {
+			return (char*)p;
+		}
+		p++;
+	}
+	return NULL;
+int main() {
+	char a[] = "aaasssdddffg";
+	char b[] = "aa";
+	char* n=str_str(a, b);//----strstr函数在a中找b，如果存在返回a等于b部分的第一个地址；如果不存在，返回NULL；
+	printf("%s", n);
+}

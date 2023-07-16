@@ -1,0 +1,17 @@
+int str_cmp(const char* a, const char* b) {
+	assert(a);
+	assert(b);
+	while (*a == *b) {
+		if (*a == '\0')
+			return 0;
+		a++;
+		b++;
+	}
+	return (*a - *b);
+}
+int main() {
+	char a1[] = "a,b,f";
+	char a2[] = "a,b,c";
+	int ret = str_cmp(a1, a2);
+	printf("%d", ret);
+}

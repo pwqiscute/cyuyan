@@ -1,0 +1,23 @@
+char* str_ncat(char* a,const char* b, int c) {
+	assert(a && b);
+	char* tem = a;
+	while (*a) {
+		a++;
+	}
+	while (c--) {
+		if (*b == '\0') {
+			break;
+		}
+		*a = *b;
+		a++;
+		b++;
+	}
+	*a = '\0';
+	return tem;
+}
+int main() {
+	char a1[10] = "aaaaaaa";
+	char a2[] = "yes";
+	char* ret = str_ncat(a1,a2,4);
+	printf("%s", ret);
+} 

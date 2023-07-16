@@ -1,0 +1,27 @@
+假设p的值：-0x1000000；结构体Test类型的变量的大小为20字节；
+struct Test{
+int Num;
+char* pcName;
+short sDate;
+char cha[2];
+short sBa[4];}*p=(struct Test*)0x1000000;
+int main(){
+printf("%p\n",p+0x1);---------------//0x1000000+20=0x1000014;
+printf("%p\n",(unsigned long)p+0x1);---------------//1,048,576+1=1,048,577
+printf("%p\n",(unsigned long*)p+0x1)--------------//0x1000000+4=0x1000004
+}
+
+int main() {
+	int a[4] = { 1,2,3,4 };
+	int* p1 = (int*)(&a + 1);
+	int* p2 = (int*)((int)a + 1);
+	printf("%x,%x", p1[-1], *p2);
+}---------------------,02000000
+
+
+int main() {
+	int a[3][2] = { (0,1),(2,3),(4,5) };//---逗号表达式的结果是最后一个元素，（0，1）-》1；
+	int* p = 0;
+	p = a[0];//------------a[0]是第一行的数组名，没有放在sizeof和&里，表示第一行的第一个元素的地址；
+	printf("%d", p[0])；
+}
