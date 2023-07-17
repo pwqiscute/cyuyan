@@ -1,0 +1,61 @@
+memcpy（void*,const void*,size_t )
+
+
+void* mem_cpy(void* e1, const void* e2, size_t num) {
+	assert(e1 && e2);
+	char* tem = (char*)e2;
+	char* a = (char*)e1;
+	while (num--)
+	{
+		*a = *tem;
+		tem++;
+		a++;
+	}
+	return e1;
+}
+
+
+int main()
+{
+	int arr1[] = { 1,2,3,4,5,6,7 };
+	int arr2[8] = { 0 };
+	memcpy(arr2, arr1, 28);
+	for (int i = 0; i < 7; i++) {
+		printf("%d", arr2[i]);
+	}
+}
+
+-------------------------------------------------------------
+void* my_memove(void* e1, const void* e2, size_t num) {
+	assert(e1 && e2);
+	if (e2 > e1) {
+		//从前往后拷
+		void* tem = e1;
+		while (num--) {
+			*(char*)e1 = *(char*)e2;
+			e1 = (char*)e1 + 1;
+			e2 = (char*)e2 + 1;
+		}
+		return tem;
+	}
+	if (e1 > e2) {
+		//从后往前拷
+		void* tem = e1;
+		e1 = (char*)e1 + num;
+		e2 = (char*)e2 + num;
+		while (num--) {
+			*(char*)e1 = *(char*)e2;
+			e1 = (char*)e1 - 1;
+			e2 = (char*)e2 - 1;
+		}
+		return tem;
+	}
+}
+int main()
+{
+	int arr1[] = { 1,2,3,4,5,6,7 };
+	my_memove(arr1+1 , arr1, 20);
+	for (int i = 0; i < 7; i++) {
+		printf("%d", arr1[i]);
+	}
+}

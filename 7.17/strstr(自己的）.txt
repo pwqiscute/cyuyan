@@ -1,0 +1,26 @@
+char* str_str(const char* a,const char* b) {
+	assert(a && b);
+	while (*a!=*b&&*a!='\0') {
+		a++;
+	}
+	const char* tem = a;
+	const char* temp = a;
+	while (*tem) {
+		while (*tem == *b && *tem != '\0' && *b != '\0') {
+			tem++;
+			b++;
+		}
+		if (*b == '\0') {
+			return (char*)temp;
+		}
+		tem++;
+	}
+	return NULL;
+}
+int main() {
+	char a[] = "aaa@sssd@ddffg";
+	char b[] = "aaaa";
+	char*n=str_str(a, b);
+	printf("%s", n);
+	
+}

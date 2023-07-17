@@ -1,0 +1,10 @@
+//errno--c语言设置的一个全局的错误码存放的变量；
+
+int main()
+{
+	FILE* p=fopen("test.txt", "r");//-----fopen打开文件，如果打开失败，会显示错误码，用strerror（errno)把错误信息打印出来，找到错误原因；---会显示最新错误码；
+	if (p == NULL) {
+		printf("%s", strerror(errno));
+	}
+}
+	

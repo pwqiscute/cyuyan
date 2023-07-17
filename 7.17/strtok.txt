@@ -1,0 +1,27 @@
+int main() {
+	char a[20] = "abcd@efg.ikl@s";
+	const char* sep = "@.";
+	char cp[30] = { 0 };
+	strcpy(cp, a);
+	char* ret = strtok(cp, sep);
+	printf("%s\n", ret);
+
+	 ret = strtok(NULL, sep);
+	printf("%s\n", ret);
+
+	 ret = strtok(NULL, sep);
+	printf("%s\n", ret);
+	return 0;
+}
+
+int main() {
+	char a[20] = "abcd@efg.ikl@s";
+	const char* sep = "@.";
+	char cp[30] = { 0 };
+	strcpy_s(cp, a);
+	char* ret = NULL;
+	for (ret = strtok(cp, sep); ret != NULL; ret = strtok(NULL, sep)) {
+		printf("%s\n", ret);
+	}
+	return 0;
+}

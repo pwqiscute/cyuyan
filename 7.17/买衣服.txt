@@ -1,0 +1,12 @@
+
+double test(double cost, int m, int d, int h) {
+	if (m == 12 && d == 12) {
+		cost = cost * 0.8 - 50 * h;
+	}
+	else if (m == 11 && d == 11) {
+		cost = cost * 0.7 - 50 * h; 
+	}
+	if (cost < 0.0)
+		return 0.0;
+	return cost;
+}

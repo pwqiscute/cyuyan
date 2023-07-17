@@ -1,0 +1,13 @@
+字符分类函数     如果它的参数符合下列条件就返回真
+
+iscntrl  任何控制字符
+isspace  空白字符：空格，换页‘\f',换行’\n',回车‘\r',制表符'\t'和垂直制表符'\v'；
+isdigit  0-9
+isxdigit 16进制数字，10进制数字，小写字母a-f，大写字母A-F
+islower  all小写字母
+isupper  all大写字母
+isalpha  all大小写字母
+isalnum  all字母和0-9的数字
+ispunct  标点符号，任何不属于数字或字母的图型字符（可打印）
+isgraph  all图形字符
+isprint  任何可打印字符，包括图形和空白；

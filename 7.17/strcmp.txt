@@ -1,0 +1,18 @@
+int my_memcmp(const void* e1, const void* e2, size_t num) {
+	assert(e1 && e2);
+	if (!num) {
+		return 0;
+		}
+	while (--num && *(char*)e1 == *(char*)e2) {
+		e1 = (char*)e1  + 1;
+		e2 = (char*)e2 + 1;
+	}
+	return (*((unsigned char*)e1 )- (*(unsigned char*)e2));
+}
+int main()
+{
+	int arr1[] = { 1,2,3,4,5,6,7 };
+	int arr2[] = { 1,2,3};
+	int ret = my_memcmp(arr1, arr2, 12);
+	printf("%d", ret);
+}

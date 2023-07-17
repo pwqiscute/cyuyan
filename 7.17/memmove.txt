@@ -1,0 +1,36 @@
+一个自己拷贝自己的函数；
+如果不重叠，从前往后和从后往前都一样；
+如果重叠  1.当第一个参数的地址小于第二个参数的地址，从前往后考；
+
+
+void* my_memove(void* e1, const void* e2, size_t num) {
+	assert(e1 && e2);
+	if (e2 > e1) {
+		//从前往后拷
+		void* tem = e1;
+		while (num--) {
+			*(char*)e1 = *(char*)e2;
+			e1 = (char*)e1 + 1;
+			e2 = (char*)e2 + 1;
+		}
+		return tem;
+	}
+	if (e1 > e2) {
+		//从后往前拷
+	
+		
+		while (num--) {
+			*（(char*)e1+num） = *（(char*)e2+num);
+			 
+		}
+		return e1;
+	}
+}
+int main()
+{
+	int arr1[] = { 1,2,3,4,5,6,7 };
+	my_memove(arr1+1 , arr1, 20);
+	for (int i = 0; i < 7; i++) {
+		printf("%d", arr1[i]);
+	}
+}               2.当第一个参数的地址大于第二个参数的地址，从后往前拷；
