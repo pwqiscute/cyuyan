@@ -1,0 +1,91 @@
+int find_num(int a[3][3], int r, int c, int k) {
+	int x = 0;
+	int y = c - 1;
+	while (x <= r - 1 && y >= 0) {
+		if (k > a[x][y]) {
+			x++;
+		}
+		else if (k < a[x][y]) {
+			y--;
+		}
+		else {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int main() {
+	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+	int k = 0;
+	scanf_s("%d", &k);
+int ret=	find_num(arr,3,3, k);
+printf("%d", ret);
+}
+
+-------------------------------------------------------------------------------
+
+struct point {
+	int x;
+	int y;
+};
+struct point find_num(int a[3][3], int r, int c, int k) {
+	int x = 0;
+	int y = c - 1;
+	struct point p = { -1,-1 };
+	while (x <= r - 1 && y >= 0) {
+		if (k > a[x][y]) {
+			x++;
+		}
+		else if (k < a[x][y]) {
+			y--;
+		}
+		else {
+			p.x = x;
+			p.y = y;
+			return p;
+		}
+	}
+	return p;
+}
+
+int main() {
+	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+	int k = 0;
+	scanf_s("%d", &k);
+struct point  ret=	find_num(arr,3,3, k);
+printf("%d %d", ret.x,ret.y);
+}
+-------------------------------------------------------------------------------
+
+
+int  find_num(int a[3][3], int* r, int* c, int k) {
+	int x = 0;
+	int y = *c - 1;
+	while (x <= *r - 1 && y >= 0) {
+		if (k > a[x][y]) {
+			x++;
+		}
+		else if (k < a[x][y]) {
+			y--;
+		}
+		else {
+			*r = x;
+			*c = y;
+			return 1;
+		}
+	}
+	*r = -1;
+	*c = -1;
+	return 0;
+}
+
+int main() {
+	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+	int k = 0;
+	scanf_s("%d", &k);
+	int x = 3;
+	int y = 3;
+printf("%d %d",x,y);
+}
+	

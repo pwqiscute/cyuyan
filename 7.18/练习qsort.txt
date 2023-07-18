@@ -1,0 +1,19 @@
+struct student {
+	char name[20];
+	int age;
+};
+int name_cmp(const void* e1,const void* e2) {
+	return strcmp((((struct student*)e2)->name),( ((struct student*)e1)->name));
+}
+int age_cmp(const void* e1, const void* e2) {
+	return (((struct student*)e2)->age - ((struct student*)e1)->age);
+}
+int main() {
+	struct student s[3] = { {"ssss",12},{"aaaaa",13},{"wwwwwww",14} };
+	int sz = sizeof(s)/sizeof(s[0]);
+	int sz1 = sizeof(s[0]);
+	 qsort(s, sz, sz1, age_cmp);
+	 for (int i = 0; i < sz; i++) {
+		 printf("%s %d", s[i].name, s[i].age);
+	 }
+}
