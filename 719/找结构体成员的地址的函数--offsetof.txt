@@ -1,0 +1,12 @@
+#include<stddef.h>
+struct student {
+	char name[20];
+	int age;
+	char sex[3];
+};
+
+int main(){
+	printf("%d\n", offsetof(struct student, name));
+	printf("%d\n", offsetof(struct student, age));
+	printf("%d\n", offsetof(struct student, sex));
+}

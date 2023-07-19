@@ -1,0 +1,19 @@
+#pragma once//-----------------防止头文件被多次引用；
+#pragma pack(4)//把默认对齐数改为4；-----开始
+   struct student {
+	   int i ;
+	   double d;
+};
+#pragma pack()//-------------------结束（回复默认的8）
+
+#pragma pack(1)//------------不用对齐
+   struct s {
+	   char c1;
+	   int n;
+	   char c2;
+   };
+int main(){
+	printf("%d\n", sizeof(struct student));
+	printf("%d", sizeof(struct s));//---------6
+}
+	
