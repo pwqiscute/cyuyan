@@ -1,0 +1,39 @@
+void* malloc（字节）；calloc=malloc+memset
+void* calloc（size_t num,size_t size)//num个size类型的字节；在申请空间时会初始化为0；
+void* ralloc（（要修改的空间的地址），（新的字节大小））；//当追加的空间不够，会在堆上开辟一块足够大空间，然后把原来空间的东西拷贝到新空间里（原来的空间会被释放），然后返回新空间的地址；当追加的空间够，直接追加；
+free（p）p为动态空间
+
+int main() {
+	int arr[10] = { 0 };//局部变量，形式参数放在栈区；
+	int* p = (int*)malloc(40);//向内存申请40个字节的空间；申请函数放在了堆区；没有free，并不是说内存空间就不回收了，当程序退出时，系统会自动回收内存空间；
+	//	printf("%s\n", strerror(errno));
+	//申请成功
+	int i = 0;
+	for (i = 0; i < 10; i++) {
+		*(p + i) = i;
+	}
+	for (i = 0; i < 10; i++) {
+		printf("%d ", *(p + i));
+	}
+	free(p);
+	p = NULL;//--在释放p后,给p赋值NULL让它忘记之前的地址；避免p成为野指针；
+	return 0;
+}
+----------------------------
+int main() {
+	int arr[10] = { 0 };//局部变量，形式参数放在栈区；
+	int* p = (int*)malloc(40);//向内存申请40个字节的空间；申请函数放在了堆区；没有free，并不是说内存空间就不回收了，当程序退出时，系统会自动回收内存空间；
+	//	printf("%s\n", strerror(errno));
+	//申请成功
+	int i = 0;
+	for (i = 0; i < 10; i++) {
+		*(p + i) = i;
+	}
+	int* ptr = (int*)realloc(p, 80);//---申请80个字节的新空间---不能直接用p来接收，因为当realloc申请失败会返回NULL，当p接收会把原来的值给抹去；
+	if (ptr != NULL) {//申请成功
+		p = ptr;
+	}
+	free(p);
+	p = NULL;//--在释放p后,给p赋值NULL让它忘记之前的地址；避免p成为野指针；
+	return 0;
+}

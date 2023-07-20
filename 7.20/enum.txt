@@ -1,0 +1,48 @@
+enum Day{
+Mon,Tus,wed,thur,fri,sat,sun};-----枚举（在生活中可一一列举）
+他的优点：1.增加代码的可读性和可维护性
+2.和#define定义的比较枚举有类型检查更加严谨。
+3.防止命名污染
+4.便于调试
+5.使用方便，一次可定义多个常量；
+int main(){
+enum Day a=wed;}
+enum Day {
+	Mon=1,//0  可以在第一个进行赋值来实现，依次加一；枚举不能被第二次赋值
+	Tues,//1
+	Wed,//2
+	Thur,//3
+	Fri,//4
+	Sta,//5
+	Sun//6
+};
+int main() {
+	enum Day d = Thur;
+	printf("%d", Mon);
+	printf("%d", Tues);
+	printf("%d", Wed);
+	printf("%d", Thur);
+}
+
+-------------------------------------
+enum Option {
+	Exit,
+	ADD,
+	DEl,
+	SEARCH,
+	MODIFY,
+	SHOW,
+	SORT
+};
+int main() {
+	int input = 0;
+	scanf_s("%d", &input);
+	switch(input) {
+		case Exit://--------------这样方便我们写错
+			break;
+		case ADD:
+			break;
+		case DEl:
+			break;
+	}
+}

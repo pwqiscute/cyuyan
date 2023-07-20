@@ -1,0 +1,4 @@
+void free（void* ptr)
+如果参数ptr指向的空间不是动态开辟的内存，那么free函数的行为是未定义的；
+如果参数ptr是空指针，那么函数什么也不做
+free（ptr）后一定要将ptr变为NULL，防止ptr成为野指针；
