@@ -1,0 +1,19 @@
+int main() {
+	int n = 0;
+	int m = 0;
+	if (scanf_s("%d %d", &n, &m) == 2) {
+		int tem = 1;
+		int max = n > m ? n : m;
+		int min = n < m ? n : m;
+		int b = max;
+		int a = min;
+		while (tem=max%min) {
+			max = min;
+			min = tem;
+		}
+		printf("%d\n", min);//--------------------最大公约数
+		int bei = a * b/min;//-----------------------最小公倍数==最小的数+最大的数/最大公约数
+		printf("%d", bei);
+	}
+	return 0;
+}

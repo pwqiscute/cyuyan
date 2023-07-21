@@ -1,0 +1,42 @@
+结构体的最后的一个元素的大小时未知的数组，这就叫柔性数组成员；
+特点：1.结构中的柔性数组成员前面必须至少有一个成员；
+    2.sizeof的返回值大小不包括柔性数组的内存；
+   3.包含柔性数组成员的结构用malloc（）函数进行内存的动态分配，并且分配的内存大小应该大于结构体的大小，一适应柔性数组的预期大小
+
+typedef struct s {
+	int i ;
+	int a[0];//----------------柔性数组成员a[0]||a[]
+}type_s;
+int main() {
+	//int sz = sizeof(type_s);
+	//printf("%d", sz);//---4
+	type_s* ps=(type_s*)malloc(sizeof(type_s) + 40);//40是给a数组的空间
+	if (ps == NULL) {
+		return 1;
+	}
+	ps->i = 100;
+        ps->a=malloc(40);
+        if(ps->a==NULL){
+return 1;}
+	int i = 0;
+	for (i = 0; i < 10; i++) {
+		ps->a[i] = i;
+	}
+	for (i = 0; i < 10; i++) {
+		printf("%d", ps->a[i]);
+	}
+	type_s* ptr = (type_s*)realloc(ps, sizeof(type_s) + 80);
+	if (ptr != NULL) {
+		ps = ptr;
+		ptr = NULL;
+	}
+          int ptr*=(int*)realloc(ps->a,80);
+              if（ptr*==NULL){
+return 1;}
+            ps=ptr;
+          //判断是否为NULL
+        free(ps->a)//---先释放小的，在释放大的；
+	free(ps);
+	ps = NULL;
+	return 0;
+}

@@ -1,0 +1,74 @@
+1.打开文件  fopen FILE* fopen(const char*filename,cost char* mode)第一个参数是文件的名字，第二个参数是打开的方式；“r”--打开文件为了输入操作，这个文件必须存在；
+“w”---建立一个新的文件，输出操作； “a”----追加文件，向文件末尾添加数据，建立新文件 ；"rb"--为了输入数据，打开一个二进制文件；“wb”为了输出数据，打开一个二进制文件；
+“ab“--向一个二进制文件末尾添加数据；”r+“---为了读和写，打开一个文本文件；”w+“---为了读和写，建立一个新文件，”a+“---打开一个文件，在末尾进行读写；还有“rb+”，“wb+”，“ab+”；打开文件失败返回NULL；strerror（errno）-----看错误；
+2.读写文件
+3.关闭文件  fclose（FILE*）打开后要关闭，并赋值NULL；
+文件指针：
+每个被使用的文件都在内存中开辟了一个相应的文件信息区，用来存放文件的相关信息（如文件的名字，状态，位置等）这些信息是保存在一个结构体变量中的，该结构体类型是有系统声明的，取名为FILE；
+在编写程序时，在打开文件的同时，都会返回一个FILE*的指针变量指向该文件，也相当于与该文件建立起关系；
+
+fputc（int character，FILE*stream）
+
+
+int main()
+{
+	FILE* pf = fopen("ssss.txt", "r");
+	if (pf == NULL) {
+		//printf("%s\n", strerror(errno));
+		perror("fopen");//打印错误信息；（）括号里表示错误在哪？
+		return 1;
+	}
+	//---写文件
+	/*char i = 0;
+	for (i = 'a'; i <= 'z'; i++) {
+		 fputc(i, pf);
+	}*/
+	// ---------读文件 每次读一个；
+   //--------------------------------------- 用while循环去读；
+	//int ch = 0;
+	//while ((ch=fgetc(pf)) != EOF) {
+	//	printf("%c", ch);
+	//} 
+	/*int ch = fgetc(pf);
+	printf("%c", ch);
+	 ch = fgetc(pf);
+	printf("%c", ch);
+	 ch = fgetc(pf);
+	printf("%c", ch);
+	ch = fgetc(pf);
+	printf("%c", ch);
+	ch = fgetc(pf);
+	printf("%c", ch);*/
+	//---------------写一行数据
+	fputs("hello\n", pf);//写文件是如果原来的文件有东西，会把原来的东西给清除，再写；
+	fputs("ssss", pf);//----自己换行；
+	//--------------------读一行数据
+	char arr[5] = { 0 };
+	fgets(arr, 5, pf);//----------把pf的数据读到的字符串拷贝到啊arr数组中，最多5个（其实4个，还有一个'\0')
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
+
+-------------------------------
+struct s {
+	char arr[10];
+	int age;
+	float score;
+};
+int main() {
+	struct s a = { "zhangsan",25,50.5f };
+	struct s b = { 0 };
+	FILE* pf = fopen("ssss.txt", "r");
+	if (pf == NULL) {
+		perror("fopen");
+		return 1;
+	}
+	//printf("%s %d %f",s.arr,s.age,s.score);//把东西写道屏幕里
+	//fprintf(pf,"%s %d %f",a.arr,a.age,a.score);//把东西写到文件里去   "w"
+	fscanf(pf,"%s %d %f",b.arr,&(b.age),&(b.score));//从文件读取，放在一个新的结构体变量里；
+	printf("%s %d %f", b.arr, b.age, b.score);
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
