@@ -1,0 +1,27 @@
+二进制输入 fread--文件；和fwrite参数一样，只是第一个参数表示要放的地方的地址，就是把从第四个参数的东西放在第一个参数里；
+二进制输出 fwrite--文件 size_t fwrite(const void*ptr,size_t size,size_t count,FILE*stream);const void*----东西的地址
+size---- 东西里要放的字节大小    count--------- 多少个这样的字节大小            steam----要放的的地方
+
+struct s {
+	char arr[10];
+	int age;
+	float score;
+};
+int main() {
+	struct s a = { "zhangsan",25,50.5f };
+	struct s b = { 0 };
+	//FILE* pf = fopen("ssss.txt", "wb");//--“wb”-已二进制地写；
+	FILE* pf = fopen("ssss.txt", "rb");//---以二进制读；
+	if (pf == NULL) {
+		perror("fopen");
+		return 1;
+	}
+	//---二进制的方式写
+	//fwrite(&a, sizeof(struct s), 1, pf);//字符串以文本的形式和与二进制的形式是一样；
+	//-------二进制的方式读
+	fread(&b, sizeof(struct s), 1, pf);
+	printf("%s %d %f\n", b.arr, b.age, b.score);
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}

@@ -1,0 +1,25 @@
+scanf是针对标准输入的格式化输入语句
+printf是针对标准输出的格式化输出语句
+
+fscanf是针对所有输入流的格式化输入；
+fprintf是针对所有输出流的格式化的输出语句
+
+
+sprintf int sprintf(char* str , const char*format.....);把一个格式化的数据写到字符串中，本质是把一个格式化的数据换成字符串；
+sscanf   int sprintf(char* str , const char*format.....)；把一个字符串转化为格式化数据；
+
+int main() {
+	struct s a = { "zahngsan",20,55.5f };
+	struct s b = { 0 };
+	char buf[100] = { 0 };
+	char s[100] = { 0 };
+	//把a中的格式化数据转换为字符串放在buf中去
+	sprintf(buf,"%s %d %f\n", a.arr, a.age, a.score);
+	//"zhangsan 20 55.500000";
+	printf("%s\n", buf);
+	//从字符串buf中获取一个格式化数据放在b里；
+	sscanf(buf,"%s %d %f\n", b.arr,&b.age,&b.score);
+	//sprintf(s, "%s %d %f\n", b.arr, b.age, b.score);
+	//printf("%s\n", s);
+	return 0;
+}

@@ -1,0 +1,4 @@
+任何一个C语言程序，只要运行就会默认打开3个流
+FILE* stdin-标准输入流（键盘） fscanf(要放的地方，从屏幕得到东西的类型，屏幕地东西）
+FILE* stdout-标准输出流（屏幕） fprintf(  打印的地方（stdout，就是屏幕）,打印的类型（%d.....),要打印的东西）//--fprintf(stdout,"%s %d %f",b.arr,b.age,b.score);
+FILE* stderr-标准错误流（屏幕）
