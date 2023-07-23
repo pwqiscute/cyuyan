@@ -1,0 +1,5 @@
+编译的第一个步骤（gcc test.c-E-test.i)
+1.头文件的包含 #include
+2.define定义符号的替换
+3.注释删除；
+文本操作

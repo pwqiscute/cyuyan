@@ -1,0 +1,12 @@
+在系统输入文本文件时会先存进缓冲区，在存到文本文件；
+
+	int main()
+	{
+		FILE* pf = fopen("sss,txt", "w");
+		fputs("sss", pf);
+		printf("睡眠10秒-已经写数据了，sss.txt中还没有数据，在缓冲区");
+		Sleep(10000);
+		fflush(pf);//刷新缓冲区，把缓冲区的数据输入文本文件中；
+		fclose(pf);//在结束时，也会自动刷新缓冲区
+		return 0;
+	}
