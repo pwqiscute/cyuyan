@@ -1,0 +1,9 @@
+1.在头文件加上  #ifndef __aa__
+              #define __aa__
+              #endif
+
+2.在头文件第一行加上 #pragma once
+
+
+#include<>直接去库目录下查找
+#include""先去自己所在的路径查找，如果找不到，再去库目录查找·

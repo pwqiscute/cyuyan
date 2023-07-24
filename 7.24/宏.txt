@@ -1,0 +1,50 @@
+#define MIN (a,b) (a>b?b:a)
+int main() {
+	int a = 2;
+	int b = 3;
+	int m = MIN(a, b);
+	printf("%d", MIN);
+	return 0；
+}
+
+#+宏的参数 表示不转换
+-------------------------------------------------------------
+#define PRINT(N,FORMAT) printf("the value of "#N" is "FORMAT"\n",N)
+int main() {
+	int a = 10;
+	PRINT(a, "%d");
+
+	float b = 10.00;
+	PRINT(b, "%f");
+
+	char c = 'a';
+	PRINT(c, "%c");
+
+	char d[] = "ssss";
+	PRINT(d, "%s");
+	return 0;
+}
+-------------------------------------------------
+#define CAT(Class,Num) Class##Num//##把两个参数合并
+int main() {
+	int Class106 = 100;
+	printf("%d", CAT(Class,106));
+	return 0;
+}
+-----------------------------------------------------
+//副作用
+#define ASD(x,y) ((x)>(y)?(x):(y))
+int main() {
+	int i = 7;
+	int j = 6;
+	int c = ASD(i++,j++);//(7++)>(6++)?(7++):(6++)
+	printf("%d %d %d",c,i,j);//8 9 7
+}
+----------------------------------------------------------
+#define MALLOC(num,type) (type*)malloc((num)*sizeof(type))
+int main() {
+	int* p = MALLOC(10, int);
+	return 0;
+}
+
+当不想用一个符号，用函数#undef M
