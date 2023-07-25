@@ -1,0 +1,18 @@
+offsetof（type，member）返回偏移量
+
+#define OFFSETOF(type,m_name) (size_t)&(((type*)0)->m_name)                                                                                                                                                                                      &(((type*)0)->m_name)
+typedef struct S {
+	char c1;
+	int i;
+	char c2;
+}S;
+int main() {
+	struct S s= { 0 };
+	//printf("%d", offsetof(S, c1));//0 偏移量：首地址离 0 的距离
+	//printf("%d", offsetof(S, i));//4
+	//printf("%d", offsetof(S, c2));//8
+	printf("%u",OFFSETOF(struct S, c1));
+	printf("%u", OFFSETOF(struct S, c2));
+	printf("%u", OFFSETOF(struct S, i));
+	return 0;
+}

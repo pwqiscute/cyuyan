@@ -1,0 +1,61 @@
+#include<stdlib.h>
+int main() {
+	char arr[10] = "1222";
+	int ret = atoi(arr);//atoi函数把字符串转换为整形；
+	printf("%d\n", ret);
+
+}
+
+
+enum Status 
+{
+	VALID,
+	INVALID
+} sta;
+int my_atoi(const char* arr) {
+	sta = INVALID;
+	assert(arr);
+	int flag = 1;
+	if (*arr == '\0')
+		return 0;//非法0
+	while (isspace(*arr)) {
+		arr++;
+	}
+	if (*arr == '+') {
+		arr++;
+	}
+	else if (*arr == '-') {
+		flag = -1;
+		arr++;
+	}
+	long long ret = 0;
+	while (*arr) {
+		if (isdigit(*arr)) {//shuzi
+			ret = ret * 10 + flag*(*arr - '0');
+			if (ret > INT_MAX || ret < INT_MIN) {
+				if (flag == -1)
+					return INT_MIN;
+				else if (flag == 1)
+					return INT_MAX;
+			}
+		}
+		else {
+
+			return ret;
+		}
+		arr++;
+	}
+	if(*arr=='\0')
+	sta = VALID;
+	return  ret;
+}
+int main() {
+	char arr[10] = "1222";
+	int ret =my_atoi(arr);//atoi函数把字符串转换为整形；
+	if (sta == INVALID) {
+		printf("非法返回：%d\n", ret);
+	}
+	else if(sta==VALID){
+		printf("合法返回：%d\n", ret);
+	}
+}
