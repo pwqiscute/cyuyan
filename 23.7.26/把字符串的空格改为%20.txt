@@ -1,0 +1,29 @@
+void replaceSpace(char* arr, int len) {
+	int Scon = 0;
+	int i = 0;
+	while (*arr) {
+		if (*arr == ' ')
+			Scon++;
+		arr++;
+	}
+	int end1 = len - 1;
+	int end2 = len + Scon * 2 - 1;
+	while (end1 != end2) {
+		if (arr[end1] != ' ') {
+			arr[end2--] = arr[end1--];
+		}
+		else {
+			end1--;
+			arr[end2--] = '0';
+			arr[end2--] = '2';
+			arr[end2--] = '%';
+		}
+	}
+}
+int main()
+{
+	char arr[20] = "ni hao li";
+	int len = strlen(arr);
+	replaceSpace(arr, len);
+	printf("%s", arr);
+}

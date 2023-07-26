@@ -1,0 +1,28 @@
+int main()
+{
+	int n = 0;
+	scanf_s("%d", &n);
+	int a = 0;
+	int b = 1;
+	int c = a + b;
+	while (1) {
+		if (n == b) {
+			printf("0\n");
+			break;
+		}
+		else if (n < b) {
+			if (abs(a - n) > abs(b - n)) {
+				printf("%d\n", abs(b - n));
+				break;
+			}
+			else {
+				printf("%d\n", abs(a - n));
+				break;
+			}
+		}
+		c = a + b;
+		a = b;
+		b = c;
+
+	}
+}
