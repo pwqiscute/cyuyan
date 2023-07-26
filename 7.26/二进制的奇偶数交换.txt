@@ -1,0 +1,8 @@
+#define SWAP_BIT(n) (((n&0x55555555)<<1)+((n&0xaaaaaaaa)>>1))//在偶数位的二进制数往左移一位，在奇数位的数往右移一位，实现了奇偶交换
+int main()
+{
+	int  n = 0;
+	scanf("%d", &n);
+	int a=SWAP_BIT(n);
+	printf("%d", a);
+}
