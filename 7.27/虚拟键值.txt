@@ -1,0 +1,12 @@
+getch() 需要返回值来判断，需要头文件conio.h
+上：72；
+下：80；
+左：75；
+右：77；
+如果是与字母比较直接写字母，比如‘A'
+
+GetAsyncKeyState（键值）；需要头文件windows.h但是EasyX包含了
+上：VK_Up
+下：VK_DOWN
+左：VK_LEFT
+右：VK_RIGHT

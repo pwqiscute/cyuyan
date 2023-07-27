@@ -1,0 +1,23 @@
+IMAGE img;//定义一个（变量）对象 c
+	loadimage(&img, "./o.jpg", 200,200);//加载图片到img中；250,250是改图片像素的大小； ./表示当前文件夹下 ，  ../当前文件夹的上一级  ./||../是相对路径  绝对路径遇到’ ‘，要加/“ "/
+	putimage(-400, -300, &img);//图片的加载也是从左上角的坐标开始，-400，-300，就是左上角的坐标，这样才能覆盖整个屏幕；
+	//cleardevice();
+	while (1) {	
+		if (MouseHit()) //判断鼠标是否有信息，有返回真；
+		{
+			//	cleardevice(); 
+			MOUSEMSG msg = GetMouseMsg();//创建鼠标实体，获取鼠标信息
+			if (msg.x > 200 && msg.x<600 && msg.y>250 && msg.y <350) {
+				switch (msg.uMsg) {
+				case WM_LBUTTONDOWN:
+					outtextxy(200, 200, "鼠标左键按下");
+					printf("坐标(%d,%d)", msg.x, msg.y);
+					break;
+				case WM_RBUTTONDOWN:
+					outtextxy(200, 200, "鼠标右键按下");
+					printf("坐标(%d,%d)", msg.x, msg.y);
+					break;
+				}
+			}
+		}
+	}

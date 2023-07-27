@@ -1,0 +1,141 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <easyx.h>
+#include<graphics.h>
+#include<Windows.h>
+#include <mmsystem.h>//包含多媒体设备接口头文件
+#pragma comment(lib,"winmm.lib")//加载静态库
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+void bgm() { 
+	mciSendString("open ./HOYO-MiX - Distant.mp3 alias bgm",0,0,0);//向多媒体接口发送一个字符串；打开音乐；
+	mciSendString("play bgm repeat", 0, 0, 0);// 播放音乐，alias 取别名  repeat一直播放；
+	if (0) {
+		mciSendString("close bgm", 0, 0, 0);
+	}
+	
+}
+void change() {
+	HWND hnd = GetHWnd();//获取窗口句柄；
+	SetWindowText(hnd, "c语言plus");//设置窗口标题；
+	int isok=MessageBox(hnd, "恭喜中奖500万","提示",MB_OKCANCEL);//返回你按的值
+	if (isok == IDOK) {
+		printf("你点击了ok");
+	}
+	else if(IDCANCEL==isok){
+		printf("你点击了取消");
+	}
+}
+int main() {
+	initgraph(800, 600, EX_SHOWCONSOLE);//显示控制台
+	bgm();
+	change();
+	int x = 0, y = 0;
+	while (1) {
+		BeginBatchDraw();//开始批量绘画；在初始化之后，避免屏幕移一闪一闪；
+		setorigin(400, 300);//用物理坐标的点改逻辑坐标的原点
+		setaspectratio(1, 1);//把y轴翻转；
+		setbkcolor(WHITE);//背景颜色
+		cleardevice();//清屏，清除黑色
+		setlinecolor(YELLOW);//设置线条颜色
+		setfillcolor(BLUE);//设置填充颜色
+		setlinestyle(PS_SOLID, 20);//实线，100像素宽；
+		//fillcircle(0,0,300);//有边框填充
+		//solidcircle(0,0,100);//无边框填充
+		settextcolor(RED);//设置字体颜色
+		settextstyle(20, 0, "楷体");//字体样式，高度，yin度，字体名称
+		setbkmode(TRANSPARENT);//设置字体背景，透明
+		settextcolor(RGB(0, 176, 80));//设置字体颜色
+		outtextxy(0, 0, 'b');//在0,0处输出‘b’，只能传一个字符；
+		//outtextxy(0, 0,L"sss");//如果要输出字符串，在字符串前加L；
+		//outtextxy(20,20,TEXT("sss"))//用TEXT把字符串包起来也行；_T也行；
+		outtextxy(20, 20, "是是是");//也可以进项目，属性，常规，字符集-》改为多字节字符集；（使用这个）
+		fillrectangle(200, 50, -200, -50);//设置一个矩形
+		settextcolor(RGB(173, 0, 13));//重新设置字体颜色；
+		//outtextxy(0, 0, "你是小丑？");
+		char arr[] = "我是小丑";
+		int width = (400 - textwidth(arr)) / 2;//求字体宽度
+		int height = (100 - textheight(arr)) / 2;//求字体高度
+		outtextxy(-200 + width, -50 + height, arr);// 文字居中，文字的x，y，是左上角	
+		//输出图片
+		IMAGE img;//定义一个（变量）对象 c
+		loadimage(&img, "./o.jpg", 200, 200);//加载图片到img中；250,250是改图片像素的大小； ./表示当前文件夹下 ，  ../当前文件夹的上一级  ./||../是相对路径  绝对路径遇到’ ‘，要加/“ "/
+		putimage(-400, -300, &img);//图片的加载也是从左上角的坐标开始，-400，-300，就是左上角的坐标，这样才能覆盖整个屏幕；
+		//cleardevice();
+		//	cleardevice();
+		setfillcolor(BROWN);
+		fillcircle(x, y, 20);
+		EndBatchDraw();//结束批量绘画，后面都不要绘画；FlushBatchDraw();也行
+		if (GetAsyncKeyState(VK_UP))//上键
+		{
+			y -= 5;
+		}
+		if (GetAsyncKeyState(VK_DOWN))//下键
+		{
+			y += 5;
+		}
+		if (GetAsyncKeyState(VK_LEFT))//左键
+		{
+			x -= 5;
+		}
+		if (GetAsyncKeyState(VK_RIGHT))//右键
+		{
+			x += 5;
+		}
+
+		//if (_kbhit()) //这样函数不用等，键盘输入会kbhit函数会返回真，进入循环；
+		//{
+		//	char key = _getch();//堵塞函数，不输入一值在这里等
+		//	printf("%d,%c\n", key, key);
+		//	switch (key) {
+		//	case 72://上
+		//	case 'w':
+		//	case'W':
+		//		y -= 5;
+		//		printf("上建");
+		//		break;
+		//	case 80://下
+		//	case 's':
+		//	case'S':
+		//		y += 5;
+		//		printf("xiajian");
+		//		break;
+		//	case 75://左
+		//	case 'a':
+		//	case'A':
+		//		x -= 5;
+		//		printf("zuojian");
+		//		break;
+		//	case 77://右
+		//	case 'd':
+		//	case'D':
+		//		x += 5;
+		//		printf("youjian");
+		//		break;
+		//	}
+		//}
+	}
+	while (1) {	
+		if (MouseHit()) //判断鼠标是否有信息，有返回真；
+		{
+			//	cleardevice(); 
+			MOUSEMSG msg = GetMouseMsg();//创建鼠标实体，获取鼠标信息
+			if (msg.x > 200 && msg.x<600 && msg.y>250 && msg.y <350) {
+				switch (msg.uMsg) {
+				case WM_LBUTTONDOWN:
+					outtextxy(200, 200, "鼠标左键按下");
+					printf("坐标(%d,%d)", msg.x, msg.y);
+					break;
+				case WM_RBUTTONDOWN:
+					outtextxy(200, 200, "鼠标右键按下");
+					printf("坐标(%d,%d)", msg.x, msg.y);
+					break;
+				}
+			}
+		}
+	}
+	getchar();
+	closegraph();
+}
