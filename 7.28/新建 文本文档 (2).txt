@@ -1,0 +1,23 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include<graphics.h>
+//熟悉透明贴图（去背景贴图），底层原理是通过颜色二进制；
+//认识素材：掩码图（白色底） 背景图（黑色底），先用SRCAND，贴掩码图 putimage(0,0,&mm,SRCAND)
+//再有SRCPAINT贴背景图； putimage(0,0,&mm,SRCPAINT)
+int main() {
+	initgraph(800, 600);
+	/*IMAGE img;
+	loadimage(&img, "./o.jpg", 800, 600);
+	putimage(0, 0, &img);*/
+	IMAGE background;
+	loadimage(&background, "./拳王.jpg", 800, 600);
+	putimage(0, 0, &background);
+	IMAGE bb[2];
+	loadimage(bb + 0, "./拳王3.PNG");
+	loadimage(bb + 1, "./拳王2.PNG");
+	putimage(-100,-100, bb + 0, SRCAND);
+	putimage(-100, -100, bb + 1, SRCPAINT);
+	while (1);//防止闪屏
+		closegraph();
+	return 0;
+}

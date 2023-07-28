@@ -1,0 +1,117 @@
+// ConsoleApplication1.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+//
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <easyx.h>
+#include<graphics.h>
+#include<Windows.h>
+#include <mmsystem.h>//包含多媒体设备接口头文件
+#pragma comment(lib,"winmm.lib")//加载静态库
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+struct Button {
+	int x;
+	int y;
+	int w;
+	int h;
+	unsigned long curColor;
+	unsigned long oldColor;
+	char* str;
+};
+struct Button* createButton(int x, int y, int w, int h, unsigned long curColor, const char* str)
+{
+	struct Button* pButton = (struct Button*)malloc(sizeof(struct Button));
+	if (pButton == NULL)
+		return NULL;
+	pButton->x = x;
+	pButton->y = y;
+	pButton->w = w;
+	pButton->h = h;
+	pButton->curColor = curColor;
+	pButton->oldColor = curColor;
+	int length = strlen(str);
+	 pButton->str = (char*)malloc(sizeof(char) * (length + 1));
+	if (pButton->str == NULL)
+		return NULL; 
+	strcpy_s(pButton->str, length + 1, str);
+	return pButton;
+}
+void show(struct Button* pButton) {
+	setfillcolor(pButton->curColor);
+	solidrectangle(pButton->x, pButton->y, pButton->x + pButton->w, pButton->y + pButton->h);
+	settextstyle(15, 0, "楷体");
+	int textw = textwidth(pButton->str);
+	int txeth = textheight(pButton->str);
+	int xx = pButton->x + (pButton->w - textw) / 2;
+	int yy = pButton->y + (pButton->h - txeth) / 2;
+	setbkmode(TRANSPARENT);
+	settextcolor(BLACK);
+	outtextxy(xx, yy, pButton->str);
+}
+int InButton(struct Button* pButton, ExMessage msg) {
+	if (msg.x >= pButton->x && msg.x <= pButton->x + pButton->w && msg.y >= pButton->y && msg.y <= pButton->y + pButton->h) {
+		pButton->curColor = RED;
+
+		return 1;
+	}
+	pButton->curColor = pButton->oldColor;
+	return 0;
+}
+void SetTextButton(struct Button* pButton, const char* str) {
+	int length = strlen(str);
+	free(pButton->str);
+	pButton->str = (char*)malloc(sizeof(str) * (length + 1));
+	if (pButton == NULL)
+		return;
+	strcpy_s(pButton->str, length + 1, str);
+}
+int main() {
+	initgraph(800, 600, EX_SHOWCONSOLE);//显示控制台
+	IMAGE img;
+	loadimage(&img, "./o.jpg", 800, 600);
+	struct Button* play = createButton(0, 0, 100, 25, RGB(255, 255, 148), "播放音乐");
+	struct Button* pause = createButton(0, 30, 100, 25, RGB(255, 255, 148), "暂停音乐");
+	//struct Button* resum = createButton(0, 60, 100, 25, RGB(255, 255, 148), "继续音乐");
+	struct Button* close = createButton(0, 60, 100, 25, RGB(255, 255, 148), "停止音乐");
+	mciSendString("open ./哈哈.MP3", 0, 0, 0);
+//	putimage(0, 0, &img);
+	ExMessage msg;
+	int flag = 0;
+	while (1) {
+		BeginBatchDraw();
+		putimage(0, 0, &img);
+		show(play);
+		show(pause);
+	   // show(resum);
+		show(close);
+		FlushBatchDraw();
+		while (peekmessage(&msg)) {//获取鼠标信息；有新的信息才会处理；
+			if (InButton(play, msg) && msg.message == WM_LBUTTONDOWN) {
+				mciSendString("Play./哈哈.MP3", 0, 0, 0);
+			}
+			if (InButton(pause, msg) && msg.message == WM_LBUTTONDOWN) {
+				if (flag == 0) {
+					SetTextButton(pause, "暂停");
+					mciSendString("pause ./哈哈.MP3", 0, 0, 0);
+					flag = 1;
+				}
+				else {
+					SetTextButton(pause, "继续");
+					mciSendString("resume ./哈哈.MP3", 0, 0, 0);
+					flag = 0;
+				}
+
+			}
+			//	if (InButton(resum, msg) && msg.message == WM_LBUTTONDOWN) {
+
+			//	}
+			if (InButton(close, msg) && msg.message == WM_LBUTTONDOWN) {
+				mciSendString("close ./哈哈", 0, 0, 0);
+			}
+		}
+	}
+	getchar();
+	closegraph();
+}
