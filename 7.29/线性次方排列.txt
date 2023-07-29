@@ -1,0 +1,50 @@
+typedef struct shu {
+	int zhengshu;
+	int zhishu;
+}Shu;
+int main() {
+	Shu A[4] = { 0 };
+	Shu B[3] = { 0 };
+	Shu C[7] = { 0 };
+	for (int i = 0; i < 4; i++) {
+		scanf("%d %d", &A[i].zhengshu,& A[i].zhishu);
+	}
+	for (int i = 0; i < 3; i++) {
+		scanf("%d %d", &B[i].zhengshu,& B[i].zhishu);
+	}
+	int n = 0;
+	int m = 0;
+	int h = 0;
+	while (m<3&&n<4) {
+		if (A[n].zhishu > B[m].zhishu) {
+			C[h++] = B[m++];
+		}
+		else if (A[n].zhishu == B[m].zhishu) {
+			if ((A[n].zhengshu + B[m].zhengshu) == 0) {
+				n++;
+				m++;
+			}
+			else{
+				C[h].zhengshu = A[n].zhengshu + B[m++].zhengshu;
+				C[h++].zhishu = A[n++].zhishu;
+			}
+		}
+		else {
+			C[h++] = A[n++];
+		}
+	}
+	if (n<4) {
+		for (int i = n; i < 4; i++) {
+			C[h++] = A[i];
+		}
+	}
+	else {
+		for (int i = m; i < 3; i++) {
+			C[h++] = B[i];
+		}
+	}
+	for (int i = 0; i < 7; i++) {
+		printf("%d", C[i].zhengshu);
+	}
+	return 0;
+}

@@ -1,0 +1,18 @@
+typedef struct{
+float realpart;//实部
+float imagpart;//虚部
+}Complex      //定义复数抽象类型
+
+
+void assign（Complex*A，float real，float image）{
+A->realpart=real;//实部赋值
+A->imagpart=imag;//虚部赋值
+}
+
+void add（Complex *c，Complex A，Complex B）{
+c->realpart=A.realpart+B.realpart;//实部相加
+c->imagpart=A.imagpart+B.imagpart;//虚部相加
+}
+
+抽象数据类型=数据的逻辑结构（数据对象与数据对象的关系，映射到计算机的存储器（存储结构），每个存储结构都有多个算法，计算每个算法的时间和空间的渐进复杂度来比较，从中挑出最好的算法）+抽象运算
+
