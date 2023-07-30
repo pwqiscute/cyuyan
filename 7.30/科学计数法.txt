@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int a = 10;
+	int b = 3e2;//科学计数法，如果e后面是正数，表示10的整数次方
+	float c = 3e-2;//e后面是负数表示0.1的多少次方
+	cout << c<< endl;
+	system("pause");
+	return 0;
+}

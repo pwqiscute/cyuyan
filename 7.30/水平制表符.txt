@@ -1,0 +1,8 @@
+#include <iostream>
+using namespace std;
+int main() {
+	
+	cout << "aaaaaaa\tb" << endl;//水平制表符，‘\t’表示前面8个位置中，有x个字符，后就有（8-x）个空格；（每8个为一对，如果恰好为8的倍数，就输出8个空格）用处是可以整齐输出字符；
+	system("pause");
+	return 0;
+}

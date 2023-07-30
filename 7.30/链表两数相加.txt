@@ -1,0 +1,43 @@
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    struct ListNode* res = (struct ListNode*)malloc(sizeof(struct ListNode)); //哑结点
+    struct ListNode* p = res;
+    short int x = 0; //进位
+    while (l1 && l2) { //l1与l2同时走
+        p->next = (struct ListNode*)malloc(sizeof(struct ListNode));
+        p->next->val = (l1->val + l2->val + x) % 10; //模拟小学加法
+        p->next->next = NULL;
+        x = (l1->val + l2->val + x) >= 10; //更新进位
+        l1 = l1->next;
+        l2 = l2->next;
+        p = p->next;
+    }
+    while (l1) { //l2走到尽头了，走l1
+        p->next = (struct ListNode*)malloc(sizeof(struct ListNode));
+        p->next->val = (l1->val + x) % 10;  //同上
+        p->next->next = NULL;
+        x = (l1->val + x) >= 10;
+        l1 = l1->next;
+        p = p->next;
+    }
+    while (l2) { //l1走到尽头了，走l2
+        p->next = (struct ListNode*)malloc(sizeof(struct ListNode));
+        p->next->val = (l2->val + x) % 10;  //同上
+        p->next->next = NULL;
+        x = (l2->val + x) >= 10;
+        l2 = l2->next;
+        p = p->next;
+    }
+    if (x) { //最后判断进位问题
+        p->next = (struct ListNode*)malloc(sizeof(struct ListNode));
+        p->next->val = 1;
+        p->next->next = NULL;
+    }
+    p = res->next;
+    free(res); //删除哑结点
+    return p;
+}
+
+作者：xing-kai-qi-ling
+链接：https://leetcode.cn/problems/add-two-numbers/solution/2-liang-shu-xiang-jia-by-xing-kai-qi-lin-dr0q/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

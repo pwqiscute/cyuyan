@@ -1,0 +1,10 @@
+lnitList(&L)
+DestroyList(&L)
+ClearList(&L)
+ListInsert(&L,i,e)
+ListDelete(&L,i,&e)
+IsEmpty(L);
+ListLength(L)
+locateElem(L,e)在L中查找与定值e相等的元素，若成功返回该元素在表的序号，反则返回0；
+GetElem(L,i,&e)
+
