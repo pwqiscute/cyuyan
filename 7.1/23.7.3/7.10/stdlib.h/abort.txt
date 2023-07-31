@@ -1,0 +1,2 @@
+void abort（void）
+异常终止一个进程

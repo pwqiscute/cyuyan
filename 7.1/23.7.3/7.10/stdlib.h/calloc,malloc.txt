@@ -1,0 +1,14 @@
+calloc函数也是与free()函数配套使用的，使用方式与malloc几乎相同,也是在堆区申请动态内存空间。头文件：stdlib.h,返回类型为空指针，size_t num为元素个数，size_t size为每个元素的字节大小。
+calloc的参数是(元素个数，元素的字节大小)
+int* a={0};
+int n=0;
+scanf_s("%d",&n)//元素个数
+calloc(n,sizeof(int))---->先在内存中寻找一片空间，将其初始化为‘0’，返回一个void*内型，在C语言和c++，void*可以进行强转
+如：int* p=（int*）calloc(n,sizeof(int)；
+当我们存好后，调用free（p），释放内存；
+
+
+malloc和calloc用法一致，其参数：（元素个数），其没有初始化，就是那一堆内存是垃圾；
+
+
+如果内存不够，它们会返回‘0’；

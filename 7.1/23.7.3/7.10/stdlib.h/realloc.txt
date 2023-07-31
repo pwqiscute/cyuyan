@@ -1,0 +1,3 @@
+原型 void* realloc（void* p，unsigned size）
+将p已指出的内存区的大小改为size，可大可小；
+返回指向size的地址，NULL-分配失败；

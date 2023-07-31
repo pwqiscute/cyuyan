@@ -1,0 +1,2 @@
+long labs(long num)
+功能：求长整型参数绝对值

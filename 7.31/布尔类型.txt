@@ -1,0 +1,6 @@
+int main() {
+	bool a = false;//布尔类型，只有false和true，只占1个字节；
+	cout <<a<< endl;//水平制表符，‘\t’表示前面8个前有x个字符，后就有（8-x）个空格；
+	system("pause");
+	return 0;
+}

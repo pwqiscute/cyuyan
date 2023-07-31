@@ -1,0 +1,23 @@
+int main() {
+	srand(time(0));
+	int i = 0;
+	int c = 0;
+	while (1) {
+		i = rand() % 100 + 1;
+	//	cout << i << endl;
+		cin >> c ;
+		if (c > i) {
+			cout << "chaidale" << endl;
+		}
+		else if (c == i) {
+			cout << "win" << endl;
+			break;
+		}
+		else {
+			cout << "chaixiaole" << endl;
+		}
+		cout << i << endl;
+	}
+	system("pause");
+	return 0;
+}

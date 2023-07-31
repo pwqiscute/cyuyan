@@ -1,0 +1,139 @@
+1.判断链表是否为空表
+ int listEmpty(LinKList L){
+if(L->next)
+return 0;
+else
+return 1}
+
+2.单链表的销毁
+int DestoryList(LinkList L){
+LinkList q , p;
+while(L){
+p=L;
+L=L->next;
+free(p);
+}
+return 1;
+}
+
+3.清空单链表
+int CleanList(Linklist L){
+Linklist p,q;
+p=L->next;
+while(p){
+q=p->next;
+free(p);
+p=q;}
+L->next=NILL;}
+return 1}
+
+4.求链表的表长
+int ListLength(LinkList L){
+LinkList p;
+p=L->next;
+int len=0;
+while(P){
+p=p->next;
+count++}
+return count;}
+
+5.取第i个元素
+int ListGetelem(LinkList L,int i,ElemType &e){
+if(i>L.length)
+return error;
+LinkList p;
+p=L->next;
+int j=1;
+while(P||j<i){
+p=p->next;
+j++;
+}
+if(!P&&j>i)
+return error;
+e=p->data;
+return 1;}
+
+6.按值查找
+LinkList ListCheak(LinkList L,int c,LinkList e){
+LinkList p;
+p=L->next;
+while(p&&p->data!=c)
+p=p->next;
+return p;
+
+7.头插法
+int ListAdd(LinkList &L,int i){
+L=new LNode;
+L->next=NULL;
+srand(time(0));
+LinkList p;
+while(i--){
+p=(LinkList)malloc(sizeof(LNode));
+p->data=rand()%100+1;
+p->next=L->next:
+L->next=p;
+}
+return 1;}
+
+
+8.在第i个结点，插入值为e的新节点；
+int ListAdd(LinkList L,int i,Elemtype e){
+LinkList q,p;
+p=L;
+while(P&&--i){
+p=p->next;}
+q=(LinkList)malloc(sizeof(LNode));
+if(i<0||!p)return 0;
+q->data=e;
+q->next=p->next;
+p->next=q;
+return 1;}
+
+9.删除第i个结点
+int LinkList(LinkList L,int i){
+LinkList p,q;
+p=L;
+while(p||--i){
+p=p->next;
+}
+if(!p||i<0)return 0;
+q=p->next;
+p->next=q->next;
+free(q);
+return 1;}
+
+10.尾插法
+void LinkList(LinkList &L,int i){
+L=new LNode;
+L->next=NULL:
+srand(time(0));
+LinkList p,q;
+p=L;
+while(i--){
+q=(LinkList)malloc(sizeof(LNode));
+q->data=rand()%100+1;
+q->next=NULL;
+p->next=q;
+p=q;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
