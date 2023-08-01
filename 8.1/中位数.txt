@@ -1,0 +1,38 @@
+double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
+int i=0;
+int num1Index=0;
+int num2Index=0;
+int midvalue1=0;
+int midvalue2=0;
+double midvalue=0；
+int targetIndex=0;
+int midIndex=(nums1Size+nums2Size)/2;
+while(targetIndex<=midIndex){
+if(num1Index!=nums1Size&&num2Index!=nums2Size){
+if(nums1[num1Index]>=nums2[num2Index]){
+midvalue1=midvalue2;
+midvalue2=num2[num2Index];
+num2Size++;}
+else{
+midvalue1=midvalue2;
+midvalue2=nums1[num1Index];
+num1Index++;}
+}
+else if(num1Index!=nums1Size){
+midvalue1=midvalue2;
+midvalue2=nums1[num1Size];
+num1Size++;
+}
+else if(num2!=num2Size){
+midvalue1=midvalue2;
+midvalue2=nums2[num2Size];
+num2Size++;
+}
+target++}
+if((nums1Size+num2Size)%2){
+midvalue=((double)midvalue1+(double)midvalue2)/2;}
+else{
+midvalue=(double)midvalue2;}
+return midvalue;
+}
+
