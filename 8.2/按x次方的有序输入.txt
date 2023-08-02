@@ -1,0 +1,12 @@
+void CreatePolyn(Polynomial &p,int n){
+p=new PNode;
+p->next=NULL:
+for(int i=0;i<=n;i++){
+s=new PNode;
+cin>>s->cofe>>s->expn;
+pre=p;
+q=p->next;
+while(q&&q->expn<s->expn){
+pre=q;q=q->next;}
+s->next=q;
+pre->next=s;}}

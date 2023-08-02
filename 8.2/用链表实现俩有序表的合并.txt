@@ -1,0 +1,29 @@
+void LinkListHB(List La,List Lb){
+pa=La->next;
+pb=Lb->next;
+Lc=new List;
+Lc->next=NULL;
+pc=Lc;
+while(pa->next&&pb->next){
+if(pa->data>=pb->data){
+Lc->next->data=pb->data;
+Lc->next=NULL:
+pb=pb->next;
+pc=pc->next;}
+else{
+Lc->next->data=pa->data;
+Lc->next=NULL;
+pa=pa->next;
+pc=pc->next;}
+}
+while(pa->next){
+Lc->next->data=pa->data;
+Lc->next=NULL;
+pa=pa->next;
+pc=pc->next;}
+while(pb->next){
+Lc->next->data=pb->data;
+Lc->next=NULL:
+pb=pb->next;
+pc=pc->next;}
+}

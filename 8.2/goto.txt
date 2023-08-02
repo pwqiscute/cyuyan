@@ -1,0 +1,10 @@
+int main() {
+	cout << "ssss" << endl;
+	goto A;
+	cout << "ssss" << endl;
+	cout << "ssss" << endl;
+A:
+	cout << "ssss" << endl;
+	system("pause");
+	return 0;
+}

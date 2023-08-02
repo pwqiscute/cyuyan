@@ -1,0 +1,7 @@
+Ta a的尾指针
+Tb b的尾指针
+
+void XhLinkList(xhlist a,xulist b){
+p=a->next;
+Ta->next=Tb->next->next;
+delete Tb->next;}

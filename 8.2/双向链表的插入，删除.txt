@@ -1,0 +1,19 @@
+void ListInsert_Dul(DuLinklist &L,int i,ElemType e){
+if(!(p=GetElemP_DuL(L,i)))return error;
+s=new DuLNode;
+s->date=e;
+s->prior=p->prior;
+p->prior->next=s;
+s->next=p;
+p->prior=s;
+return OK;
+}
+
+void ListDelete_Dul(DuLinklist &L,int i,ElemType &e){
+if(!(p=GetElemP_DuL(L,i)))return error;
+e=p->data;
+p->prior->next=p->next;
+p->next->prior=p->prior;
+free(p);
+return OK;
+}

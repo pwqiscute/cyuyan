@@ -1,0 +1,18 @@
+void 
+pa=La->next;
+pc=La=Lc;
+pb=Lb->next;
+while(pa&&pb){
+if(pa->data>=pb->data){
+pc->next=pb;
+pc=pb;
+pb=pb->next;}
+else{
+pc->next=pa;
+pc=pa;
+pa=pa->next;}}
+if(pa)
+pc->next=pa;
+else
+pc->next=pb;
+delete Lb;}
