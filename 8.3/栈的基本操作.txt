@@ -1,0 +1,64 @@
+建立一个空栈
+Status InitStack(SqStack &S){
+S.base=new SElemType[MAXSIZE];
+if(!S.base)exit(OVERFLOW);
+S.top=S.base;
+S.stacksize=MAXSIZE;
+return OK;}
+
+判断栈是否为空
+Status StackEmpty(SqStack S){
+if(S.top==S.base)
+return TRUE;
+else returnFALSE;}
+
+
+求栈的长度
+int StackLength(SqStack S){
+return S.top-S.base;
+
+清空栈
+Status ClearStack(SqStack S){
+if(S.base) S.top=S.base;
+return OK;}
+
+销毁栈
+Status DestroyStack(SqStack &S){
+if(S.base){
+delete S.base;
+S.stacksize=0;
+S.base=S.top=NULL;}
+return OK;}
+
+
+入栈
+Status PushStack(SqStack &S,SElemType e){
+if(S.top-S.base)==S.stacksize)
+return ERROR;
+*S.top++=e;
+return OK;}
+
+
+出栈
+Status PopStack(SqStack &S,SElemType &e){
+if(S.top==S.base)
+return ERROR;
+e=*(--S.top)
+return OK;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
