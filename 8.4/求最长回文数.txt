@@ -1,0 +1,33 @@
+char * longestPalindrome(char * s){
+int len=strlen(s);
+if(len<2)
+return s;
+int maxlen=1;
+int begin=0;
+char plan[1000][1000];
+for(int i=0;i<len;i++){
+    for(int j=0;j<len;j++){
+        plan[i][j]=1;
+    }
+}
+for(int j=0;j<len;j++){
+    for(int i=0;i<j;i++){
+        if(s[i]!=s[j]){
+        plan[i][j]=0;}
+        else{
+            if(j-i<3){
+                plan[i][j]=1;
+            }
+            else{
+                plan[i][j]=plan[i+1][j-1];
+            }
+        }
+        if(plan[i][j]&&j-i+1>maxlen){
+            maxlen=j-i+1;
+            begin=i;
+        }
+    }
+}
+*(s+begin+maxlen)='\0';
+return (s+begin);
+}

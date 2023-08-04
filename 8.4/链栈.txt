@@ -1,0 +1,22 @@
+链栈的初始化
+void InitStack(LinkStack &S){
+S=NULL;
+return OK;}
+
+链栈的入栈
+Status Push(LinkStack &S,SElemType e){
+p=new StackNode;
+p->data=e;
+p->next=S;
+S=p;
+return OK;}
+
+链栈的出栈
+Status Pop(LinkStack &S,SElemType &e){
+if(S==NULL)return ERROR;
+e=S->data;
+p=S;
+S=S->next;
+delete p;
+return OK;
+}

@@ -8,3 +8,6 @@ int main() {
 	int n = add(m);
 	printf("%d", n);
 }
+
+int mul(int m){
+return (m==1? 1:m*mul(m-1);}
