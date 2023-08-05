@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(s.length()<2||numRows==1)return s;
+       string c[1000];
+       int flag=-1;
+       int i=0;
+       string res;
+       int len=s.length();
+       for(char ch:s){
+           c[i]+=ch;
+           if(i==0||i==numRows-1)
+           flag=-flag;
+           i+=flag;
+       }
+       for(int i=0;i<numRows;i++){
+         res += c[i];
+       }
+       return res;
+    }
+};
