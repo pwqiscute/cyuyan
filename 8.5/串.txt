@@ -1,0 +1,32 @@
+串是由多个字符构成
+子串：串中任意连续字符组成的子序列称为该串的子串
+主串：包含子串的串称为主串
+字符位置：字符在序列的序号；
+子串的位置：子串第一个字符在主串中的位置
+空格串：由一个或多个空格组成的串，与空串不同；
+
+
+链的存储：
+typedef struct Chunk{
+char ch[MAXSIZE];
+struct Chunk*next;
+}Chunk;
+typedef struct{
+Chunk *head,*tail;
+int curlen;
+}
+
+顺序存储
+typedef structural{
+char ch[MAXSIZE+1];
+int length;}SString;
+
+字符串找子串返回子串序列
+int Index_BF(SString S,SString T){
+int i=1;int j=1;
+while(i<=S.length&&j<=T.length){
+ if(s.ch[i]==t.ch[j]){++i;++j}
+else{i=i-j+2;j-1;}
+if(j>=T,length)return i-T.length;
+return 0;
+
