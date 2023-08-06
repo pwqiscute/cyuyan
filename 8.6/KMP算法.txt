@@ -1,0 +1,36 @@
+void get_next(String T,int *next){
+int i,k;
+i=1;
+k=0;
+next[1]=0;
+while(i<T[0]0{
+if(k==0||T[i]==T[j]){
+++i;
+++k;
+next[i]=k;}
+else
+k=next[k];}
+
+
+int Index_KMP(String S,String T,int pos){
+int i=pos;
+int j=1;
+int next[255];
+get_next(T,next);
+while(i<=S[0]&&j<=T[0]{
+if(j==0||S[i]==T[j]){
+++i;
+++j;
+}
+else{
+j=next[j]}
+}
+if(j>T[0]){
+return i-T[0];
+else
+return 0;
+}
+
+
+
+
