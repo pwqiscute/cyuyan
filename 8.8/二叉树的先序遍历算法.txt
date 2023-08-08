@@ -1,0 +1,6 @@
+Status PreOrderTraverse(BiTree T){
+if(T==NULL) reurn OK;
+else{
+cout<<T->data<<endl;
+PreOrderTraverse(T->Ichild);
+PreOrderTraverse(T->rchild);
