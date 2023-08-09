@@ -1,0 +1,10 @@
+Status InOrderTraverse(BiTree T){
+BiTree p;
+InitStack(S);
+p=T;
+while(p||StackEmpty(S)){
+if(p){push(S,p)；p=p->lchild}
+else{
+    pop(S,q);printf("%d",q->data);p=q->rchild;}
+return OK;}
+         

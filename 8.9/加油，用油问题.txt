@@ -1,0 +1,67 @@
+int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize){
+    int sum1=0;int sum2=0;
+    int max=0;int m=0;int j=0;
+   
+    for(int i=0;i<gasSize;i++){     
+        m=gas[i]-cost[i];
+        if(m>max){
+        max=m;
+        j=i;
+        }   
+        sum1+=gas[i];
+        sum2+=cost[i];
+    }
+    if(sum1<sum2) return -1;
+    if(gasSize==1)return 0;
+  int y;
+  int len1=gasSize;
+     for(int i=j%gasSize;len1--;i=(i+1)%gasSize){
+          sum1=sum2=0;
+          int len=costSize;
+           y=i;
+         while(len--){
+           sum1+=gas[y];          
+           sum2+=cost[y];         
+           y=(y+1)%costSize;
+           if(len==0&&(sum1-sum2)>=0)
+           return i;
+           if(sum1<sum2)
+            break;
+         }
+     }
+     return -1;
+}
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize) {
+    int i = 0;
+    while (i < gasSize) {
+        int sumOfGas = 0, sumOfCost = 0;
+        int cnt = 0;
+        while (cnt < gasSize) {
+            int j = (i + cnt) % gasSize;
+            sumOfGas += gas[j];
+            sumOfCost += cost[j];
+            if (sumOfCost > sumOfGas) {
+                break;
+            }
+            cnt++;
+        }
+        if (cnt == gasSize) {
+            return i;
+        } else {
+            i = i + cnt + 1;---------------------------------这一步厉害；
+        }
+    }
+    return -1;
+}
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/gas-station/solutions/488357/jia-you-zhan-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
