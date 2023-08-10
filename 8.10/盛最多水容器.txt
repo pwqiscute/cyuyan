@@ -1,0 +1,42 @@
+int maxArea(int* height, int heightSize){
+int i=0,x=0,max=0,res=0,min=0;
+while(i<heightSize){
+    x=i;
+    while(x<heightSize){
+        max=0;
+        min=height[i];
+    if(height[x]<min)
+    min=height[x];
+    max=min*(x-i);
+    res=max>res?max:res;
+    x++;
+    }
+    i++;
+}
+return res;
+}
+
+
+
+int maxArea(int* height, int heightSize){
+    int max=0,min=0,res=0,Rmove=-1,Lmove=-1;
+int *left=height;
+int *right=height+heightSize-1;
+while(left<right){
+    while(Rmove!=0&&*right>Rmove||Lmove!=0&&*left>Lmove){
+    min=*left>*right?*right:*left;
+    max=min*(right-left);
+    res=max>res?max:res; 
+    Rmove=0;Lmove=0;
+    }  
+if(*left>*right){
+    Rmove=*right;
+    right--;}
+    else
+    {
+    Lmove=*left;
+    left++;
+    }
+}
+return res;
+}

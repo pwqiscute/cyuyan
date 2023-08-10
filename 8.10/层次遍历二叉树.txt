@@ -1,0 +1,16 @@
+typedef struct{
+BTNode data[MaxSize];
+int front,real;
+}SqQueue;
+
+void LevelOrder(BTNode *b){
+BTNode *p;SqQueue *qu;
+InitQueue(qu);
+enQueue(qu,p);
+while(!QueueEmpty(qu)){
+deQueue(qu,p);
+printf("%c",p->data);
+if(p->lchild!=NULL)enQueue(qu,p->lchild);
+if(p->rchild!=NULL)enQueue(qu,p->rchild);
+}
+}

@@ -1,0 +1,9 @@
+int Cope(BiTree T,BiTree &NewT){
+if(T->NULL){
+NewT=NULL;return 0};
+else{
+NewT=new BiTNode;
+NewT->data=T->data;
+Cope(T->lchild,NewT->lchild);
+Cope(T->rchild,NewT->rchild);
+}}
