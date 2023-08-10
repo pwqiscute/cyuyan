@@ -1,0 +1,7 @@
+typedef struct BiThrNode{
+int data;
+int ltag,rtag;
+struct BiThrNode;
+}BiThrNode,*BiThrTree;
+
+

@@ -1,0 +1,12 @@
+Status CreateBiTree(BiTree &T){
+scanf(&ch);
+if(ch=='#')T=NULL;
+else{
+if(!(T=(BiTNode*)malloc(sizeof(BiTNode))))
+exit(OYERFLOE);
+T->data=ch;
+CreateBiTree(T->lchild);
+CreateBiTree(T->rchild);
+}
+return OK;
+} 
