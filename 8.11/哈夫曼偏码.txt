@@ -1,0 +1,21 @@
+哈夫曼编码是最优前缀码
+
+void CreatHuffmanCode(HuffmanTree HT,HuffmanCode &Hc,int n){
+HC=new char*[n+1];
+cd=new char[n];
+cd[n-1]='\0';
+for(int i=1;i<=n;i++){
+start=n-1;
+c=i;
+f=HT[i].parent;
+while(f!=0){
+--start;
+if(HT[i].lchild==c) cd[start]='0';
+else cd[start]='1';
+c=f;f=HT[f].parent;
+}
+HC[i]=new char[n-stsrt];
+strcpy(HC[i],&cd[start]);
+}
+delete cd;
+}
