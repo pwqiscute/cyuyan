@@ -1,0 +1,27 @@
+typedef char VerTexType;
+#define MVNum 100
+typedef int ArcType;
+#define Maxint 32767
+
+typedef struct{
+VerTexType vexs[MVNum];
+ArcType arcs[MVNum][MVNum];
+int vexnum,arcnum;
+}AMGraph;
+
+Status  CrateUDN(AMGrath &G){
+cin>>G.vexnum>>G.arcnum;
+for(i=0;i<G.vexnum;i++)
+cin>>G.vexs[i]; 
+for(i=0;i<G,vexnum;++i){
+for(j=0;j<G,vexnum;++j){
+G.arcs[i][j]=MaxInt;
+
+for(k=0;k<arcnum;k++){
+cin>>v1>>v2>>w;
+i=LocateVex(G,v1);
+j=LocateVex(G,v2);
+G.arcs[i][j]=w;
+G.arcs[j][i]=G,arcs[i][j];}
+return OK;
+}
