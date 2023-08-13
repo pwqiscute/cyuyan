@@ -1,0 +1,6 @@
+ void DFS(AMGraph G,int v){
+cout<<v;visited[v]=1;
+for(w=0;w<G.vexnum;w++)
+if((G.arcs[v][w]!=0)&&(!visited[w]))
+DFS(G,w);
+}

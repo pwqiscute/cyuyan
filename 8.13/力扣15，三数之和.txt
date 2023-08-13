@@ -1,0 +1,44 @@
+int compareInt(const void* e1,const void* e2){
+    return ((*(int*)e1)-(*(int*)e2));
+}
+int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
+int **ret=(int**)malloc(numsSize*numsSize*sizeof(int*));
+    *returnColumnSizes=(int*)malloc(sizeof(int)*numsSize*numsSize);
+    *returnSize=0;
+    qsort(nums,numsSize,sizeof(nums[0]),compareInt);
+    int a=0;
+    int b=0;
+     for(int i=0;i<numsSize-2;i++){
+       a=i+1;b=numsSize-1;
+        while(b>a){
+            if(i>0&&nums[i]==nums[i-1]){
+               break;
+            }
+            else{
+            if(nums[a]+nums[b]+nums[i]==0){
+     ret[*returnSize]=(int*)malloc(sizeof(int)*3);
+    (*returnColumnSizes)[*returnSize]=3;
+    ret[*returnSize][0]=nums[a];
+    ret[*returnSize][1]=nums[b];
+    ret[*returnSize][2]=nums[i];
+       (*returnSize)++;
+       a++;b--;
+    while(nums[a]==nums[a-1]&&a<b){
+        a++;
+    }
+    while(nums[b]==nums[b+1]&&b>a){
+        b--;
+    }
+            }
+            else if(nums[a]+nums[b]+nums[i]>0){
+               b--;
+            }
+            else{
+                a++;
+            }
+            }
+        }
+     }
+  
+ return ret;
+}
