@@ -1,0 +1,32 @@
+int compareInt(const void* e1,const void* e2){
+    return ((*(int*)e1)-(*(int*)e2));
+}
+
+int threeSumClosest(int* nums, int numsSize, int target){
+qsort(nums,numsSize,sizeof(nums[0]),compareInt);
+if(nums[numsSize-1]+nums[numsSize-2]+nums[numsSize-3]<target||numsSize==3)
+return nums[numsSize-1]+nums[numsSize-2]+nums[numsSize-3];
+else if(nums[0]+nums[1]+nums[2]>=target)
+return nums[0]+nums[1]+nums[2];
+int c=0,a=0,b;
+int res=100000;
+int d=0;
+for(int i=0;i<numsSize-2;i++){
+    a=i+1;
+ b=numsSize-1;
+while(b>a){
+    c=nums[i]+nums[a]+nums[b];
+    if(c<target){
+        a++;
+    }
+    else if(c>target){
+        b--;
+    }
+    else{
+        return target;
+    }
+res=abs(c-target)<abs(res-target)?c:res;
+}
+}
+return res;
+}

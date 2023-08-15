@@ -1,0 +1,19 @@
+#define MAXVEX 9
+Boolean visited[MAXVEX];
+void DFS(MGraph G,int i){
+int j;
+visited[i]=TRUE;
+printf("%c",G.vexs[i]);
+for(j=0;j<G..numVertexes;j++){
+if(G.arc[i][j]==1&&!visited[j]){
+DFS[G,j)
+}
+}
+void DFStraverse(MGraph G){
+int i;
+for(i=0;i<G.numVertexes;i++)
+visited[i]=flase
+for(i=0;i<G.numVertexes;i++){
+if(!visited[i])
+DFS(G,i)
+}

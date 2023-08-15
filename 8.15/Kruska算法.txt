@@ -1,0 +1,21 @@
+void Kruskal(MGraph G){
+int i,n,m;
+Edge edges[MAXEDGD];
+int parent[MAXVEX];
+for(int i=0;i<G.numVertexes;i++)
+parent[i]=i;
+for(int i=0;i<G.numVertexes;i++){
+n=Find(parent,edges[i].begin);
+m=Find(parent,edges[i].end);
+if(n!=m){
+parent[n]=m;
+printf("(%d,%d) %d\n",edges[i].begin,edges[i].end,edges[i].weight);
+}
+}
+}
+int Find(int* parent,int f){
+while(parent[f]>0){
+f=parent[f];
+}
+return f;
+}

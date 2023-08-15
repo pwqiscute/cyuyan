@@ -1,0 +1,23 @@
+void BFS(MGraph G){
+int i,j;
+Queue Q;
+for(int i=0;i<G.numVertexes;i++)
+visited[i]=FLASE;
+InitQueue(&Q);
+for(int i=0;i<G.numVertexes;i++){
+if(!visited[i]){
+visit[i]=TRUE;
+printf(G.vexs[i]);
+EnQueue(&Q,i);
+while(!QueueEmpty(Q)){
+DeQueue(&Q,&i);
+for(int j=0;j<G.numVertexes;j++){
+if(G.arc[i][j]==1&&!visited[j]){
+visited[j]=TRUE;
+printf(G.vexs[j]);
+EnQueue(&Q),j);
+}
+}
+}
+}
+}
