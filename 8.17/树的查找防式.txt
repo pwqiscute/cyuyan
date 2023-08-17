@@ -1,0 +1,26 @@
+二叉排序树：1.左子树不为NULL，则左子树的值均小于根
+                   2.右子树不为NULL，则右子树的值均大于根
+                   3.其左右子树本身又是一棵二叉排序树
+
+typedef struct{
+int key;
+InfoType otherinfo;
+}ElemType;
+
+typedef struct BSTNode{
+ElemType data;
+struct BSTNode *lchild,*rchild;
+}BSTNode,*BSTree;
+
+BSTree T
+
+BSTree SearchBST(BSTree T,KeyType key){
+if(!T||key==T->data.key)return T;
+else if(key<T->data.key)
+return SearchBST(T->lchild,key);
+else
+return SearchBST(T->rchild,key);
+}
+
+效率：log2n和n之间
+

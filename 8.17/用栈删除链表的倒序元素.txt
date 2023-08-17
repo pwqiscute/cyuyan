@@ -1,0 +1,32 @@
+struct Stack {
+    struct ListNode* val;
+    struct Stack* next;
+};
+
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+    struct ListNode* dummy = malloc(sizeof(struct ListNode));
+    dummy->val = 0, dummy->next = head;
+    struct Stack* stk = NULL;
+    struct ListNode* cur = dummy;
+    while (cur) {
+        struct Stack* tmp = malloc(sizeof(struct Stack));
+        tmp->val = cur, tmp->next = stk;
+        stk = tmp;
+        cur = cur->next;
+    }
+    for (int i = 0; i < n; ++i) {
+        struct Stack* tmp = stk->next;
+        free(stk);
+        stk = tmp;
+    }
+    struct ListNode* prev = stk->val;
+    prev->next = prev->next->next;
+    struct ListNode* ans = dummy->next;
+    free(dummy);
+    return ans;
+}
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/remove-nth-node-from-end-of-list/solutions/450350/shan-chu-lian-biao-de-dao-shu-di-nge-jie-dian-b-61/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
