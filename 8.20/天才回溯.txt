@@ -1,0 +1,33 @@
+#define MAX_SIZE 1430  // 卡特兰数: 1, 1, 2, 5, 14, 42, 132, 429, 1430
+void generate(int left, int right, int n, char *str, int index, char **result, int *returnSize) {
+    if (index == 2 * n) { // 当前长度已达2n
+        result[(*returnSize)] =  (char*)calloc((2 * n + 1), sizeof(char));
+        strcpy(result[(*returnSize)++], str);
+        return;
+    }
+    // 如果左括号数量不大于 n，可以放一个左括号
+    if (left < n) {
+        str[index] = '(';
+        generate(left + 1, right, n, str, index + 1, result, returnSize);
+    }
+    // 如果右括号数量小于左括号的数量，可以放一个右括号
+ else   if (right < left) {
+        str[index] = ')';
+        generate(left, right + 1, n, str, index + 1, result, returnSize);
+    }
+}
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+char** generateParenthesis(int n, int *returnSize) {
+    char *str = (char*)calloc((2 * n + 1), sizeof(char));
+    char **result = (char **)malloc(sizeof(char *) * MAX_SIZE);
+    *returnSize = 0;
+    generate(0, 0, n, str, 0, result, returnSize);
+    return result;
+}
+
+作者：ciciywg
+链接：https://leetcode.cn/problems/generate-parentheses/solutions/648432/jian-ji-cyu-yan-hui-su-fa-qiu-jie-by-cic-bdv5/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

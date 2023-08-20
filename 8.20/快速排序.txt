@@ -1,0 +1,22 @@
+int Partition(&L,int low,int hight){
+L.r[0]=L.r[row];
+while(hight>low){
+while(hight>low&&L.r[hight]>=L.r[0])hight++;
+L.r[low]=L.r[heght];
+while(hight>low&&L.r[low]<L.r[0])low++;
+L.[hight]=L.low;
+}
+L.r[low]=L.r[0];
+return low;
+}
+
+void main(){
+QSort(L,1,length);}
+
+void QSort(SqList &L,int low,int high){
+if(low<hight){
+p=partition(L,low,high);
+QSort(L,low,p-1);
+QSort(L,p+1,high);
+}
+}
