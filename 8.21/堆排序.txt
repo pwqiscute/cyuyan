@@ -1,0 +1,9 @@
+Void HeapSort(elem R[]){
+int i;
+for(i=n/2;i>=1;i--)
+HeapAdjust(R,i,n);
+for(i=n;i>1;i--)
+Swap(R[1],R[i]);
+HeapAdjust(R,1,i-1);
+}
+}
