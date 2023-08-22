@@ -1,0 +1,63 @@
+分治：
+
+struct ListNode* dfs(struct ListNode* e1,struct ListNode* e2){
+    if(!e1){
+        return e2;
+    }
+    if(!e2){
+        return e1;
+    }
+    if(e1->val>e2->val){
+        e2->next=dfs(e1,e2->next);
+        return e2;
+    }
+    else{
+        e1->next=dfs(e1->next,e2);
+        return e1;
+    }
+}
+struct ListNode* A(struct ListNode** L,int left,int right)
+{
+    if(left==right)
+    return L[left];
+   if(left>right)return NULL;
+        int mid=left+(right-left)/2;
+        struct ListNode* l1=A(L,left,mid);
+        struct ListNode* l2=A(L,mid+1,right);
+      return dfs(l1,l2);
+}
+struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
+    if(!listsSize) return NULL;
+return A(lists,0,listsSize-1);
+}
+
+逐个累加
+struct ListNode * dfs(struct ListNode * l1, struct ListNode * l2)
+{
+    if(l1 == NULL)
+    {
+        return l2;
+    }
+    if(l2 == NULL)
+    {
+        return l1;
+    }
+    if(l1->val < l2->val)
+    {
+        l1->next = dfs(l1->next, l2);
+        return l1;
+    }
+    l2->next = dfs(l1, l2->next);
+    return l2;
+}
+
+
+struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
+  if(!listsSize) return NULL;
+  struct ListNode* head=NULL;
+  for(int i=0;i<listsSize;i++){
+ head=dfs(head,lists[i]);
+  }
+  return head;
+}
+

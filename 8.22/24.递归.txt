@@ -1,0 +1,17 @@
+ruct ListNode* A(struct ListNode* head, struct ListNode* e1,struct ListNode* e2){
+    if(!e2)
+    return e1;
+   head=e2->next;
+    if(e1&&e2){
+        e2->next=e1;
+        e1->next=NULL;
+        if(head){
+        e1->next=A(head,head,head->next);
+        }  
+    }
+             return e2;
+}
+struct ListNode* swapPairs(struct ListNode* head){
+if(!head)return NULL;
+return A(head,head,head->next);
+}

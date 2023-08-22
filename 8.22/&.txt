@@ -1,0 +1,34 @@
+数据类型 &别名=原名
+
+
+a=10;
+int &b=a; 
+
+b和a指向同一个空间
+
+引用必须初始化，引用一旦初始化后，就不可以更改了
+
+int& b=a-->自动转换为int* const b=&a;
+b=10;系统发现b是一个引用啊，自动转换为*b=20；
+
+
+int main() {
+    int* q = new int(10);
+    int*& a = q;
+    cout << *a;
+    cin.get();
+    cin.get();
+}
+
+int& a() {
+    static int a = 10;
+    return a;
+}
+
+int main() {
+    int& q = a();
+    a() = 1000;
+    cout << q;
+    cin.get();
+    cin.get();
+}

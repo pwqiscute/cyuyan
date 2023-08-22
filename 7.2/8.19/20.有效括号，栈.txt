@@ -1,0 +1,20 @@
+bool isValid(char * s){
+  char a[128];
+        a['('] = 1; a[')'] = -1;
+        a['['] = 2; a[']'] = -2;
+        a['{'] = 4; a['}'] = -4;
+char stack[10000];
+int top=0,i=0;
+while(s[i]){
+while(a[s[i]]>0&&s[i]){
+    stack[top++]=a[s[i++]];
+}
+while(top>=1&&a[s[i]]+stack[top-1]==0&&s[i]){
+    i++;
+    top--;
+} 
+if(a[s[i]]<0||top>=1&&a[s[i]]<0&&a[s[i]]+stack[top-1]!=0)
+return false;
+}
+return top==0;
+}

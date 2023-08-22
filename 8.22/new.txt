@@ -1,0 +1,5 @@
+int* p=new int(10)//开辟一个int类型的空间，里面存10
+delete p；释放空间
+
+int * arr=new int[10];开辟一个有10个int空间的数组
+delete[] arr;
