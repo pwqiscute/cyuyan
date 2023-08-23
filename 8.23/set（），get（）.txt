@@ -1,0 +1,24 @@
+class human {
+private:
+    int age;
+    int sex;
+public :
+    void set(int age, int sex) {
+      this-> age = age ;
+       this->sex=sex;
+    }
+    int getA() {
+        return age;
+    }
+    int getS() {
+        return sex;
+    }
+};
+int main() {
+    human h;
+    h.set(10,1);
+
+    cout << h.getA() << h.getS();
+    cin.get();
+    cin.get();
+}

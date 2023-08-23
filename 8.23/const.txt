@@ -1,0 +1,3 @@
+const int & ref=10;
+
+系统会将代码修改为 int temp=10；const int& ref=temp；系统会起一个名字（temp）,可是我们不知道这个名字是什么，可是我们可以用ref；

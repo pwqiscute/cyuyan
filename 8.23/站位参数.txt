@@ -1,0 +1,17 @@
+int a(int a, int) {
+    return a ;
+}
+int main() {
+    cout << a(10,10);
+    cin.get();
+    cin.get();
+}
+
+int a(int a, int = 10) {
+    return a ;
+}
+int main() {
+    cout << a(10);
+    cin.get();
+    cin.get();
+}

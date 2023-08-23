@@ -1,0 +1,25 @@
+#define PI 3
+class  circel {
+public:
+ 类中的属性和行为 统一称为成员
+ 属性： 成员属性  成员变量
+    int r = 4;
+    void setr(int R) {
+        r = R;
+    }
+    int getr() {
+        return r;
+    }
+    int circleR() {
+        return 2 * PI * r;
+    }
+};
+int main() {
+    circel c1;
+    c1.r = 5;
+    c1.setr(6);
+   int r= c1.getr();
+    cout << c1.circleR()<<r;
+    cin.get();
+    cin.get();
+}

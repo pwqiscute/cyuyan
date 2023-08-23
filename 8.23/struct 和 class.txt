@@ -1,0 +1,3 @@
+struct 的默认权限是public
+class  的默认权限是private
+  

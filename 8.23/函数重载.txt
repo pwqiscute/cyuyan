@@ -1,0 +1,25 @@
+函数的名称相同，函数类型不同||顺序不同||数目不同
+
+int a(const int& a) {
+    return a ;
+}
+int a(int& a) {
+    return a ;
+}
+int main() {
+    int c= 10;
+    cout << a(c);//调用第2个（可读可写）
+      cout << a(10);//调用第1个
+    cin.get();
+    cin.get();
+}
+
+const int& a 和 int & a的类型不一样，可以重载
+
+//以下不行
+int a(int a , int b=10) {
+    return a ;
+}
+int a(int a) {
+    return a ;
+}

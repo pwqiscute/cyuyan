@@ -1,0 +1,3 @@
+public：类内，类外
+private： 类内
+protect：类内（可以访问父亲的）
