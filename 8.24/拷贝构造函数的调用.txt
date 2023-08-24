@@ -1,0 +1,27 @@
+1.用一个已经创建好的初始化一个新的
+
+People p（10）；
+
+People p1 （p1）；
+
+2.值传递的方式给函数的形参
+
+void Pe(People p){
+}
+
+void text(){
+People p;
+Pe(p);
+}
+
+3.值方式返回局部对象
+
+People a(){
+
+People p;
+return p;
+}
+
+ void text(){
+People p=a();
+}

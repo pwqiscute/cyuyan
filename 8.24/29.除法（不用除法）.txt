@@ -1,0 +1,42 @@
+int divide(int dividend, int divisor){
+long count=0,flag1=1,flag2=1,key=1;
+long long e1;
+  e1=(unsigned int)dividend;
+  if(e1>dividend){
+  flag1=0;
+}
+long e2=(unsigned int)divisor;
+if(e2>divisor){
+  flag2=0;
+}
+int p=pow(2,31);
+while(dividend){
+  if(flag1!=flag2){
+    key=-1;
+    e1=abs(divisor);
+    if(flag1==1&&dividend<e1){
+          break;
+    }
+    e2=abs(dividend);
+    if(flag1==0&&e2<divisor){
+      break;
+    }
+  }
+  else if(flag1==1&&dividend<divisor||flag1==0&&dividend>divisor){
+   break;
+  }
+  if(flag1==flag2)
+  dividend -= divisor;
+  if(flag1!=flag2)
+  dividend +=divisor;
+  count++;
+}
+if(key==-1){
+  count= count-count-count;
+}
+ if(count>p-1)
+    return p-1;
+    if(count<(-p))
+    return -p;
+    return count;
+}

@@ -1,0 +1,60 @@
+class node {
+private:
+    int x;
+    int y;
+public:
+    void setx(int X) {
+        x = X;
+    }
+    void sety(int Y) {
+        y = Y;
+    }
+    int getx() {
+        return x;
+    }
+    int gety() {
+        return y;
+    }
+};
+class circle {
+private:
+    int R;
+    node c;
+public:
+    void setr(int r) {
+        R = r;
+    }
+    void setNode(int X,int Y) {
+        c.setx(X);
+        c.sety(Y);
+    }
+    int getr() {
+        return R;
+    }
+    int getx() {
+        return c.getx();
+    }
+    int gety() {
+        return c.gety();
+    }
+};
+int main() {
+    node n1;
+    n1.setx(1);
+    n1.sety(1);
+    circle c1;
+    c1.setr(2);
+    c1.setNode(0, 0);
+    int ret = (n1.getx() - c1.getx())* (n1.getx() - c1.getx())-(n1.gety()-c1.gety())* (n1.gety() - c1.gety());
+    if (ret == c1.getr() * c1.getr()) {
+        cout << "在圆上";
+    }
+    else if (ret > c1.getr() * c1.getr()) {
+        cout << "在圆外";
+    }
+    else {
+        cout << "在圆内";
+    }
+    cin.get();
+    cin.get();
+}

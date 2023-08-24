@@ -1,0 +1,27 @@
+#pragma once
+#include <iostream>
+using namespace std;
+class node {
+private:
+    int x;
+    int y;
+public:
+    void setx(int X);
+    void sety(int Y);
+    int getx(); 
+    int gety();
+};
+
+#include "node.h"
+    void node::setx(int X) {
+        x = X;
+    }
+    void node::sety(int Y) {
+        y = Y;
+    }
+    int node::getx() {
+        return x;
+    }
+    int node::gety() {
+        return y;
+    }

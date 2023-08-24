@@ -1,0 +1,50 @@
+class Cube {
+private:
+    int h;
+    int w;
+    int l;
+public:
+    void seth(int h) {
+        this->h = h;
+    }
+    void setw(int w) {
+        this->w = w;
+    }
+    void setl(int l) {
+        this->l = l;
+    }
+    int geth() {
+        return h;
+    }
+    int getw() {
+        return w;
+    }
+    int getl() {
+        return l;
+    }
+    int CudeV() {
+        return h * w * l;
+    }
+    int CudeS() {
+        return 2 * h * w + 2 * h * l + 2 * l * w;
+    }
+    bool eqauls(Cube c) {
+        return h == c.h && w == c.w && l == c.l;
+    }
+};
+
+int main() {
+    Cube c1;
+    c1.seth(10);
+    c1.setl(10);
+    c1.setw(10);
+    Cube c2;
+    c2.seth(10);
+    c2.setl(10);
+    c2.setw(10);
+    bool ret = (bool)c1.eqauls(c2);
+    cout << c1.CudeV() << c1.CudeS();
+    cout << ret;
+    cin.get();
+    cin.get();
+}

@@ -1,0 +1,34 @@
+构造函数：
+
+      在类里，没有返回值，不用写void，函数名和类名一样；
+      可以有参数，可以发生重载，创立对象时，构造函数会自动调用，只调用一次；
+
+    People（）{；}//无参构造函数
+    People（int a）{age=a；}//有参构造函数
+   People （const People &p）{age=p.age}//拷贝函数
+    
+调用：
+
+括号法：（重载）
+
+People p；无参；People p（）不行---计算机会以为他是一个函数声明；
+People p2（10）；有参
+People p3（p2）；拷贝
+
+显示法：
+People（10）是匿名对象，当执行结束后，系统会立即回收匿名对象
+People （p3）不要利用拷贝函数初始化匿名对象 编译器会认为 
+People （p3）== People p3 对象的声明；
+People p；
+People p2=People（10）；
+People p3-People（p2）；
+
+隐式转换法：
+People p4=10 ----》People p4=People（10）；
+People p5=p4-----》People p5=People（p4）；
+析构函数：
+    
+  在类里，没有返回值，没有void，函数名和类名一样；没有参数，在对象销毁时调用，只调用一次；
+
+    ~People（）{；}
+  
