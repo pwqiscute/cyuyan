@@ -1,0 +1,29 @@
+思路：因为时间不够，先给两个极端进行判断，因为负数的绝对值大于正数，将为正数的线转变为负数，然后用flag记录下，最后进行一步一步的相减，判断；最后结合flag得到答案
+
+
+class Solution {
+    int MIN = Integer.MIN_VALUE, MAX = Integer.MAX_VALUE;
+    int LIMIT = -1073741824; // MIN 的一半
+    public int divide(int a, int b) {
+        if (a == MIN && b == -1) return MAX;
+        boolean flag = false;
+        if ((a > 0 && b < 0) || (a < 0 && b > 0)) flag = true;
+        if (a > 0) a = -a;
+        if (b > 0) b = -b;
+        int ans = 0;
+        while (a <= b){
+            int c = b, d = -1;
+            while (c >= LIMIT && d >= LIMIT && c >= a - c){
+                c += c; d += d;
+            }
+            a -= c;
+            ans += d;
+        }
+        return flag ? ans : -ans;
+    }
+}
+
+作者：宫水三叶
+链接：https://leetcode.cn/problems/divide-two-integers/solutions/1042784/gong-shui-san-xie-dui-xian-zhi-tiao-jian-utb9/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

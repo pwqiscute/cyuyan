@@ -1,0 +1,12 @@
+    int age;
+    int high;
+    people():age(10)，high（10）
+    {
+        ;
+    }
+
+
+People（int a,int b）:age(a),high(b)
+{
+
+}

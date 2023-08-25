@@ -1,0 +1,26 @@
+当其他类对象作为本类成员，构造时先构造类对象，在构造自身
+
+
+class phone {
+public:
+    string pname;
+    phone(string name):pname(name)
+    {
+
+    }
+};
+class people {
+public:
+    int age;
+    phone p;
+    people(int Age, string Name) :age(Age),p(Name)
+    {
+
+     }
+    };
+int main() {
+    people p2(10,"xaiochou");
+    cout << p2.p.pname;
+    cin.get();
+    cin.get();
+}

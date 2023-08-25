@@ -1,0 +1,55 @@
+People p1（p2）；
+
+如果利用编译器的拷贝构造函数，会做浅拷贝的操作（逐个字节拷贝，连地址都一样），当我们在析构函数时delete一个地址，并且这个地址进行过浅拷贝，就会产生一个地址被释放了两次
+
+可以用深拷贝来解决（重写拷贝构造函数）
+
+系统（原来）
+
+People （const People &p）{
+age=p.age;
+high=p.age;(当high是new出来时，地址一致)；
+}
+
+我们：
+
+People （const People &p）{
+
+high=new int（*p.high）;(重新在堆区找一个地方放)
+age=p.age;
+
+}
+
+
+
+
+class people {
+public:
+    int age;
+    int* high;
+    people() {
+        ;
+    }
+    people(int a,int High) {
+        age = a;
+        high =new int(High);
+    }
+    people(const people& p) {
+        age = p.age;
+        high = new int(*p.high);
+    }
+    ~people() {
+        if (high) {
+            delete high;
+            high = NULL;
+        }
+    }
+    };
+int main() {
+    people p1;
+    people p2(10,100);
+    people p3(p2);
+    cout << *p3.high;
+    cin.get();
+    cin.get();
+}

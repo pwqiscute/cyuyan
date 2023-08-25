@@ -1,0 +1,16 @@
+   public static long quickMulti(long a, long b) {
+        long result = 0;
+
+        while (b > 0) {
+            if ((b & 1) == 1) {
+                // 当前最低位为1，结果里加上a
+                result += a;
+            }
+            // 被乘数右移1位，相当于除以2
+            b >>= 1;
+            // 乘数倍增，相当于乘以2
+            a += a;
+        }
+
+        return result;
+    }
