@@ -1,0 +1,29 @@
+this是一个指针，指向调用对象，*this就是对象；
+
+1.可以解决形参和成员变量名字相同
+
+返回类型是People 在返回时会调用拷贝函数拷贝一个新的函数，用People&不会
+
+class people {
+public:
+    void showa() {
+        cout << "sss";
+      }
+    
+    void showr() {
+        if (this == NULL) {
+            return;
+        }
+        cout << this->age;
+        }
+    int age;
+
+ };
+int main() {
+    //通过对象进行访问
+    people* p=NULL;
+    p->showa();
+    p->showr();
+    cin.get();
+    cin.get();
+}

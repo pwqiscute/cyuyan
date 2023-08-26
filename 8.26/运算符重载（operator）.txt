@@ -1,0 +1,41 @@
+class calcuration {
+public :
+    int m_a;
+    int m_b;
+public:
+    calcuration() {
+        m_a = 0;
+        m_b = 0;
+    }
+    calcuration(int a, int b) {
+        m_a = a;
+        m_b = b;
+    }
+    calcuration operator+(const calcuration& p) {
+        calcuration temp;
+        temp.m_a = this->m_a + p.m_a;
+        temp.m_b = this->m_b + p.m_b;
+        return temp;
+    }
+};
+calcuration operator+(const calcuration& p, const calcuration& p1) {
+    calcuration temp;
+    temp.m_a = p1.m_a + p.m_a;
+    temp.m_b = p1.m_b + p.m_b;
+    return temp;
+}
+calcuration operator+(const calcuration& p, int a) {
+    calcuration temp;
+    temp.m_a = a+ p.m_a;
+    temp.m_b = a + p.m_b;
+    return temp;
+}
+ int main() {
+     calcuration c1(10, 10);
+     calcuration c2;
+     calcuration c3 = c2+c1;
+     calcuration c4 = c1 + 100;
+     cout << c3.m_a<<c4.m_a;
+    cin.get();
+    cin.get();
+}

@@ -1,0 +1,21 @@
+class people {
+public:
+    //this指针的本质是指针常量，其指向不能改变；
+    //当在函数的（）后加上 const 就是将他放在了this指针的开头 --》const People* const this 
+    void modify() const
+    {
+        // m_age = 10;
+        m_sex = 0;//当加上mutable关键字后可以特殊化
+    }
+
+    int m_age;
+    mutable int m_sex;
+};
+
+ int main() {
+    //通过对象进行访问
+    const people p;//对象前加const变常对象，没有mutable的成员变量都不可以改
+    p.modify();//常对象只能调用常函数，因为非常函数可以修改值
+    cin.get();
+    cin.get();
+}

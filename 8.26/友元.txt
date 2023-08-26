@@ -1,0 +1,58 @@
+class room {
+    // friend class e1(假设)，表明e1是room的好盆友，里面的函数都可以访问room的私有对象
+    //友元，声明这个函数是我的好盆友，也可以把他当成自己里的函数，这样访问私有成员
+    friend void goodgay(room* r1);
+public :
+   string Stiingroom;
+private:
+    string bedroom;
+};
+void goodgay(room* r1) {
+    cout << r1->bedroom;
+}
+ int main() {
+     room r;
+     goodgay(&r);
+    cin.get();
+    cin.get();
+}
+
+---------------------------------------
+class room;
+class goodgay {
+public:
+    goodgay();
+    void visit();
+    void visit1();
+private:
+    room* r1;
+};
+class room {
+    // friend class e1(假设)，表明e1是room的好盆友，里面的函数都可以访问room的私有对象
+    friend void goodgay::visit();
+public:
+    string Stiingroom;
+    room();
+private:
+    string bedroom;
+};
+room::room() {
+    Stiingroom = "客厅";
+    bedroom = "我司";
+}
+ goodgay::goodgay() {
+    r1 = new room;
+}
+void goodgay::visit() {
+    cout << r1->Stiingroom;
+    cout << r1->bedroom;
+}
+void goodgay::visit1() {
+    cout << r1->Stiingroom;
+}
+ int main() {
+     goodgay g1;
+     g1.visit();
+    cin.get();
+    cin.get();
+}

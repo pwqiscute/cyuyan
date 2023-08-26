@@ -1,0 +1,66 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int A(char * haystack, char * needle){
+    int len=strlen(haystack);
+    int len1=strlen(needle);
+   int i=0,j=0;
+   while(i<len){
+       if(len-i<len1)
+       return -1;
+       while(haystack[i]&&haystack[i]!=needle[j]){
+           i++;
+       }
+       while(needle[j]&&haystack[i]&&haystack[i]==needle[j]){
+           i++;
+           j++;
+       }
+       if(j==len1){
+       return i-j;}
+       else{
+           i=i-j+1;
+           j=0;
+       }
+   }
+   return -1;
+}
+ void DFS(char* s,char** words,char * flag,char* ret,int num,int index, int* res,  int * returnSize){
+     int len=strlen(words[0]);
+     if(index==num){
+         int d=A(s,ret);
+         if(d>=0){
+             res=malloc(sizeof(int)*0xFF);
+            res[*returnSize]=d;
+            *returnSize++;
+         } 
+         return;
+     }
+     for(int i=0;i<num;i++){
+         if(flag[i]==0){
+             flag[i]=1;
+      //   for(int j=len*index,z=0;z<len;j++,z++){
+        //     ret[len]=words[i][z];
+        //}
+        strcpy(ret+index*len,words[i]);
+         DFS(s,words,flag,ret,num,index+1,res,returnSize);
+         flag[i]=0;
+     }
+     }
+ }
+int* findSubstring(char * s, char ** words, int wordsSize, int* returnSize){
+    *returnSize=0;
+  int len =strlen (words[0]);
+  int len1=strlen(s);
+  int m=sizeof(words)/sizeof(words[0]);
+  int * res=malloc(sizeof(int)*0xFF);
+  if(len1<m*len)
+  return NULL;
+  char* ret=calloc(sizeof(char),m*len+1);
+  char flag[m];
+  for(int i=0;i<m;i++){
+      flag[i]=0;
+  }
+  DFS(s,words,flag,ret,m,0,res,returnSize);
+  free(ret);
+  return res;
+}

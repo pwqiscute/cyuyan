@@ -1,0 +1,25 @@
+class people {
+public:
+    static int age;//静态初始化，所有People成员的age共享一个空间；编译时分配空间，类内声明，类外初始化；
+    static void func() {
+        age = 100;//静态函数可以访问静态成员变量,无法访问非静态成员变量，因为无法区分是哪个对象的
+        cout << "dddd";
+    }
+private:
+    static int sex;//类外访问不到私有的静态成员变量
+
+ };
+int people::age = 100;
+int people::sex = 100;
+int main() {
+    //通过对象进行访问
+    people p;
+   cout << p.age;
+   p.func();
+   // 通过类名进行访问
+   cout << people::age;
+   people::func();
+   // cour << people::sex;
+    cin.get();
+    cin.get();
+}
