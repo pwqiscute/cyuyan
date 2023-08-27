@@ -1,0 +1,64 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class student {
+public :
+    int m_age;
+    student(int age) {
+        m_age = age;
+    }
+    bool operator==(student& s) {
+        if (this->m_age==s.m_age) {
+            return true;
+        }
+        return false;
+   }
+    bool operator>(student& s) {
+        if (this->m_age > s.m_age) {
+            return true;
+        }
+        return false;
+    }
+    bool operator<(student& s) {
+        if (this->m_age < s.m_age) {
+            return true;
+        }
+        return false;
+    }
+};
+ostream& operator<<(ostream& cout, student& s) {
+    cout << s.m_age;
+    return cout;
+}
+void text() {
+    student s1(10);
+    student s2(20);
+    if (s1 > s2) {
+        cout << "他们一样";
+    }
+    else {
+        cout << "sss"; 
+    }
+    if (s1 == s2) {
+        cout << "他们一样";
+    }
+    else {
+        cout << "sss";
+    }
+    if (s1 < s2) {
+        cout << "他们一样";
+    }
+    else {
+        cout << "sss";
+    }
+}
+ int main() {
+     text();
+  //  *s2.m_age = 0;
+   //  cout << *s1.m_age;//0，同一块空间
+    cin.get();
+    cin.get();
+}

@@ -1,0 +1,52 @@
+class calcuration {
+public :
+    int m_a;
+    int m_b;
+public:
+    calcuration() {
+        m_a = 0;
+        m_b = 0;
+    }
+    calcuration(int a, int b) {
+        m_a = a;
+        m_b = b;
+    }
+    calcuration operator+(const calcuration& p) {
+        calcuration temp;
+        temp.m_a = this->m_a + p.m_a;
+        temp.m_b = this->m_b + p.m_b;
+        return temp;
+    }
+    //重载前置++
+    calcuration& operator++() {
+        m_a++;
+        return *this;
+    }
+    //重载后置++
+    calcuration operator++(int) { 
+        calcuration temp = *this;
+        m_a++; 
+        return temp;
+    }
+};
+calcuration operator+(const calcuration& p,  calcuration& p1) {
+    calcuration temp;
+    temp.m_a = p1.m_a + p.m_a;
+    temp.m_b = p1.m_b + p.m_b;
+    return temp;
+}
+//因为cout在c1的左边，不能用成员函数来重载,只能用全局函数来；
+ostream& operator<<(ostream &cout, calcuration &p) {
+    cout << p.m_a << p.m_b;
+    return cout;
+}
+
+ int main() {
+     calcuration c1(10, 10);
+     cout << 10<<c1<<endl;
+     c1++;
+     cout<<(c1++)++;
+     cout << c1;
+    cin.get();
+    cin.get();
+}

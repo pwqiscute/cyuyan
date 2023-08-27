@@ -1,0 +1,35 @@
+int longestValidParentheses(char* s) {
+    int n = strlen(s);
+    int left = 0, right = 0, maxlength = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '(') {
+            left++;
+        } else {
+            right++;
+        }
+        if (left == right) {
+            maxlength = fmax(maxlength, 2 * right);
+        } else if (right > left) {
+            left = right = 0;
+        }
+    }
+    left = right = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (s[i] == '(') {
+            left++;
+        } else {
+            right++;
+        }
+        if (left == right) {
+            maxlength = fmax(maxlength, 2 * left);
+        } else if (left > right) {
+            left = right = 0;
+        }
+    }
+    return maxlength;
+}
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/longest-valid-parentheses/solutions/314683/zui-chang-you-xiao-gua-hao-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

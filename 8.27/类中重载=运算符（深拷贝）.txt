@@ -1,0 +1,46 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class student {
+public :
+    int* m_age;
+    student(int age) {
+        m_age = new int(age);
+    }
+   student& operator=(student& s) {
+       if (m_age) {
+           delete m_age;
+           m_age = NULL;
+       }
+       m_age = new int(*s.m_age);
+       return *this;
+    }
+    ~student() {
+        if (m_age) {
+            delete m_age;
+            m_age = NULL;
+        }
+  
+    }
+};
+ostream& operator<<(ostream& cout, student& s) {
+    cout << *s.m_age;
+    return cout;
+}
+void text() {
+    student s1(18);
+    student s2(20);
+    student s3(26);
+    s2 = s1=s3;
+    cout << s1 << s2 << s3;
+}
+ int main() {
+     text();
+  //  *s2.m_age = 0;
+   //  cout << *s1.m_age;//0，同一块空间
+    cin.get();
+    cin.get();
+}
