@@ -1,0 +1,35 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class Public {
+public:
+    void header() {
+        cout << "holle world";
+    }
+    void middle() {
+        cout << "who is me";
+    }
+    void conclude() {
+        cout << "jie shu";
+    }
+};
+class java :public Public {//继承         class 子类：继承方式 父类
+public:
+    void Private() {
+        cout << "java";
+    }
+};
+ int main() {
+     java j;
+     j.Private();
+     j.header();
+     j.middle();
+     j.conclude();
+  //  *s2.m_age = 0;
+   //  cout << *s1.m_age;//0，同一块空间
+    cin.get();
+    cin.get();
+}

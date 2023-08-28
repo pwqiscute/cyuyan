@@ -1,0 +1,43 @@
+class Public {
+public:
+    int age;
+protected:
+    int secretary;
+private:     //父类的私有部分所有子类不可访问
+    int gender;
+};
+class java :public Public {//公共访问，父类的属性的访问权限不会发生改变
+public:
+    void func() {
+        age = 100;
+        secretary = 100;
+        //gender = 100;
+    }
+};
+class python : protected Public {// 保护访问，父类的除私有的所有访问权限全部变为 protected
+public:
+    void func() {
+        age = 100;
+        secretary = 100;
+    }
+};
+class cpuls :private Public {//私有访问，父类全部访问权限变为私有
+public:
+    void func() {
+        age = 100;
+        secretary = 100;
+    }
+};
+class cc :public cpuls {
+public:
+    void func() {
+      //  age = 100;//他的父类的权限已变为private
+    }
+};
+ int main() {
+     java j;
+     j.age = 100;
+     j.func();
+    cin.get();
+    cin.get();
+}

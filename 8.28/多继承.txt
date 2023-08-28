@@ -1,0 +1,42 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class father {
+public:
+    static int m_age;
+    static void func() {
+        cout << "father";
+    }
+};
+int father::m_age = 100;
+class son: public father
+{
+public:
+    static int m_age;
+    static void func() {
+        cout << "son";
+    }
+};
+int son::m_age = 200;
+void text() {
+    son s;
+    s.func();
+    s.father::func();
+    son::func();
+    son::father::func();
+    father::func();
+    cout << s.m_age;
+    cout << s.father::m_age;
+    cout << son::m_age;//用类名访问
+        cout << father::m_age;
+        cout << son::father::m_age;//son类father作用域下的m_age
+}
+ int main() {
+     text();
+
+    cin.get();
+    cin.get();
+}

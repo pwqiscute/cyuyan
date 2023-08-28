@@ -1,0 +1,28 @@
+class father {
+public:
+    father() {
+        cout << "father 的无参构造";
+    }
+    ~father() {
+        cout << "father 的析构函数";
+    }
+};
+class son: public father
+{
+public:
+    son() {
+        cout << "son 的无参构造";
+    }
+    ~son() {
+        cout << "son 的析构函数";
+    }
+};
+void text() {
+    son s;
+}
+ int main() {
+     text();
+
+    cin.get();
+    cin.get();
+}
