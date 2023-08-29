@@ -1,0 +1,31 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class animal {
+public:
+    int m_age;
+};
+class Sheep :virtual public animal{
+
+};
+class tou :virtual public animal {
+
+};
+class sheeptou :public Sheep, public tou {
+
+};
+void text() {
+    sheeptou s;
+    s.Sheep::m_age = 18;//virtual关键字，让父类的值好像static一样，每个对象都指向同一个，一个改变，全部改变，所以不会浪费空间
+    s.tou::m_age = 28;
+    s.m_age = 10;
+    cout << s.m_age;
+}
+ int main() {
+     text();
+    cin.get();
+    cin.get();
+}

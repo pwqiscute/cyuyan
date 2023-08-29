@@ -1,0 +1,30 @@
+找第一个：大于等于时往左
+找最后一个：大于时才往左移
+
+
+ int binarySearch(int *nums,int numsSize,int target,bool flag){
+int l=0,r=numsSize-1,ret=numsSize;
+while(r>=l){
+    int mid=(l+r)/2;
+    if(flag&&nums[mid]>=target||nums[mid]>target){
+        r=mid-1;
+        ret=mid; 
+    }
+    else{
+        l=mid+1;
+    }
+}
+return ret;
+ }
+int* searchRange(int* nums, int numsSize, int target, int* returnSize){
+    int *ret=malloc(sizeof(int)*2);
+    *returnSize=2;
+    int ret1=binarySearch(nums,numsSize,target,true);
+    int ret2=binarySearch(nums,numsSize,target,false)-1;
+    if(ret1<=ret2&&ret2<numsSize&&nums[ret1]==target&&nums[ret2]==target){
+        ret[0]=ret1;ret[1]=ret2;
+        return ret;
+    }
+    ret[0]=-1,ret[1]=-1;
+return ret;
+}

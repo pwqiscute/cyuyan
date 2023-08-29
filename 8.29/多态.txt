@@ -1,0 +1,31 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+//多态：继承关系，子类重写父类的函数   使用：父类指针，引用指向子类
+class animal {
+public:
+    int m_age;
+  virtual void speak() {//virtual可以让地址在调用函数时在绑定，变成了虚函数
+      //当加上virtual后，类部生成一个虚函数指针，指向虚函数表，虚函数表里有这个类域的函数地址
+        cout << "dongwu";
+}
+};
+class cat : public animal {
+public:
+    //当子类重写虚函数时，指针指向的虚函数表里的函数的作用域改为子类的
+    void speak() {
+        cout << "cat";
+    }
+};
+ void text(animal* a) {//地址在编译阶段已经绑定了,引用和指针都一样
+    a->speak();
+}
+ int main() {
+     cat c;
+     text(&c);
+    cin.get();
+    cin.get();
+}
