@@ -1,0 +1,53 @@
+class Drinking {
+public:
+    virtual void Boil() = 0;
+    virtual void Brew() = 0;
+    virtual void pourIncup() = 0;
+    virtual void putsomething() = 0;
+    void dowork() {
+        Boil();
+        Brew();
+        pourIncup();
+        putsomething();
+    }
+};
+class coffee : public Drinking{
+public:
+    void Boil() {
+        cout << "冲水";
+    }
+    void Brew() {
+        cout << "冲咖啡";
+    }
+    void pourIncup() {
+        cout << "倒入杯子";
+    }
+    void putsomething() {
+        cout << "加入牛奶，糖";
+    }
+};
+class tea : public Drinking {
+public:
+    void Boil() {
+        cout << "冲水";
+    }
+    void Brew() {
+        cout << "冲茶";
+    }
+    void pourIncup() {
+        cout << "倒入杯子";
+    }
+    void putsomething() {
+        cout << "加入枸杞";
+    }
+};
+void A(Drinking* d) {
+    d->dowork();
+    delete d;
+}
+ int main() {
+     A(new coffee);
+     A(new tea);
+    cin.get();
+    cin.get();
+}

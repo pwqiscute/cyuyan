@@ -1,0 +1,48 @@
+
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <iostream>
+#include<string>
+#include<math.h>
+using namespace std;
+class father {
+public:
+    virtual void dowork() = 0;
+    father() {
+        cout << "father的无参构造";
+    }
+  //virtual  ~father() {//当子类有堆区时，利用多态时无法调用子类的析构函数，易导致data let out，使用virtual可以solution这个matter
+  //      cout << "father的析构函数";
+   // }
+    virtual ~father() = 0;//纯虚函数，无法实例化对象，虚函数可以，可是纯虚函数要在outside重写；
+};
+father::~father() {
+    cout << "xigou";
+}
+class son :public father{
+public:
+    void dowork() {
+        cout << "son";
+    }
+    son(string name) {
+       m_name = new string(name);
+        cout << "son的无参构造";
+    }
+    ~son() {
+        if (m_name != NULL) {
+            delete m_name;
+            m_name = NULL;
+        }
+        cout << "son的析构函数";
+    }
+    string* m_name;
+};
+void text() {
+    father *f = new son("zhangsan");
+    f->dowork();
+    delete f;
+}
+int main() {
+    text();
+    cin.get();
+    cin.get();
+}

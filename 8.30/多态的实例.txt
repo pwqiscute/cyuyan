@@ -1,0 +1,85 @@
+using namespace std;
+class Cpu {
+public:
+    virtual void calculator() = 0;
+};
+class Videocard {
+public:
+    virtual void Display() = 0;
+};
+class Memory {
+public:
+    virtual void storage() = 0;
+};
+class IntelCpu :public Cpu {
+public:
+    void calculator() {
+        cout << "IntelCpu"<<endl;
+    }
+};
+class IntelVideocard :public Videocard {
+public:
+    void Display() {
+        cout << "IntelVideocard"<<endl;
+    }
+};
+class Intelmemory :public Memory {
+public:
+    void storage() {
+        cout << "IntelMemory"<<endl;
+    }
+};
+class LenovoCpu :public Cpu {
+public:
+    void calculator() {
+        cout << "LenovoCpu" << endl;
+    }
+};
+class LenovoVideocard :public Videocard {
+public:
+    void Display() {
+        cout << "LenovoVideocard" << endl;
+    }
+};
+class Lenovomemory :public Memory {
+public:
+    void storage() {
+        cout << "LenovoMemory" << endl;
+    }
+};
+class compute {
+private:
+    Cpu* m_cpu;
+    Videocard* m_vdc;
+    Memory* m_mem;
+public:
+    compute(Cpu* cpu, Videocard* vdc, Memory* mem) {
+        m_cpu = cpu;
+        m_vdc = vdc;
+        m_mem = mem;
+    }
+    void dowork() {
+        m_cpu->calculator();
+        m_vdc->Display();
+        m_mem->storage();
+    }
+    ~compute() {
+        delete m_cpu;
+        delete m_mem;
+        delete m_vdc;
+    }
+};
+void text() {
+
+    compute *c=new  compute(new IntelCpu,new IntelVideocard,new Intelmemory);
+    c->dowork();
+    delete c;
+    compute* d = new  compute(new LenovoCpu, new IntelVideocard, new Intelmemory);
+    d->dowork();
+    delete d;
+}
+int main() {
+    text();
+    cin.get();
+    cin.get();
+}

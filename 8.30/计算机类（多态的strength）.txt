@@ -1,0 +1,42 @@
+using namespace std;
+//多态的strength：组织结构清晰，可读性强，利用前期，后期的扩展和维护
+class calculator {
+public:
+    int m_Num1;
+    int m_Num2;
+    virtual int getresult() {
+        return 0;
+    }
+};
+class addcalculator :public calculator {
+public:
+    int getresult() {
+        return m_Num1 + m_Num2;
+    }
+};
+class subcalculator :public calculator {
+public:
+    int getresult() {
+        return m_Num1 - m_Num2;
+    }
+};
+class mulcalculator :public calculator {
+public:
+    int getresult() {
+        return m_Num1 * m_Num2;
+    }
+};
+class divcalculator :public calculator {
+public:
+    int getresult() {
+        return m_Num1 / m_Num2;
+    }
+};
+ int main() {
+     calculator* c = new addcalculator;
+     c->m_Num1 = 100;
+     c->m_Num2 = 100;
+    cout<< c->getresult();
+    cin.get();
+    cin.get();
+}
