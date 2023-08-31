@@ -1,0 +1,10 @@
+int main() {
+    ofstream ofs;//写文件用：ofstream   读文件：ifstream   读写文件： fstream
+    ofs.open("tesx txt", ofs.out);//打开路径，打开方式
+    ofs << "perspective"<<endl;
+    ofs << "archive"<<endl;
+    ofs << "Age is an issue of mine over matter.If your don't mine,it doesn't matter"<<endl;
+    ofs << "You never understand a people unit you consider thing from his point of view";
+    cin.get();
+    cin.get();
+}

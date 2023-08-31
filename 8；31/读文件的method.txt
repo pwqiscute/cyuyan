@@ -1,0 +1,20 @@
+#include<fstream>
+using namespace std;
+int main() {
+    ifstream ifs;//读文件
+    ifs.open("tesx txt", ifs.in);
+    if (!ifs.is_open()) {
+        cout << "打开失败";
+        return 1;
+    }
+    string str;//把文件一行一行的放在str内；
+    while (getline(ifs, str)) {
+       cout << str<<endl;
+    }
+   // while (ifs >> str) {//无法用endl
+     //   cout << str ;
+   // }
+    ifs.close();
+    cin.get();
+    cin.get();
+}

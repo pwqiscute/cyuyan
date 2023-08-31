@@ -1,0 +1,23 @@
+class people {
+public:
+    char m_name[10];
+    int m_age;
+};
+int main() {
+    ofstream ofs("people txt", ios::binary | ios::out);
+    people p = { "张三",10 };
+    ofs.write((const char*)&p, sizeof(p));
+    ofs.close(); 
+    people a;
+    ifstream ifs;
+    ifs.open("people txt", ios::in | ios::binary);
+    if (!ifs.is_open()) {
+        cout << "shibai";
+        return 0;
+    }
+        ifs.read((char*)&a, sizeof(people));
+        cout << a.m_age << a.m_name;
+        ifs.close();
+    cin.get();
+    cin.get();
+}
