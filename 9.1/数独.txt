@@ -1,0 +1,43 @@
+bool line[9][9];
+bool column[9][9];
+bool block[3][3][9];
+bool vaild;
+int * spaces[81];
+int spacesSize;
+void dfs(char**board,int pos){
+    if(pos==spacesSize){
+        vaild=true;
+        return;
+    }
+    int i=spaces[pos][0],j=spaces[pos][1];
+    for(int m=1;m<10&&!vaild;m++){
+        if(!line[i][m-1]&&!column[j][m-1]&&!block[i/3][j/3][m-1]){
+            line[i][m-1]=column[j][m-1]=block[i/3][j/3][m-1]=true;
+            board[i][j]=m+'0';
+            dfs(board,pos+1);
+            line[i][m-1]=column[j][m-1]=block[i/3][j/3][m-1]=false;
+        }
+    }
+}
+void solveSudoku(char** board, int boardSize, int* boardColSize){
+memset(line,false,sizeof(line));
+memset(column,false,sizeof(column));
+memset(block,false,sizeof(block));
+vaild=false;
+spacesSize=0;
+for(int i=0;i<9;i++){
+    for(int j=0;j<9;j++){
+        if(board[i][j]=='.'){
+            spaces[spacesSize]=malloc(sizeof(int)*2);
+            spaces[spacesSize][0]=i;
+            spaces[spacesSize][1]=j;
+            spacesSize++;
+        }
+        else{
+            int digit=board[i][j]-'0'-1;
+            line[i][digit]=column[j][digit]=block[i/3][j/3][digit]=true;
+        }
+    }
+}
+dfs(board,0);
+}

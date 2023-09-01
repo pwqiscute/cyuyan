@@ -1,0 +1,7 @@
+void text() {
+    char ch;
+    ifstream ifs("text txt", ios::in);
+    ifs >> ch;
+    cout << ifs.eof()<<endl;
+    ifs.close();
+}
