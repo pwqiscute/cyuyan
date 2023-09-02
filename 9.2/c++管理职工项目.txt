@@ -1,0 +1,480 @@
+member.h
+
+#pragma once
+#include <iostream>
+#include<fstream>
+#include<string.h>
+using namespace std;
+#include"worker.h"
+class member {
+public:
+	member();
+	void show();
+	~member();
+	void addworker();
+	void exitsystem();
+	void membershow();
+	void reserve(worker** newptr);
+	bool fileEmpty;
+	int get_EmpNum();
+	void init_Ety();
+	void Del_Emp();
+	int Iseexist(int id);
+	void modify();
+	void find();
+	void sort();
+	void clean();
+	int membercount;
+	worker** nowptr;
+};
+
+----------------------------------------------
+member.cpp
+
+#include "member.h"
+int member::get_EmpNum() {
+	ifstream ifs("text txt", ios::in);
+	int id;
+	string name;
+	int did;
+	int num = 0;
+	while (ifs >> id && ifs >> name && ifs >> did) {
+		num++;
+	}
+	return num;
+}
+void member::init_Ety() {
+	ifstream ifs("text txt", ios::in);
+	int id;
+	string name;
+	int did;
+	int index = 0;
+	while (ifs >> id && ifs >> name && ifs >> did) {
+		if (did == 1) {
+			this->nowptr[index++] = new employee(id, name, did);
+		}
+		else if (did == 2) {
+			this->nowptr[index++] = new manager(id, name, did);
+		}
+		else {
+			this->nowptr[index++] = new employer(id, name, did);
+		}
+	}
+	ifs.close();
+}
+int member::Iseexist(int id) {
+	for (int i = 0; i < this->membercount; i++) {
+		if (this->nowptr[i]->w_id == id) {
+			return i;
+		}
+	}
+	return -1;
+}
+void member::clean() {
+	cout << "确认是否删除全部文件 ，1，是的 2，返回" << endl;
+	int ret = 0;
+	cin >> ret;
+	if (ret == 1) {
+		ofstream ofs("text txt", ios::trunc);
+		ofs.close();
+		if (this->nowptr != NULL) {
+			for (int i = 0; i < membercount; i++) {
+				if (nowptr[i] != NULL)
+					delete nowptr[i];
+			}
+			this->membercount = 0;
+			delete[] nowptr;
+			nowptr = NULL;
+			this->fileEmpty = true;
+		}
+		cout << "清空成功" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+void member::Del_Emp() {
+	if (this->fileEmpty) {
+		cout << "文件不存在" << endl;
+		return;
+	}
+	else {
+		cout << "请输入你要删除的id" << endl;
+		int id = 0;
+		cin >> id;
+		int index = this->Iseexist(id);
+		if (index == -1) {
+			cout << "没有该职工" << endl;
+			return;
+		}
+		for (int i = id; i < this->membercount-1; i++) {
+			this->nowptr[i]= this->nowptr[i+1];
+		}
+		this->membercount--;
+		if (this->membercount == 0) {
+			this->fileEmpty = true;
+		}
+		this->reserve(nowptr);
+		cout << "删除成功" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+member::member() {
+	ifstream ifs("text txt", ios::in);
+	if (!ifs.is_open()) {
+		cout << "文件无法打开" << endl;
+		this->nowptr = NULL;
+		this->membercount = 0;
+		this->fileEmpty = true;
+		ifs.close();
+		return;
+	}
+	char ch;
+	ifs >> ch;
+	if (ifs.eof()) {
+		cout << "文件为空";
+		this->nowptr = NULL;
+		this->membercount = 0;
+		this->fileEmpty = true;
+		ifs.close();
+		return;
+	}
+	int num = this->get_EmpNum();
+	cout << "职工的人数为" << num<<endl;
+	this->membercount = num;
+	this->nowptr = new worker * [num];
+	this->init_Ety();
+	for (int i = 0; i < num; i++) {
+		nowptr[i]->show();
+	}
+}
+void member::modify() {
+	if (this->fileEmpty) {
+		cout << "文件为空" << endl;
+		return;
+	}
+	cout << "请输入要修改职工的编号" << endl;
+	int mod = 0;
+	cin >> mod;
+	int ret = this->Iseexist(mod);
+	if (ret == -1) {
+		cout << "没有该员工" << endl;
+		return;
+	}
+	cout << "输入新的编号" << endl;
+	int newid = 0;
+	cin >> newid;
+	this->nowptr[ret]->w_id = newid;
+	cout << "请输入你要改成的名字" << endl;
+	string name;
+	cin >> name;
+	this->nowptr[ret]->w_name = name;
+	cout << "请输入你要改成的岗位" << endl;
+	cout << "1。员工 2.经理 3.老板" << endl;
+	int Deptid = 0;
+	cin >> Deptid;
+	this->nowptr[ret]->w_Deptid = Deptid;
+	this->reserve(nowptr);
+	cout << "修改成功" << endl;
+	system("pause");
+	system("cls");
+}
+void member::addworker() {
+	cout << "请输入你要加的人数" << endl;
+	int addworker = 0;
+	cin >> addworker;
+	if (addworker > 0) {
+		int pastcount = this->membercount;
+		this->membercount = this->membercount + addworker;
+		worker** newptr = new worker * [this->membercount];
+		if (this->nowptr) {
+			for (int i = 0; i < this->membercount-addworker; i++) {
+				newptr[i] = nowptr[i];
+			}
+		}
+		for (int i = 0; i < addworker; i++) {
+			int id; string name; int Deptname;
+			cout << "请输入第"<<i+1<<"新员工的编号" << endl;
+			cin >> id;
+			cout << "请输入第" << i + 1 << "新员工的姓名" << endl;
+			cin >> name;
+			cout << "请输入第" << i + 1 << "新员工的岗位" << endl;
+			cout << "1.员工" << endl;
+			cout << "2.经理" << endl;
+			cout << "3.老板" << endl;
+			cin >> Deptname;
+			switch (Deptname) {
+			case 1:
+				newptr[pastcount + i] = new employee(id, name, Deptname);
+				break;
+			case 2:
+				newptr[pastcount + i] = new manager(id, name, Deptname);
+				break;
+			case 3:
+				newptr[pastcount + i] = new employer(id, name, Deptname);
+				break;
+			default:
+				break;
+			}
+		}
+		this->reserve(newptr);
+		delete[] this->nowptr;
+		this->nowptr = newptr;
+		this->fileEmpty = false;
+		cout << "成功添加" << addworker << "名的新成员" << endl;
+	}
+	else {
+		cout << "输入有误" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+void member::membershow() {
+	if (this->fileEmpty) {
+		cout << "文件为空" << endl;
+		return;
+	}
+	for (int i = 0; i < this->membercount; i++) {
+		nowptr[i]->show();
+	}
+	system("pause");
+	system("cls");
+}
+void member::show() {
+	cout << "欢迎来到职工管理系统" << endl;
+	cout << "0.退出系统" << endl;
+	cout << "1,。添加管理人员" << endl;
+	cout << "2.显示职工信息" << endl;
+	cout << "3.删除职工信息" << endl;
+	cout << "4.修改职工信息" << endl;
+	cout << "5.查找职工信息" << endl;
+	cout << "6.按照升序或降序排列" << endl;
+	cout << "7.删除所有文档" << endl;
+}
+member::~member() {
+	if (this->nowptr != NULL) {
+		for (int i = 0; i < membercount; i++) {
+			if (nowptr[i] != NULL)
+				delete nowptr[i];
+		}
+		delete[] nowptr;
+		nowptr = NULL;
+	}
+}
+void member::reserve(worker** newptr) {
+	ofstream ofs("text txt", ios::out);
+	for (int i = 0; i < this->membercount; i++) {
+		ofs << newptr[i]->w_id << " ";
+		ofs << newptr[i]->w_name << " ";
+		ofs << newptr[i]->w_Deptid<< " ";
+	}
+	ofs.close();
+}
+void member::exitsystem() {
+	cout << "欢迎下次使用" << endl;
+	system("pause");
+	exit(0);
+}
+void member::find() {
+	if (this->fileEmpty) {
+		cout << "文件为空" << endl;
+		return;
+	}
+	cout << "1.按编号找，2.按人名找" << endl;
+	int method = 0;
+	cin >> method;
+	if (method == 1) {
+		cout << "请输入你要找的编号" << endl;
+		int id = 0;
+		cin >> id;
+		int ret = this->Iseexist(id);
+		if (ret == -1) {
+			cout << "没有该员工" << endl;
+			return;
+		}
+		nowptr[ret]->show();
+	}
+	else if (method == 2) {
+		cout << "请输入你要找的名字" << endl;
+		string name;
+		cin >> name;
+		int count = 0;
+		for (int i = 0; i < membercount; i++) {
+			if (nowptr[i]->w_name == name) {
+				nowptr[i]->show();
+				count++;
+			}
+		}
+		if (count == 0) {
+			cout << "查无此人" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+	}
+	cout << "查找完成" << endl;
+	system("pause");
+	system("cls");
+}
+void member::sort() {
+	if (this->fileEmpty) {
+		cout << "文件为空" << endl;
+		system("pause");
+		system("cls");
+		return;
+	}
+	cout << "请choice，1.升序 2.降序" << endl;
+	int choice = 0;
+	cin >> choice;
+	for (int i = 0; i < membercount-1; i++) {
+		int mix = i;
+		for (int j = i + 1; j < membercount; j++) {
+			if (choice == 1) {
+				if (nowptr[j]->w_id < nowptr[mix]->w_id) {
+					mix = j;
+				}
+			}
+			if (choice == 2) {
+				if (nowptr[j]->w_id > nowptr[mix]->w_id) {
+					mix = j;
+				}
+			}
+		}
+		worker* w;
+		w = nowptr[i];
+		nowptr[i] = nowptr[mix];
+		nowptr[mix] = w;
+	}
+	this->reserve(nowptr);
+	cout << "排序成功" << endl;
+	system("pause");
+	system("cls");
+}
+--------------------------------------------------------
+worker.h
+
+#pragma once
+#include<iostream>
+#include<string>
+using namespace std;
+class worker {
+public:
+	int w_id;
+	string w_name;
+	int w_Deptid;//部门编号
+	virtual void show() = 0;
+	virtual string getDeptname()=0;
+};
+class employee :public worker{
+public:
+	employee(int id, string name, int Deptid);
+	void show();
+	string getDeptname();
+};
+class manager :public worker {
+public:
+	manager(int id, string name, int Deptid);
+	void show();
+	string getDeptname();
+};
+class employer :public worker {
+public:
+public:
+	employer(int id, string name, int Deptid);
+	void show();
+	string getDeptname();
+};
+
+------------------------------------------------------
+worker.cpp
+
+#include"worker.h"
+employee::employee(int id, string name, int Deptid) {
+	w_id = id;
+	w_name = name;
+	w_Deptid = Deptid;
+}
+void employee::show() {
+	cout << "职工编号：" << this->w_id;
+	cout << "职工姓名：" << this->w_name;
+	cout << "职工岗位：" << this->w_Deptid;
+	cout << "听从经理安排" << endl;
+}
+string employee::getDeptname() {
+	return "员工";
+}
+//-----------------------------------
+manager::manager(int id, string name, int Deptid) {
+	w_id = id;
+	w_name = name;
+	w_Deptid = Deptid;
+}
+void manager::show() {
+	cout << "职工编号：" << this->w_id;
+	cout << " 职工年龄：" << this->w_name;
+	cout << " 职工岗位：" << this->w_Deptid;
+	cout << " 听从老板的安排" << endl;
+}
+string manager::getDeptname() {
+	return "经理";
+}
+//---------------------------------------------
+employer::employer(int id, string name, int Deptid) {
+	w_id = id;
+	w_name = name;
+	w_Deptid = Deptid;
+}
+void employer::show() {
+	cout << "职工编号：" << this->w_id;
+	cout << "职工年龄：" << this->w_name;
+	cout << "职工岗位：" << this->w_Deptid;
+	cout << "管理公司" << endl;
+}
+string employer::getDeptname() {
+	return "老板";
+}
+
+----------------------------------------------------
+main
+#include"member.h"
+#include"worker.h"
+
+int main() {
+    member m;
+    m.show();
+    while (1) {
+        int num;
+        cin >> num;
+        switch (num) {
+        case 0://recede
+           m.exitsystem();
+            return 0;
+        case 1://add
+            m.addworker();
+            break;
+        case 2://display
+            m.membershow();
+            break;
+        case 3://delete
+            m.Del_Emp();
+            break;
+        case 4://modify
+            m.modify();
+            break;
+        case 5://search
+            m.find();
+            break;
+        case 6://rand
+            m.sort();
+            break;
+        case 7://delete all member
+            m.clean();
+            break;
+        default:
+            break;
+        }
+    }
+        cin.get();
+        cin.get();
+    
+}

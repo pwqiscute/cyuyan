@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+   string ret[30];
+string temp;
+for (int i = 0; i < n; i++) {
+	temp = "";
+	if (i == 0)
+		ret[0] += "1";
+	else {
+		int len = ret[i - 1].length();
+		int index = 0;
+		while (len--) {		
+			temp += "1";
+			temp += ret[i - 1][index++];
+		}
+		int pre = 1;
+		int front = 3;
+		while (1) {
+			while (temp[pre] == temp[front]&&front<2*ret[i-1].length()&&temp.length()>=4) {
+				temp[front - 1] = ((temp[pre-1]-'0') + (temp[front - 1]-'0'))+'0';
+				pre += 2; front += 2;
+			}
+			ret[i] += temp[pre - 1];
+			ret[i] += temp[pre];
+			if (front == 2 * ret[i - 1].length() - 1) {
+				ret[i] += temp[front - 1];
+				ret[i] += temp[front];
+			}
+			if (front >= 2 * ret[i - 1].length() - 1) {
+				break;
+			}
+			pre += 2;
+			front += 2;
+		}
+	}
+}
+ return  ret[n - 1];
+		}
+};
