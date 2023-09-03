@@ -1,0 +1,24 @@
+void test(int a, int c) {
+	cout << "ordinary function" << endl;
+}
+template <class T>  //自动类型推导时要推导成一样的类型才可以使用，模版必须确认T的数据类型，才可以使用函数(他只于第一个函数有关系)
+//普通函数与函数模版的调用regulation 1.如果函数模版和普通函数都可以调用，优先调用普通模版 2.可以通过空模版参数列表 强制调用函数模版
+//3.函数模版可以发生函数重载  4.如果函数模版可以发生更好的匹配，优先调用函数模版
+void test(T a, T b) {
+	cout << "function template" << endl;
+}
+template <class T>
+void test(T a, T b, T c) {
+	cout << "重载模版" << endl;
+}
+int main() {
+	int a = 10;
+	int c = 10;
+	test(a, a);//1.如果函数模版和普通函数都可以调用，优先调用普通模版
+	test<>(a, c);//2.可以通过空模版参数列表 强制调用函数模版
+	test(a, c, 10);///3.函数模版可以发生函数重载 
+	char c1 = 'a';
+	char c2 = 'b';
+	test(c1, c2);//走普通函数要转换类型，模版不用 4.如果函数模版可以发生更好的匹配，优先调用函数模版
+	system("pause");
+}

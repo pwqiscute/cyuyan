@@ -1,0 +1,17 @@
+template <class T>  //自动类型推导时要推导成一样的类型才可以使用，模版必须确认T的数据类型，才可以使用函数(他只于第一个函数有关系)
+T test(T a, T b) {
+	return a + b;
+}
+int test01(int a, int c) {
+	return a + c;
+}
+int main() {
+	int a = 10;
+	int c = 10;
+	char b = 'c';
+	test01(a, c);
+	cout << test01(a, b) << endl;//普通函数会发生隐式类型转换
+	//cout << test(a, b) << endl;//函数模版：用自动类型推导，不可以发生隐式类型转换（有两种类型，charm计算机）
+	cout << test<int>(a, b) << endl;//显示类型转换，让计算机不puzzle
+	system("pause");
+}

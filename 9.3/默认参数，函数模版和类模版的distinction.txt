@@ -1,0 +1,25 @@
+//类模板与函数模版的distinction
+//1.类模板没有指定类型转换，一定要手动赋值
+template<class NameType,class AgeType=int>//默认参数模版，你可以不写后面的类型，系统会默认用。当你写了后就用你写的；
+class peoson {
+public:
+	peoson(NameType name,AgeType age) {
+		m_age = age;
+		m_name = name;
+	}
+	void show() {
+		cout << m_age << m_name;
+	}
+	NameType m_name;
+	AgeType m_age;
+};
+void test() {
+	peoson<string,string> p2("猪排", "sss");//默认参数，可以不用写
+	p2.show();
+}
+int main() {
+	//people p1("panweiquan", 19);//fault//1.类模板没有指定类型转换，一定要手动赋值
+	test();
+	peoson<string, int> p1("panweiquan", 19);
+	p1.show();
+}

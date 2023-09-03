@@ -1,0 +1,17 @@
+template<class NameType,class AgeType>//类模板
+class peoson {
+public:
+	peoson(NameType name,AgeType age) {
+		m_age = age;
+		m_name = name;
+	}
+	void show() {
+		cout << m_age << m_name;
+	}
+	NameType m_name;
+	AgeType m_age;
+};
+int main() {
+	peoson<string, int> p1("panweiquan", 19);
+	p1.show();
+}

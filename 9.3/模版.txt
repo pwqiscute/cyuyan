@@ -1,0 +1,30 @@
+template <typename T>  
+void exchance(T& a, T& b) {
+	T temp = a;
+	a = b;
+	b = temp;
+}
+int main() {
+	double a = 2.2;
+	double b = 3;
+	exchance(a, b);//1.自动类型推导（计算机自己estimate）
+	exchance<double>(a, b);//2.显示指定类型,自己定义
+	cout << a << b;
+	system("pause");
+}
+
+--------------------------------------------------
+template <typename T>  //自动类型推导时要推导成一样的类型才可以使用，模版必须确认T的数据类型，才可以使用函数(他只于第一个函数有关系)
+void func() {
+	cout << "Nihao";
+}
+
+int main() {
+	double a = 2.2;
+	double b = 3;
+	//exchance(a, b);//1.自动类型推导（计算机自己estimate）
+	//exchance<double>(a, b);//2.显示指定类型,自己定义
+	func<void>();
+	cout << a << b;
+	system("pause");
+}
