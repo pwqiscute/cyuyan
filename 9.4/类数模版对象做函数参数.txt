@@ -1,0 +1,38 @@
+template<class T1,class T2>
+class person {
+public:
+	person(T1 name, T2 age) {
+		m_name = name;
+		m_age = age;
+	}
+	void showperson() {
+		cout << m_name << m_age<<endl;
+	}
+	T1 m_name;
+	T2 m_age;
+};
+//1.直接固定类型
+void printfperson(person<string, int> &p) {
+	p.showperson();
+}
+//2.参数模版化
+template<class T1,class T2>
+void printfperson1(person<T1,T2> &p) {
+	p.showperson();
+	cout << "T1,T2 class   " << typeid(T1).name() << endl<<typeid(T2).name()<<endl;//typeid().name()可以显示一个模版类的名字
+}
+//3.将整个类都模版化
+template<class T>
+void printfperson3(T &p) {
+	p.showperson();
+	cout << typeid(T).name();
+}
+ 
+int main() {
+	person<string, int> p("xiaochong", 20);
+	printfperson(p);
+	person<string, int> p1("xiaopan", 20);
+	printfperson1(p1);
+	person<string, int> p2("xiaoai", 20);
+	printfperson3(p2);
+}

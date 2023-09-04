@@ -1,0 +1,36 @@
+using namespace std;
+template<class T1, class T2>//声明一下，让编译器才能事先知道
+class person;
+template<class T1, class T2>
+//全局函数的类内实现
+//如果我们的全局函数时类外实现，需要让编译器提前知道这个函数的存在
+//一定要放在类的上面
+void f1(person<T1, T2> p1) {
+	cout << p1.m_age << p1.m_name << endl;
+}
+template<class T1,class T2>
+class person {
+	//全局函数 类内实现
+	//friend void printf(person<T1, T2> p) {
+	//	cout << p.m_age << p.m_name << endl;
+	//} 
+
+	friend void f1<>(person<T1, T2> p1);//要加入《》表示他是一个模版
+
+public:
+	person(T1 name, T2 age) {
+		m_name = name;
+		m_age = age;
+	}
+private:
+	T1 m_name;
+	T2 m_age;
+};
+void test() {
+	person<string, int> p("Tom", 20);
+	//printf(p);
+	f1(p);
+}
+ int main() {
+	 test();
+ } 

@@ -1,0 +1,32 @@
+class f1 {
+public:
+	void show1()
+	{
+		cout << "f1"<<endl;
+	}
+};
+class f2 {
+public:
+	void show2() {
+		cout << "f2"<<endl;
+	}
+};
+template<class T>
+class f3 {//类模板的成员函数并不是一开始创立的，在调用时才去创立
+public:
+	T obj;
+	void show3() {
+		obj.show1();//此时T可以为任何的类型，编译器不清楚这个T是什么类型，所以不会报错；
+	}
+	void show4() {
+		obj.show2();
+	}
+};
+int main() {
+	f3<f1> f;
+	f.show3();
+	f.show4();//此时f是f1的类型，系统知道后，才去调用show4，发现类型不对，调用不了，就会报错
+	f3<f2> a;
+	a.show4();
+	return 0;
+}

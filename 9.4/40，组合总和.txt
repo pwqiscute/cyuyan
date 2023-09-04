@@ -1,0 +1,43 @@
+int cmp_int(const void* e1, const void* e2) {
+	return (*(int*)e1 - *(int*)e2);
+}
+void test(int a[],int targe,int storate[10][10],int c[10],int* index,int count,int d) {
+	for (int i = d; i < 7; i++) {
+		if (a[i] == targe) {
+			c[count] = a[i];
+			for (int i = 0; i <= count; i++) {
+				storate[*index][i] = c[i];
+			}
+			(*index)++;
+			return;
+		}
+		else if (a[i] < targe) {
+			c[count] = a[i];
+			test(a, targe-a[i], storate, c, index, count+1, i+ 1);
+			c[count] = 0;
+		}
+		else {
+			return;
+		}
+	}
+
+}
+ int main() {
+	 int a[7] = { 10,1,2,7,6,1,5 };
+	 int targe = 8;
+	 int d = 0;
+	 int* index = &d;
+	 int storate[10][10] = { 0 };
+	 int c[10] = { 0 };
+	 qsort(a, 7, sizeof(a[0]), cmp_int);
+	 for (int i = 0; i < 7; i++) {
+		 cout << a[i] << endl;
+	 }
+	 test(a, targe,storate,c, index, 0,0);
+	 for (int i = 0; i < 10; i++) {
+		 for (int j = 0; j < 10; j++) {
+			 cout << storate[i][j] << " ";
+		 }
+		 cout << endl;
+	 }
+ } 

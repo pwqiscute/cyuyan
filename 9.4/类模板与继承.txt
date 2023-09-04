@@ -1,0 +1,29 @@
+class person {
+public:
+	T m;
+	person() {
+		cout << typeid(T).name() << endl;
+	}
+};
+class son :public person<int>//必须要知道父类中的T类型，才能继承给子类
+{
+
+};
+class son2 :public son {//此时的m类型已经被son给改；
+
+};
+template <class T1,class T2>
+class son3 :public person<T1> {//此时son3也是类模板,可以灵活接收父类的类模板
+public:
+	T2 age;
+	son3() {
+		cout << typeid(T1).name() << endl;
+		cout << typeid(T2).name() << endl;
+	}
+};
+
+int main() {
+	person<int> p1;
+	son3<string, int> s3;
+
+}
