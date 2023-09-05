@@ -1,0 +1,146 @@
+#pragma once
+#include <iostream>
+#include<string>
+using namespace std;
+template<class T>
+class myarray {
+public:
+	myarray(int capacity) {
+		cout << "youcan" << endl;
+		this->m_capacity = capacity;
+		m_size = 0;
+		Address = new T[m_capacity];
+	}
+	//重载operator=，防止浅拷贝问题
+	myarray& operator=(const myarray& arr) {
+		if (this->Address) {
+			delete Address;
+			Address = NULL;
+		}
+		this->m_size = arr.m_size;
+		this->m_capacity = arr.m_capacity;
+		this->Address = new T[arr.m_capasity];
+		for (int i = 0; i < this->m_size; i++) {
+			this->Address[i] = arr.Address[i];
+		}
+		return *this;
+	}
+	//拷贝函数
+	myarray(const myarray& arr) {
+		cout << "kaobeihanshu" << endl;
+		this->m_capacity = arr.m_capacity;
+		this->m_size = arr.m_size;
+		this->Address = new T[arr.m_capacity];
+
+		for (int i = 0; i < this->m_size; i++) {
+			this->Address[i] = arr.Address[i];
+		}
+	}
+	//尾插法
+	void Push_Back(const T& val) {
+		//
+		if (this->m_capacity == this->m_size) {
+			return;
+		}
+		this->Address[this->m_size++] = val;
+	}
+	//尾删法
+	void Pop_Back() {
+		if (this->m_size == 0) {
+			return;
+		}
+		this->m_size--;
+	}
+	//通过下标的方式访问元素,重载【】
+	T& operator[](int q) {
+		//if (q >= this->m_size)
+		//{
+		//	return 0;
+		//}
+		return this->Address[q];
+	}
+	//防回数组capacity
+	int get_Capacity() {
+		return this->m_capacity;
+	}
+	//返回数组大小
+	int get_size() {
+		return this->m_size;
+	}
+	//析构函数
+	~myarray() {
+		cout << "xigoucan" << endl;
+		if (this->Address!=NULL) {
+			delete[] this->Address;
+			this->Address = NULL;
+		}
+	}
+private:
+	T* Address;//指针指向堆区开辟的真实的数组
+	int m_capacity;//数组容量
+	int m_size;//数组大小
+};
+----------------------------------
+
+
+using namespace std;
+#include"标头.hpp"
+template<class T>
+void printf(myarray<T>& m) {
+	for (int i = 0; i < m.get_size(); i++) {
+		cout << m[i]<<endl;
+	}
+}
+class person {
+public:
+	person() {};
+	person() {};
+	person(string name, int age) {
+		m_age = age;
+		m_anme = name;
+	}
+	string m_anme;
+	int m_age;
+};
+void printfarr(myarray<person>& p) {
+	for (int i = 0; i < p.get_size(); i++) {
+		cout << p[i].m_age <<" "<<p[i].m_anme<< endl;
+	}
+}
+void test() {
+	myarray<person> arr3(10);
+	person p1("马超",999);
+	person p2("韩信", 1000);
+	person p3("猪猪侠", 1001);
+	person p4("龙骑士", 1002);
+	person p5("小菲菲", 1003);
+	//
+	arr3.Push_Back(p1);
+	arr3.Push_Back(p2);
+	arr3.Push_Back(p3);
+	arr3.Push_Back(p4);
+	arr3.Push_Back(p5);
+	//
+	printfarr(arr3);
+	cout << arr3.get_Capacity() << endl;
+	cout << arr3.get_size() << endl;
+}
+int main()
+{
+	test();
+	myarray<int> arr1(10);
+	for (int i = 0; i < 5; i++) {
+		arr1.Push_Back(i);
+	}
+	printf(arr1);
+	cout << arr1.get_Capacity() << endl;
+	cout << arr1.get_size() << endl;
+
+	myarray<int> arr2(arr1);
+	printf(arr2);
+	//尾删
+	arr2.Pop_Back();
+	cout << arr2.get_Capacity() << endl;
+	cout << arr2.get_size() << endl;
+	return 0;
+}

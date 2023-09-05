@@ -1,0 +1,14 @@
+//string的构造函数
+void test() {
+	string s1;
+	const char* str= "hello world";
+	string s2(str);//将字符串str拷贝到s2中
+	cout << s2 << endl;
+	string s3(s2);//将另外的字符串s2拷贝给s3
+	cout << s3 << endl;
+	string s4(10, 'a');//设置10个a；
+	cout << s4 << endl;
+}
+int main() {
+	test();
+}

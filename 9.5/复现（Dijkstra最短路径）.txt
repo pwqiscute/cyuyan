@@ -1,0 +1,26 @@
+void shortest_path(MGraph G,int v0,patharc *p,shortestpath *D)
+{
+int k=0,min;
+int final[MAXVEX];
+for(int i=0;i<MAXVEX;i++){
+final[i]=0;
+p[i]=-1;
+D[i]=G.[0][i];
+}
+final[0]=1;
+for(int i=1;i<MAXVEX;i++){
+min=INT_MAX;
+for(int j=0;j<MAXVEX;j++){
+if(!final[k]&&min>D[j]){
+k=j;
+min=D[j];
+}
+}
+final[k]=1;
+for(int j=0;j<MAXVEX;j++){
+if(!final[j]&&min+G.[k][j]<D[j]){
+D[j]=G.[k][j];
+p[j]=k;
+}
+}
+}

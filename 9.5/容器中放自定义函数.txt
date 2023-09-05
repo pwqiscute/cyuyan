@@ -1,0 +1,50 @@
+#include<vector>
+//vector容器中存放自定义数据类型
+class person {
+public:
+	person(string name, int age) {
+		m_name = name;
+		m_age = age;
+	}
+	string m_name;
+	int m_age;
+};
+void test01() {
+	vector<person> v;
+	person p1("aaa", 10);
+	person p2("bbb", 15);
+	person p3("ccc", 20);
+	person p4("ddd", 25);
+
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+
+	for (vector<person>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << it->m_age << endl;
+		cout << it->m_name << endl;
+	}
+}
+void test02() {
+	vector<person*> v1;
+	person p1("aaa", 10);
+	person p2("bbb", 15);
+	person p3("ccc", 20);
+	person p4("ddd", 25);
+
+	v1.push_back(&p1);
+	v1.push_back(&p2);
+	v1.push_back(&p3);
+	v1.push_back(&p4);
+
+	for (vector<person*>::iterator it = v1.begin(); it != v1.end(); it++) {
+		cout << (*it)->m_age << endl;
+		cout << (*it)->m_name << endl;
+	}
+
+}
+int main() {
+	//test01();
+	test02();
+}
