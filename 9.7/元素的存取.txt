@@ -1,0 +1,35 @@
+void printf(vector<int>& it) {
+	for (vector<int>::iterator it2 = it.begin(); it2 != it.end(); it2++) {
+		cout << it2[0] << " ";
+	}
+	cout << endl;
+}
+void test() {
+//插入和删除
+	vector<int> v1; 
+	v1.push_back(10);
+	v1.push_back(120);
+	v1.push_back(130);
+	v1.push_back(140);
+	v1.push_back(150);
+	printf(v1);
+
+	v1.pop_back();
+	printf(v1);
+
+	v1.insert(v1.begin(), 100);//第一个参数是迭代器
+	printf(v1);
+
+	v1.insert(v1.begin(), 2, 1000);//在第一个位置插入2个1000；
+	printf(v1);
+
+	v1.erase(v1.begin());//删除第一个数，参数也是迭代器
+	printf(v1);
+
+	v1.erase(v1.begin(), v1.end());//清空
+	v1.clear();//清空
+
+}
+int main() {
+	test();
+}

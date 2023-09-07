@@ -1,0 +1,28 @@
+void printf(vector<int>& it) {
+	for (vector<int>::iterator it2 = it.begin(); it2 != it.end(); it2++) {
+		cout << it2[0] << " ";
+	}
+	cout << endl;
+}
+void test() {
+	//reserve spaces
+	vector<int> v;
+	v.reserve(100000);//事先知道数据量很大，可以先预留空间，减小动态扩展
+	int* p = NULL;
+	int num = 0;
+	for (int i = 0; i < 100000; ++i) {
+		v.push_back(i);
+		if (p != &v[0]) {
+			p = &v[0];
+			num++;
+		}
+	}
+	cout << num << endl;
+}
+void test02() {
+	
+}
+int main() {
+	test02();
+	test();
+}

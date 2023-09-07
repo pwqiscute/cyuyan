@@ -1,0 +1,31 @@
+void printf(vector<int>& it) {
+	for (vector<int>::iterator it2 = it.begin(); it2 != it.end(); it2++) {
+		cout << it2[0] << " ";
+	}
+	cout << endl;
+}
+void test() {
+	vector<int> v1;
+	for (int i = 0; i < 10; ++i) {
+		v1.push_back(i);
+	}
+	printf(v1);
+	if (v1.empty()) {//为真，代表容器为空
+		cout << "v1为空" << endl;
+	}
+	else {
+		cout << "v1不为空"<<endl;
+		cout << v1.capacity() << endl;
+		cout << v1.size() << endl;
+	}
+	v1.resize(15,100);//如果重新指定的比原来的长，默认用0来填充，利用重载的edition，，可以指定默认填充值
+	printf(v1);
+
+	v1.resize(5);//如果指定的比原来的短了，超出的part会删掉
+	printf(v1);
+	cout << v1.size() << endl;
+	cout << v1.capacity() << endl;
+}
+int main() {
+	test();
+}

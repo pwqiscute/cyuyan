@@ -1,0 +1,35 @@
+int max(int *height,int l,int r){
+    int max=-1;
+  for(int i=l+1;i<r;i++){
+    if(height[i]>max)
+    max=height[i];
+  }
+  return max;
+}
+int trap(int* height, int heightSize){
+    int left=0,right=0,sum=0;
+   
+for(int i=0;i<heightSize;i++){
+    left=i; 
+    int flag=0;
+    if(i>=2&&height[left]>height[left-1]){
+           right=left;
+           left=left-1;
+           while(left>=1){
+               if(height[left-1]>flag&&height[left-1]>height[left]){
+                 flag=height[left-1];
+                    int min=(height[left-1]>height[right]?height[right]:height[left-1]);
+                    int smax=max(height,left-1,right);
+                    int a=min-smax;
+                    if(a<0)
+                    a=0;
+                    sum+=(right-left)*a;
+               }
+               if(height[left-1]>=height[right])
+               break;
+               left--;
+           }
+    }
+}
+return sum;
+}

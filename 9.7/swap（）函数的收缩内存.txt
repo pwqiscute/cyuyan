@@ -1,0 +1,43 @@
+void printf(vector<int>& it) {
+	for (vector<int>::iterator it2 = it.begin(); it2 != it.end(); it2++) {
+		cout << it2[0] << " ";
+	}
+	cout << endl;
+}
+void test() {
+	vector<int> v1;
+	for (int i = 0; i < 10; i++) {
+		v1.push_back(i);
+	}
+	printf(v1);
+	vector<int> v2;
+	for (int i = 10; i > 0; --i) {
+		v2.push_back(i);
+	}
+	printf(v2);
+
+	//
+	v1.swap(v2);//v1,v2交换
+	printf(v1);
+	printf(v2);
+}
+void test02() {
+	vector<int>v;
+	for (int i = 0; i < 10000; i++) {
+		v.push_back(i);
+	}
+	cout << v.capacity() << endl;
+	cout << v.size() << endl;
+
+	v.resize(3);//此时的容量没变，浪费空间
+	cout << v.capacity() << endl;
+	cout << v.size() << endl;
+	//可以达到收缩内存的effective
+	vector<int>(v).swap(v);//vector<int>(v),匿名对象调用拷贝构造函数，用v的大小做容量，namely v里有几个数，匿名对象的capacity和size都和v的size（）大小一样,当调用swap时v指向了匿名对象的空间
+	cout << v.capacity() << endl;
+	cout << v.size() << endl;
+}
+int main() {
+	test02();
+	test();
+}
