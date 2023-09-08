@@ -1,0 +1,24 @@
+void printf(const deque<int>& d) {
+	for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++) {
+		cout << *it << " ";
+  }
+	cout << endl;
+}
+void test() {
+	deque<int> d;
+	d.push_back(10);
+	d.push_back(20);
+	d.push_front(30);
+	d.push_front(40);
+
+	for (int i = 0; i < d.size(); i++) {
+		cout << d[i] << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < d.size(); i++) {
+		cout << d.at(i) << " ";
+	}
+	cout << endl;
+	cout << "prime" << d.front() << endl;
+	cout << "end:" << d.back() << endl;
+}

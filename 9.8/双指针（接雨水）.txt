@@ -1,0 +1,27 @@
+
+int trap(int* height, int heightSize){
+ int left=0,lmax=0;
+ int right=heightSize-1,rmax=0;
+  int sum=0;
+  while(right>left){
+     if(height[left]>height[right]){
+         if(height[right]>=rmax){
+             rmax=height[right];
+         }
+         else{
+             sum+=(rmax-height[right]);
+         }
+         right--;
+     }
+     else{
+         if(height[left]>lmax){
+             lmax=height[left];
+         }
+         else{
+             sum+=(lmax-height[left]);
+         }
+         left++;
+     }
+  }
+  return sum;
+}
