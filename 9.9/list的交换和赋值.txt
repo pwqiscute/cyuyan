@@ -1,0 +1,18 @@
+void test() {
+	list<int> l1;
+	l1.push_back(10);
+	l1.push_back(20);
+	l1.push_back(30);
+	l1.push_back(40);
+	list<int>l2 = l1;//operator=
+
+	list<int>l3;
+	l3.assign(l2.begin(), l2.end());
+
+	list<int>l4;
+	l4.assign(10, 100);
+
+	l1.swap(l4);
+	printf(l1);
+	printf(l4);
+}

@@ -1,0 +1,55 @@
+int find(char * s,char *p,int index1,int index2){
+    if(p[index2+1]=='?'&&index1<strlen(s)) return index1;
+     for(int i=index1;i<strlen(s);i++){
+         if(s[i]==p[index2+1])
+         return i;
+     }
+     return -1;
+}
+bool reverse(char* s,char* p,int index1,int index2){
+  while(s[index1]&&p[index2]){
+    if(s[index1]&&p[index2]&&p[index2]=='?'){
+        index1++;
+        index2++;
+    }
+    else if(s[index1]&&p[index2]&&p[index2]==s[index1]){
+        index1++;index2++;
+    }
+    else if(s[index1]&&p[index2]&&p[index2]=='*'){
+        while(p[index2+1]=='*'){
+            index2++;
+        }
+        if(index2==strlen(p)-1) return true;
+        while(1){
+        int ret1=find(s,p,index1,index2);
+        if(ret1<0) return false;
+       bool ret=reverse(s,p,ret1,index2+1);
+       if(ret) return true;
+        index1=ret1+1;
+        }
+    }
+    else{
+        return false;
+    }
+}
+if(index1!=strlen(s)){
+    return false;
+}
+if(index1==strlen(s)&&index2==strlen(p)){
+    return true;
+}
+if(index2!=strlen(p)){
+    for(int i=index2;i<strlen(p);++i){
+        if(p[i]!='*')
+        return false;
+    }
+}
+return true;
+}
+
+bool isMatch(char * s, char * p){
+int index1=0;
+int index2=0;
+bool ret=reverse(s,p,index1,index2);
+return ret;
+}

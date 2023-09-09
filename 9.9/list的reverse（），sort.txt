@@ -1,0 +1,24 @@
+bool mycompare(int v1, int v2) {
+	return v1 > v2;
+}
+void test() {
+	list<int> l1;
+	l1.push_back(10);
+	l1.push_back(20);
+	l1.push_back(50);
+	l1.push_back(40);
+
+	l1.push_front(100);
+	l1.push_front(200);
+	l1.push_front(300);
+
+	l1.reverse();//反转
+	printf(l1);
+
+	//sort(l1.begin(), l1.end());//所有不支持随机访问迭代器的容器，不可以用standard的算法
+	l1.sort();//要用自身的，默认principle 升序
+	printf(l1);
+
+	l1.sort(mycompare);
+	printf(l1);
+}

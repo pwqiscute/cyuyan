@@ -1,0 +1,38 @@
+void test() {
+	list<int> l1;
+	l1.push_back(10);
+	l1.push_back(20);
+	l1.push_back(30);
+	l1.push_back(40);
+
+	l1.push_front(100);
+	l1.push_front(200);
+	l1.push_front(300);
+
+	printf(l1);
+
+	l1.pop_back();
+	printf(l1);
+
+	l1.pop_front();
+	printf(l1);
+
+	l1.insert(l1.begin(), 1000);
+	list<int>::iterator it = l1.begin();
+	l1.insert(++it, 2000);
+	printf(l1);
+
+	it = l1.begin();
+	l1.erase(++it);
+	printf(l1);
+
+	l1.push_back(10000);
+	l1.push_back(10000);
+	l1.push_back(10000);
+	l1.push_back(10000);
+	printf(l1);
+	l1.remove(10000);//删除容器内和10000一样的元素
+	printf(l1);
+
+	l1.clear();
+	l1.push_back(10000);

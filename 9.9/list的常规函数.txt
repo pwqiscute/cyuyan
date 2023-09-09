@@ -1,0 +1,17 @@
+void test() {
+	list<int> l1;
+	l1.push_back(10);
+	l1.push_back(20);
+	l1.push_back(30);
+	l1.push_back(40);
+     
+	if (l1.empty()) {
+		cout << "kong" << endl;
+	}
+	else {
+		cout << "full" << endl;
+		cout << l1.size() << endl;
+	}
+	l1.resize(10, 1000);
+	printf(l1);
+}

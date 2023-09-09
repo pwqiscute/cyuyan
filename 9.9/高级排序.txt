@@ -1,0 +1,46 @@
+class customer {
+public:
+	customer(string name, int age, int height) {
+		m_name = name;
+		m_age = age;
+		m_height = height;
+	}
+string  m_name;
+	int m_age;
+	int m_height;
+};
+void printf(const list<customer>& l1) {
+	for (list<customer>::const_iterator it = l1.begin(); it != l1.end(); it++) {
+		cout << it->m_name << " " << it->m_age << " " << it->m_height << endl;
+	}
+	cout << endl;
+}
+bool mycompare(customer v1,customer v2) {
+	if (v1.m_age == v2.m_age) {
+	 return	v1.m_height < v2.m_height;
+	}
+	return v1.m_age < v2.m_age;
+}
+bool mycompare1(customer v1, customer v2) {
+	return v1.m_height < v2.m_height; 
+}
+void test() {
+	list<customer> l1;
+	customer c("hua", 10, 120);
+	customer c1("hong", 15, 140);
+	customer c2("ming", 20, 130);
+	customer c3("gang", 20, 180);
+	customer c4("pan", 20, 170);
+
+	l1.push_back(c);
+	l1.push_back(c1);
+	l1.push_back(c2);
+	l1.push_back(c3);
+	l1.push_back(c4);
+
+	printf(l1);
+
+	l1.sort(mycompare);
+
+	printf(l1);
+}
