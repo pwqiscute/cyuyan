@@ -1,0 +1,22 @@
+void test() {   
+	//set容器和multiset容器的distinction
+	set<int> s1;
+	s1.insert(20);
+	pair<set<int>::iterator,bool> ret=s1.insert(20);//会返回一个pair《》的类型判断是否插入成功
+	if (ret.second) {
+		cout << "success" << endl;
+	}
+	else {
+		cout << "defeat"<< endl;
+	}
+	s1.insert(40);
+	s1.insert(50);
+
+	multiset<int> m;
+	m.insert(10);//重复也行
+	m.insert(10);
+	for (multiset<int>::iterator it = m.begin(); it != m.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}

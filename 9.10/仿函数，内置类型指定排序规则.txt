@@ -1,0 +1,27 @@
+class Mycompare {
+public:
+	bool operator()(int v1, int v2)const {
+		return v1 > v2;
+	}
+};
+void test() {   
+	set<int> s1;
+	s1.insert(10);
+	s1.insert(20);
+	s1.insert(40);
+	s1.insert(30);
+	s1.insert(50);
+
+	//指定排序规则
+	set<int,Mycompare> s2;
+	s2.insert(10);
+	s2.insert(20);
+	s2.insert(40);
+	s2.insert(30);
+	s2.insert(50);
+
+	for (set<int, Mycompare>::iterator it = s2.begin(); it != s2.end(); ++it) {
+	cout << *it << " ";
+	}
+	cout << endl;
+}

@@ -1,0 +1,51 @@
+class person {
+public:
+	person(string name, int age) {
+		m_name = name;
+		m_age = age;
+	}
+	string m_name;
+	int m_age;
+};
+class compareperson {//仿函数
+public:
+	bool operator()(const person& p1, const person& p2)const {
+		//降序
+		return p1.m_age > p2.m_age;
+	}
+};
+
+void test() { 
+	//自定义的数据类型要指定排序规则
+	set<person,compareperson> s;
+	person p1("刘备", 24);
+	person p2("关羽", 25);
+	person p3("张飞", 21);
+	person p4("赵云", 22);
+	s.insert(p1);
+	s.insert(p2);
+	s.insert(p3);
+	s.insert(p4);
+
+	for (set<person>::iterator it = s.begin(); it != s.end(); ++it) {
+		cout << it->m_age << " " << it->m_name << " ";
+	}
+	cout << endl;
+}
+
+
+--------------------------------
+可以重载person中的<
+class person {
+public:
+	person(string name, int age) {
+		m_name = name;
+		m_age = age;
+	}
+	bool operator<(const person& p1)const {
+		return m_age > p1.m_age;
+	}
+	string m_name;
+	int m_age;
+};
+

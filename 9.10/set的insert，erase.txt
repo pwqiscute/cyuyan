@@ -1,0 +1,12 @@
+void test() {
+	set<int> s1;//不支持resize
+	s1.insert(10);
+	s1.insert(40);
+	s1.insert(50);
+	s1.insert(20);
+
+	s1.erase(s1.begin());//事先排序了，就是删除第一个
+	s1.erase(30);
+	s1.erase(s1.begin(), s1.end());//==s1.clear;
+	printf(s1);
+}

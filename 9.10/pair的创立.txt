@@ -1,0 +1,9 @@
+void test() {   
+	  //pair的创立
+	pair<string, int>p("Tom", 20);
+	cout << p.first << " " << p.second << endl;
+
+	//2
+	pair<string, int>p = make_pair("c++", 30);
+	cout << p.first << " " << p.second << endl;
+}

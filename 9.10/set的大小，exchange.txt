@@ -1,0 +1,30 @@
+void printf(const set<int> s) {
+	for (set<int>::iterator it = s.begin(); it != s.end(); it++) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+void test() {
+	set<int> s1;//不支持resize
+	s1.insert(10);
+	s1.insert(40);
+	s1.insert(50);
+	s1.insert(20);
+	printf(s1);//自动排序
+	if (s1.empty()) {
+		cout << "s1为空" << endl;
+	}
+	else {
+		cout << "full" << endl;
+		cout << s1.size() << endl;
+	}
+	set<int>s2;
+	s2.insert(100);
+	s2.insert(400);
+	s2.insert(500);
+	s2.insert(200);
+
+	s1.swap(s2);
+	printf(s1);
+	printf(s2);
+}

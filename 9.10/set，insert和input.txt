@@ -1,0 +1,11 @@
+set<int> s;//底层是红黑树，遇到相同的，直接删除；
+//插入用insert
+s.insert(10);
+s.insert(20);
+s.insert(5);
+
+遍历得5,10,20；在插入时会自动排序
+
+构造函数
+set<int> s1(s);
+set<int> s2=s1;

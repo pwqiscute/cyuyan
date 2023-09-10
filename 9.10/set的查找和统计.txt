@@ -1,0 +1,19 @@
+void test() {
+	set<int> s1;//不支持resize
+	s1.insert(10);
+	s1.insert(40);
+	s1.insert(50);
+	s1.insert(20);
+    
+	set<int>::iterator position = s1.find(10);//当找不到时返回it.end（）,找到事返回该处迭代器
+
+	if (position != s1.end()) {
+		cout << "找到元素：" << *position << endl;
+	}
+	else {
+		cout << "not find" << endl;
+	}
+
+	int num1=s1.count(10);//返回10的个数，在set容器只有 0,1的答案
+	cout << num1;
+}
