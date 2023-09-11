@@ -1,0 +1,16 @@
+void test() {
+	map<int, int> m;
+	m.insert(make_pair<int, int>(1, 30));
+	m.insert(make_pair<int, int>(2, 40));
+	m[3] = 50;
+	map<int,int>::iterator position=m.find(3);//找到返回该处的迭代器，不成功返回end处的迭代器
+	if (position != m.end()) {
+		cout << "查到了元素key=" << position->first << endl;
+		cout << "value=" << position->second << endl;
+	}
+	else {
+		cout << "empty" << endl;
+	}
+	int num = m.count(3);
+	cout << num;//map要么是1，要么是0
+}

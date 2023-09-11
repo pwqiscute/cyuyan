@@ -1,0 +1,19 @@
+class compare {
+public:
+	bool operator()(int v1, int v2)const {
+		return v1 > v2;
+	}
+};
+void test() {
+	map<int, int,compare> m;//利用仿函数修改排序规则
+	m.insert(make_pair<int, int>(1, 30));
+	m.insert(make_pair<int, int>(2, 40));
+	m.insert(make_pair<int, int>(3, 50));
+	m[4] = 50;
+	m[5] = 60;
+
+	for (map<int, int,compare>::iterator it = m.begin(); it != m.end(); it++) {
+		cout << "key=" << (*it).first << "value=" << it->second << endl;
+	}
+	cout << endl;
+}

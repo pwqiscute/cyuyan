@@ -1,0 +1,26 @@
+void printf(map<int, int>& m) {
+	for (map<int, int>::iterator it = m.begin(); it != m.end(); it++) {
+		cout << "key=" << (*it).first << "value=" << it->second << endl;
+	}
+}
+void test() {
+	map<int, int>m;//map容器的所有元素都是成对出现，插入时要用对组
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(2, 30));
+	m.insert(pair<int, int>(3, 20));
+     
+	if (m.empty()) {
+		cout << "empty" << endl;
+	}
+	else {
+		cout << "full" << endl;
+		cout << m.size() << endl; 
+	}
+	map<int, int>m1;//map容器的所有元素都是成对出现，插入时要用对组
+	m1.insert(pair<int, int>(4, 102));
+	m1.insert(pair<int, int>(5, 100));
+	m1.insert(pair<int, int>(6, 202));
+
+	m.swap(m1);
+	printf(m);
+}

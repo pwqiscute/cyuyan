@@ -1,0 +1,64 @@
+#define CEHUA  0
+#define MEISHU 1
+#define YANFA 2
+class worker {
+public:
+	worker(string name, int salary) {
+		m_name = name;
+		revenue = salary;
+	}
+	string m_name;
+	int revenue;
+};
+void createworker(vector<worker>&v) {
+	string nameSeed = "ABCDEFGHIJ";
+	for (int i = 0; i < 10; i++) {
+		int salary = rand() % 10000 + 10000;
+		string name = "员工";
+		name += nameSeed[i];
+		worker w(name, salary);
+		v.push_back(w);
+	}
+}
+//员工分组
+void setgroup(multimap<int,worker>& m,vector<worker>& v1) {
+	for (vector<worker>::iterator it = v1.begin(); it != v1.end(); ++it) {
+		int deptId = rand() % 3;
+		m.insert(make_pair(deptId, *it));
+	}
+}
+void show(multimap<int, worker>& m) {
+	for (int i = 0; i < 3; i++) {
+		if (i == 0) {
+			cout << "策划部门：" << endl;
+		}
+		if (i == 1) {
+			cout << "美术部门：" << endl;
+		}
+		if (i == 2) {
+			cout << "研发部门" << endl;
+		}
+		multimap<int, worker> ::iterator position = m.find(i);//find找到第一个的迭代器，因为按key的大小排序，肯定一列都是，加个count（），可以加快速度
+		int count = m.count(i);
+		int index = 0;
+		for (; position != m.end() && index < count; position++, index++) {
+			cout << position->second.m_name << " " << position->second.revenue << endl;
+		}
+		cout << endl;
+	}
+}
+void test() {
+	vector<worker> v1;
+	createworker(v1);
+	//for (vector<worker>::iterator it = v1.begin(); it != v1.end(); ++it) {
+	//	cout << it->m_name << " " << it->revenue << endl;
+	//}
+	multimap<int, worker> m;
+	setgroup(m, v1);
+	show(m);
+}
+int main() {
+	srand((unsigned)time(NULL));
+	test();
+	return 0;
+}

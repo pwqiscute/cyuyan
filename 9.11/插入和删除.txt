@@ -1,0 +1,23 @@
+void test() {
+	map<int, int>m;//map容器的所有元素都是成对出现，插入时要用对组
+	m.insert(pair<int, int>(1, 10));
+	m.insert(pair<int, int>(2, 30));
+	m.insert(pair<int, int>(3, 20));
+    
+	m.insert(make_pair(2, 20));
+
+	m.insert(map<int, int>::value_type(3,30));
+
+
+	m[4] = 400;
+
+	//不建议插入，建议插入
+	cout << m[5] << endl;//当没有时，会创立一个k为5的，value为0的pair
+
+	m.erase(2);//删除key为2的值
+	printf(m);
+	m.erase(m.begin());
+	printf(m);
+	m.erase(m.begin(), m.end());
+
+}
