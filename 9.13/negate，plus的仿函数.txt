@@ -1,0 +1,24 @@
+//#include<functional>//---------------------------
+#include<math.h>
+using namespace std;
+//negate 一元仿函数 取反 plus 二元仿函数  加法
+//void test() {
+//	negate<int> n;
+//	int ret=n(50);
+//	cout << ret;
+//}
+template<class T>
+class Plus {
+public:
+	T operator()(T e1, T e2) {
+		return e1 + e2;
+	}
+};
+void test01() {
+	Plus<int>p;
+	cout<<p(10, 20)<<endl;
+}
+int main(void) {
+	test01();
+	return 0;
+}

@@ -1,0 +1,47 @@
+//函数对象 重载函数调用操作符的类，其对象称为函数对象，函数对象使用重载的（）是，行为类似函数调用，也叫仿函数 
+//本质：函数对象（仿函数）是一个类，不是一个函数
+class MyAdd {
+public:
+	int operator()(int v1, int v2) {
+		return v1 + v2;
+	}
+};
+void test() {
+	//函数对象在使用时，可以像普通函数那样调用，可以有参数，可以有返回值
+	MyAdd myAdd;
+	cout << myAdd(10, 10) << endl;
+}
+
+//2.函数对象，可以统计内部的situation；
+class MyPrint {
+public:
+	MyPrint() {
+		count = 0;
+	}
+	void operator()(string test) {
+		cout << test << endl;
+		count++;
+	}
+	int count;
+};
+
+void test02() {
+	MyPrint m2;
+	m2("hello world");
+	m2("hello world");
+	m2("hello world");
+}
+//函数对象可以作为参数传递
+void doPrint(MyPrint& mp, string test) {
+	mp(test);
+}
+void test03() {
+	MyPrint m3;
+	doPrint(m3, "hello c++");
+}
+int main() {
+	test02();
+	test();
+	test03();
+	return 0;
+}

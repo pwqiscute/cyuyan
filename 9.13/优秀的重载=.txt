@@ -1,0 +1,19 @@
+	student& operator=(const student& s) {
+	/*	if (this != &s) {
+			student stu(s);
+			char* temp = s.a;
+			stu.a = a;
+			a = temp;
+		}*/
+		if (this == &s) {
+			return *this;
+		}
+		char* ret=new char[strlen(s.a) + 1];
+		if (!ret)
+			return *this;
+		delete[] a;
+		a = NULL;
+		a = ret;
+		strcpy(a, s.a);
+		return *this;
+	}
