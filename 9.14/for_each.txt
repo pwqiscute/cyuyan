@@ -1,0 +1,17 @@
+class printf01 {
+public:
+	void operator()(int val) {
+		cout << val << " ";
+	}
+};
+void printf02(int val) {
+	cout << val << " ";
+}
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; ++i) {
+		v.push_back(i);
+	}
+	for_each(v.begin(), v.end(), printf01());//仿函数
+	for_each(v.begin(), v.end(), printf02);//普通函数
+}

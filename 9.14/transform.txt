@@ -1,0 +1,23 @@
+class printf01 {
+public:
+	int operator()(int val) {
+		return val;
+	}
+};
+class printf02 {
+public:
+	void operator()(int val) {
+		cout << val << " ";
+	}
+};
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; ++i) {
+		v.push_back(i);
+	}
+
+	vector<int> vTarget;
+	vTarget.resize(v.size());
+	transform(v.begin(), v.end(), vTarget.begin(), printf01());//在搬运过程中可以添加逻辑运算
+	for_each(vTarget.begin(), vTarget.end(), printf02());
+}
