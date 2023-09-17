@@ -1,0 +1,25 @@
+void Printf(int val) {
+	cout << val << " ";
+}
+class s {
+public:
+	bool operator()(int val,int val1) {
+		return val > val1;
+	}
+};
+void test() {
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(12);
+	v.push_back(31);
+	v.push_back(15);
+	v.push_back(61);
+
+	sort(v.begin(), v.end());
+	for_each(v.begin(), v.end(), Printf);
+	cout << endl;
+
+	//sort(v.begin(), v.end(), s());
+	sort(v.begin(), v.end(),greater<int>());
+	for_each(v.begin(), v.end(), Printf);
+}

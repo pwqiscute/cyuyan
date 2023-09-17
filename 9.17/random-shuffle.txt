@@ -1,0 +1,11 @@
+void Printf(int val) {
+	cout << val << " ";
+}
+void test() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	random_shuffle(v.begin(), v.end());//随机打乱
+	for_each(v.begin(), v.end(), Printf);
+}

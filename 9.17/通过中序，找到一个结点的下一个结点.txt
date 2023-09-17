@@ -1,0 +1,21 @@
+shu* find(shu* head,shu* note) {
+	if (head == NULL||note==NULL) return;
+	if (note->right != NULL)
+	{
+		shu* right = note->right;
+		while (right->left != NULL) {
+			right = right->left;
+		}
+		return right;
+	}
+	else if (note->parent != NULL) {
+		shu* current = note;
+		shu* parent = note->parent;
+		while (parent != NULL && current == parent->right) {
+			current = parent;
+			parent == current->parent;
+		}
+		return parent;
+	}
+	return NULL;
+}

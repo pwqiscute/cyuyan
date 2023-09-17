@@ -1,0 +1,57 @@
+//查找算法
+//1.查找内置数据类型  
+class findl {
+public:
+	bool operator()(int value) {
+		return value > 5;
+	}
+};
+void test01() {
+	vector<int> v;
+	for (int i = 0; i < 10; ++i) {
+		v.push_back(i);
+	}
+	vector<int>::iterator it=find_if(v.begin(), v.end(), findl());
+	if (it == v.end()) {
+		cout << "not find" << endl;
+	}
+	else {
+		cout << "find " << *it << endl;
+	}
+}
+class person {
+public:
+	person(string name, int age) {
+		m_Name = name;
+		m_Age = age;
+	}
+	string m_Name;
+	int m_Age;
+};
+//找自定义类型
+class A {
+public:
+	bool operator()(person& p) {
+		return p.m_Age > 20;
+	}
+};
+void test02() {
+	vector<person>v;
+	person p1("aaa", 10);
+	person p2("bbb", 20);
+	person p3("ddd", 30);
+	person p4("ccc", 40);
+
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+
+	vector<person> ::iterator it = find_if(v.begin(), v.end(), A());
+	if (it == v.end()) {
+		cout << "not find" << endl;
+	}
+	else {
+		cout << "find " << it->m_Age<<it->m_Name << endl;
+	}
+}

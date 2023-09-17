@@ -1,0 +1,70 @@
+struct student {
+	student(int v, student* s) {
+		value = v;
+		next = s;
+	}
+	int value;
+	student* next;
+};
+void Insert(student* head, int value) {
+	student* s = (student*)malloc(sizeof(student));
+	s->next = NULL; s->value = value;
+	if (head == NULL) {
+		head = s;
+	}
+	else {
+		student* s1 = head;
+		while (s1->next) {
+			s1 = s1->next;
+		}
+		s->next = s1->next;
+		s1->next = s;
+	}
+}
+void printf_front(student* head) {
+	student* s = head;
+	while (s) {
+		cout << s->value << " ";
+		s = s->next;
+	}
+	cout << endl;
+}
+void printf_back(student* head) {
+	if (!head) return;
+	printf_back(head->next);
+	cout << head->value << " ";
+}
+void Delete(student*& head, int value) {
+	student* destroy = NULL;
+	if (head == NULL)
+		return;
+	if (head->value == value) {
+		destroy = head;
+		head = head->next;
+	}
+	else {
+		student* stu = head;
+		while (stu && stu->next->value != value) {
+			stu = stu->next;
+		}
+		if (stu && stu->next->value == value) {
+			destroy = stu->next;
+			stu->next = stu->next->next;
+		}
+	}
+	if (destroy != NULL) {
+		delete destroy;
+		destroy = NULL;
+	}
+}
+void test01() {
+	student* head = NULL;
+	student* l1 = new student(5, NULL);
+	student* l2 = new student(10, l1);
+	student* l3 = new student(15, l2);
+	head = l3;
+	Insert(head, 10);
+	printf_front(head);
+	Delete(head, 15);
+	printf_back(head);
+}

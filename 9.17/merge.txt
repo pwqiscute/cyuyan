@@ -1,0 +1,17 @@
+void Printf(int val) {
+	cout << val << " ";
+}
+void test() {
+	vector<int>v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	vector<int> v1;
+	for (int i = 1; i <=10; i++) {
+		v1.push_back(i);
+	}
+	vector<int>Target;//目标容器
+	Target.resize(v.size() + v1.size());//分配空间
+	merge(v.begin(), v.end(), v1.begin(), v1.end(), Target.begin());//合并两个有序容器，放在另外一个容器里
+	for_each(Target.begin(), Target.end(), Printf);
+}

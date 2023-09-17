@@ -1,0 +1,51 @@
+class suml {
+public:
+	bool operator()(int val) {
+		return val > 20;
+	}
+};
+class person {
+public:
+	person(string name, int age) {
+		m_Age = age;
+		m_Name = name;
+	}
+	string m_Name;
+	int m_Age;
+};
+class a {
+public:
+	bool operator()(const person& p) {
+		return p.m_Age > 20;
+	}
+};
+void test() {
+	//count_if
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+	v.push_back(20);
+	v.push_back(20);
+	int sum = count_if(v.begin(), v.end(), suml());
+	cout << sum;
+}
+//统计自定义数据类型
+void test01() {
+	vector<person>v;
+	person p1("aaa", 20);
+	person p2("bbb", 30);
+	person p3("ccc", 40);
+	person p4("ddd", 20);
+	person p5("eee", 20);
+
+	v.push_back(p1);
+	v.push_back(p2);
+	v.push_back(p3);
+	v.push_back(p4);
+	v.push_back(p5);
+
+	int sum = count_if(v.begin(), v.end(), a());
+	cout << sum;
+}

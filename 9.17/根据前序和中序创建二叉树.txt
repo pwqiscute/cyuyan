@@ -1,0 +1,56 @@
+struct shu {
+	int value;
+	shu* left;
+	shu* right;
+};
+
+shu* test01(int* arr1, int* arr1_b, int* arr2, int* arr2_b) {
+	int root_value = arr1[0];
+	shu* root = new shu();
+	root->value = root_value;
+	root->left = root->right = NULL;
+	if (arr1 == arr1_b) {
+		if (arr1 == arr1_b && arr2 == arr2_b) {
+			return root;
+		}
+		else {
+			throw std::exception("Invalid input");
+		}
+	}
+	int* root_pos = arr2;
+	while (root_pos < arr2_b && *root_pos != root_value) {
+		root_pos++;
+	}
+	if (root_pos == arr2_b && *root_pos != root_value) {
+		throw std::exception("Invalid input");
+	}
+	int leftlenght = root_pos - arr2;
+	int* arr1_right = arr1 + leftlenght;
+	if (leftlenght > 0) {
+		root->left = test01(arr1 + 1, arr1_right, arr2, root_pos-1);
+	}
+	if (leftlenght<arr1_b-arr1) {
+	    root->right = test01(arr1_right + 1, arr1_b, root_pos + 1, arr2_b);
+	}
+	return root;
+}
+shu* test(int* arr1, int* arr2, int length) {
+	if (arr1 == NULL || arr2 == NULL) {
+		return NULL;
+	}
+	return test01(arr1, arr1 + length - 1, arr2, arr2 + length - 1);
+}
+void printf(shu* head) {
+	if (head == NULL)
+		return;
+	cout << head->value<<" ";
+	printf(head->left);
+	printf(head->right);
+}
+int main(void) {
+	int arr1[8] = { 1,2,4,7,3,5,6,8 };
+	int arr2[8] = { 4,7,2,1,5,3,8,6 };
+	shu* ret=test(arr1, arr2, 8);
+	printf(ret);
+	system("pause");
+}
