@@ -1,0 +1,15 @@
+using namespace std;
+void myPrintf(int value) {
+	cout << value << " ";
+}
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	for_each(v.begin(),v.end(),myPrintf);
+
+	reverse(v.begin(), v.end());//反转
+
+	for_each(v.begin(), v.end(), myPrintf);
+}

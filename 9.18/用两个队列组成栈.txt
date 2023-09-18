@@ -1,0 +1,49 @@
+template<class T>
+class CQueue {
+public:
+	CQueue() {};
+	~CQueue() {};
+
+	void addTail(const T& node);
+	T deleteHead();
+private:
+	queue<T> s1;
+	queue<T> s2;
+};
+template<class T>
+void CQueue<T>::addTail(const T& node) {
+	s1.push(node);
+}
+template<class T>
+T CQueue<T>::deleteHead() {
+	if (s2.size() == 0&&s1.size()!=0) {
+		T back = s1.back();
+		while (s1.front() != back) {
+			T temp = s1.front();
+			s1.pop();
+			s2.push(temp);
+		}
+		s1.pop();
+		return back;
+	}
+	else if (s1.size() == 0 && s2.size() != 0) {
+		T back = s2.back();
+		while (s2.front() != back) {
+			T temp = s2.front();
+			s2.pop();
+			s1.push(temp);
+		}
+		s2.pop();
+		return back;
+	}
+	else {
+		throw new exception("Stack is Empty");
+	}
+}
+void test() {
+	CQueue<int> q;
+	for (int i = 0; i < 10; ++i) {
+		q.addTail(i);
+	}
+	cout << q.deleteHead();
+}

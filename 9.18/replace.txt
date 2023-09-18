@@ -1,0 +1,12 @@
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+     
+	for_each(v.begin(), v.end(), myPrintf);
+
+	replace(v.begin(), v.end(), 0, 100);//将区间内所有的0更改成100；
+
+	for_each(v.begin(), v.end(), myPrintf);
+}

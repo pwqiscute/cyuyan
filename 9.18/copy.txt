@@ -1,0 +1,10 @@
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+	vector<int>v1;
+	v1.resize(v.size());//拷贝之前分配空间
+	copy(v.begin(), v.end(), v1.begin());
+	for_each(v1.begin(), v1.end(), myPrintf);
+}

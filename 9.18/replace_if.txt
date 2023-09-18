@@ -1,0 +1,18 @@
+class a {
+public:
+	bool operator()(int val) {
+		return val > 1;
+	}
+};
+void test() {
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+     
+	for_each(v.begin(), v.end(), myPrintf);
+
+	replace_if(v.begin(), v.end(),a(),300);//只有仿函数a为true，就会替换；
+
+	for_each(v.begin(), v.end(), myPrintf);
+}
