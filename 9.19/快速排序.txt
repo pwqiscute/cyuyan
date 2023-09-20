@@ -1,0 +1,39 @@
+void printf(int arr[],int length) {
+	for (int i = 0; i < length; i++) {
+		cout << arr[i] << " ";
+	}
+}
+int test01(int arr[], int initial, int length);
+void quicksort(int arr[], int initial, int length)
+{
+	int pivot;
+	if (length > initial) {
+		pivot = test01(arr, initial, length);
+		quicksort(arr, initial, pivot - 1);
+		quicksort(arr, pivot + 1, length);
+	}
+}
+ int test01(int arr[], int initial, int length) {
+	if (length <= 0)
+		return 0;
+	int temp = arr[initial];
+	int left = initial, right = length;
+	while (right > left) {
+		while (arr[right] > temp && right > left) {
+			right--;
+		}
+		if (right > left) {
+			arr[left] = arr[right];
+			left++;
+		}
+		while (arr[left] <= temp && right > left) {
+			left++;
+		}
+		if (right > left) {
+			arr[right] = arr[left];
+			right--;
+		}
+	}
+	arr[left] = temp;
+	return left;
+}

@@ -1,0 +1,46 @@
+void Merge(int mid[],int mid1[],int left,int Mid,int right) {
+	int i = 0, j = 0;
+	for (i = Mid + 1,j=left; i <= right && left <= Mid; j++) {
+		if (mid1[i] > mid1[left]) {
+			mid[j] = mid1[left];
+			left++;
+		}
+		else {
+			mid[j] = mid1[i];
+			i++;
+		}
+	}
+	if ( left<=Mid) {
+		for (int m = 0; m <= Mid-left; m++) {
+			mid[j+m] = mid1[left+m];
+		}
+	}
+	if (i<=right) {
+		for (int n = 0; n <= right-i; n++) {
+			mid[j+n] = mid1[i+n];
+		}
+	}
+}
+void Msort(int arr[], int mid[], int left, int right) {
+	if (left > right || left < 0 || right < 0) {
+		return;
+	}
+	int mid1[13];
+	if (left == right) {
+		mid[left] = arr[left];
+	}
+	else {
+		int Mid = (left + right) / 2;
+		Msort(arr, mid1, left, Mid);
+		Msort(arr, mid1, Mid + 1, right);
+		Merge(mid,mid1,left,Mid,right);
+	}
+}
+int main(void) {
+	int arr[13] = {2,3,4,5,12,15,87,7,8,10,23,16,23};
+	int mid[13];
+	Msort(arr, mid, 0, 12);
+	for (int i = 0; i <13; ++i) {
+		cout << mid[i] << " ";
+	}
+}
