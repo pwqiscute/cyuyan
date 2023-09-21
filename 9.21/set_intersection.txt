@@ -1,0 +1,15 @@
+void Eprintf(int val) {
+	cout << val << " ";
+}
+void test() {
+	vector<int> v1;
+	vector<int> v2;
+	vector<int> v3;
+	for (int i = 0; i <= 100; ++i) {
+		v1.push_back(i);
+		v2.push_back(i + 50);
+	}
+	v3.resize(min(v1.size(), v2.size()));//交集的数的多少不会大于最小数的的多少
+	vector<int>::iterator itEnd= set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());//这俩必须是有顺序的，返回最后一个的数的迭代器
+		for_each(v3.begin(),itEnd, Eprintf);
+}

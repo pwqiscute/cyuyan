@@ -1,0 +1,31 @@
+int reverse(int arr[],int right) {
+	int left = 0;
+	if (arr[right]-arr[left]>0||right==0) {
+		return arr[left];
+	}
+	else {
+		while (right -left>1) {
+			int mid = (left + right) / 2;
+			if (arr[mid] == arr[left] && arr[left] == arr[right]) {
+				int ret=Sequence(arr,left,right);
+				return ret;
+			}
+			if (arr[mid] >= arr[left]) {
+				left = mid;
+			}
+			else if (arr[mid] <= arr[right]) {
+				right = mid;
+			}
+		}
+	}
+	return arr[right];
+}
+int Sequence(int arr[], int left,int right) {
+	int result = arr[left];
+	for (int i = left; i <= right; ++i) {
+		if (arr[i] < result) {
+			return arr[i];
+		}
+	}
+	return result;
+}
