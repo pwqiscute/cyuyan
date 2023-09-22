@@ -1,0 +1,19 @@
+int total(int num) {
+	int sum = 0;
+	while (num) {
+		sum += num % 10;
+		num /= 10;
+	}
+	return sum;
+}
+int robotPath(int row,int cul,int x, int y, int k, int flag[]) {
+	if (row <= 0 || cul <= 0 || k < 0) {
+		return 0;
+	}
+	int count = 0;
+	if (x >= 0 && x < row && y >= 0 && y < cul && !flag[x * cul + y]&&total(x)+total(y)<=k) {
+		flag[x * cul + y] = true;
+		 count=1 + robotPath(row, cul, x + 1, y, k, flag) + robotPath(row, cul, x - 1, y, k, flag) + robotPath(row, cul, x, y + 1, k, flag) + robotPath(row, cul, x, y - 1, k, flag);
+	}
+	return count;
+}
