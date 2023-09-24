@@ -1,0 +1,16 @@
+bool if_2Pow(int num) {
+	int count = 0;
+	if (!((num - 1) & num)){//(num-1)&num是将原数最右边的一给删除，因为当一个数的二进制中只有一个1时才是2的次方
+		return true;
+	}
+	return false;
+}
+void main() {
+	bool ret = if_2Pow(8);
+	if (ret) {
+		cout << "是2的次方" << endl;
+	}
+	else {
+		cout << "not" << endl;
+	}
+}

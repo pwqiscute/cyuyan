@@ -1,0 +1,8 @@
+int changecou(int e1, int e2) {
+	int mid = e1 ^ e2;//第一步先进行异或，找出不同的个数
+	int count = 0;
+	while (mid) {
+		count++;
+		mid &= mid - 1;//因为当mid中有几个一就是有几个须有改变的个数
+	}
+}
