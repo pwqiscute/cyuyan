@@ -1,0 +1,79 @@
+bool printfMaxnum(char* num) {
+	bool Isoverflow = false;
+	int mid = 0;
+	int len = strlen(num) - 1;
+	for (int i = len; i >= 0; i--) {
+		int tem = num[i] - '0' + mid;
+		if (i == len)
+			tem++;
+		if (tem >= 10) {
+			if (i == 0)
+			{
+				Isoverflow = true;
+				break;
+			}
+			else {
+				num[i] = tem % 10+'0';
+				mid = tem >= 10 ? 1 : 0;
+			}
+		}
+		else {
+			num[i] = tem + '0';
+			break;
+		}
+	}
+	return Isoverflow;
+}
+	//string str = "0";
+
+	//int mid = 0,index=0;
+	//int max = pow(10, n)-1;
+	//while (max--) {	
+	//	string trans;
+	//	mid = 0;
+	//	index = str.length()-1;
+	//	int tem = str[index] - '0';	
+	//	str[index] = (tem + 1) % 10+'0';
+	//	mid= (tem + mid+1) >= 10 ? 1 : 0;
+	//	if (mid) {
+	//		index--;
+	//		while (index >= 0&&mid>0) {
+	//			tem = str[index] - '0';
+	//			str[index] = (tem + mid) % 10 + '0';
+	//			mid = (tem + mid) >= 10 ? 1 : 0;
+	//			index--;
+	//		}
+	//		if (mid) {
+	//			trans += mid + '0';
+	//			trans += str;
+	//			str = trans;
+	//		}
+	//	}
+	//	cout << str << " ";
+	//}
+void Printf(char* num) {
+	int len = strlen(num);
+	bool Beginning = true;
+	for (int i = 0; i <len; i++) {
+		if (Beginning && num[i] != '0')
+			Beginning = false;
+		if(!Beginning)
+		cout << num[i];
+	}
+	cout << " ";
+}
+void PrintDigits(int n) {
+	if (n <= 0)
+		return;
+	char* number = new char[n + 1];
+	memset(number, '0', n);
+	number[n] = '\0';
+	while (!printfMaxnum(number)) {
+		Printf(number);
+	}
+}
+int main() {
+	PrintDigits(2);
+	return 0;
+
+}

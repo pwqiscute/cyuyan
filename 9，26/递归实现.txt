@@ -1,0 +1,34 @@
+void Printf(char* num) {
+	int len = strlen(num);
+	bool Beginning = true;
+	for (int i = 0; i < len; i++) {
+		if (Beginning && num[i] != '0')
+			Beginning = false;
+		if (!Beginning)
+			cout<< num[i];
+	}
+	cout << " ";
+}
+void printfMaxnum(char* num, int length, int index) {
+	if (index == length - 1) {
+		Printf(num);
+		return;
+	}
+	else {
+		for (int i = 0; i < 10; i++) {
+			num[index + 1] = i + '0';
+			printfMaxnum(num, length, index + 1);
+		}
+	}
+}
+void PrintDigits(int n) {
+	if (n <= 0)
+		return;
+	char* number = new char[n + 1];
+	memset(number, '0', n);
+	number[n] = '\0';
+	for (int i = 0; i < 10; ++i) {
+		number[0] = i + '0';
+		printfMaxnum(number, n, 0);
+	}
+}
