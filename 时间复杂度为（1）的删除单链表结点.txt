@@ -1,0 +1,28 @@
+struct ListNode {
+	int m_nValue;
+	ListNode* m_pNext;
+};
+void Delete_ListNode(ListNode* & head, ListNode*& del_ptr) {
+	if (head == NULL) return;
+	if (head == del_ptr) {
+		delete del_ptr;
+		del_ptr = head = NULL;
+	}
+	//如果删除的结点在尾巴，他无法得到前一个结点的指针，只能有头节点顺着找，然后改动前一个结点的指针值
+	if (del_ptr->m_pNext != NULL) {
+		ListNode* pNext = del_ptr->m_pNext;
+		del_ptr->m_nValue = pNext->m_nValue;
+		del_ptr->m_pNext = pNext->m_pNext;
+		delete pNext;
+		pNext = NULL;
+	}
+	else {
+		ListNode* pNode = head;
+		while (pNode->m_pNext != del_ptr) {
+			pNode = pNode->m_pNext;
+		}
+		pNode->m_pNext = NULL;
+		delete del_ptr;
+		del_ptr = NULL;
+	}
+}
