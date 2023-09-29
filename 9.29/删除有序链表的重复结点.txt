@@ -1,0 +1,29 @@
+void delete_repeatNode(ListNode*& head) {
+	if (head == NULL || head->m_pNext == NULL) return;
+	ListNode* pPreNode = nullptr;
+	ListNode* pNode = head;
+	while (pNode != nullptr) {
+		ListNode* pNext = pNode->m_pNext;
+		bool needdelete = false;
+		if (pNext && pNext->m_nValue == pNode->m_nValue)
+			needdelete = true;
+		if (!needdelete) {
+			pPreNode = pNode;
+			pNode = pNode->m_pNext;
+		}
+		else {
+			int value = pNode->m_nValue;
+			ListNode* pToBeDel = pNode;
+			while (pToBeDel && pToBeDel->m_nValue == value) {
+				pNext = pToBeDel->m_pNext;
+				delete pToBeDel;
+				pToBeDel = pNext;
+			}
+			if (pPreNode == nullptr)
+				head = pNext;
+			else 
+				pPreNode->m_pNext = pNext;
+			pNode = pNext;
+		}
+	}
+}
