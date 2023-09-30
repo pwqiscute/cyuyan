@@ -1,0 +1,37 @@
+void Radixsort(node*& p,int r,int d) {//参数r是基数（一般是9），d是位数
+	node* head[9], * tail[9], * t;
+	int i, j, k;
+	for (i = 0; i <= d - 1; ++i) {
+		for (j = 0; j <= 9; j++) {
+			head[j] = tail[j] = NULL;
+		}
+		while (p != NULL) {
+			if (p->digit.length() > i) {
+				k = p->digit[i] - '0';
+				if (head[k] == NULL) {
+					head[k] = tail[k] = p;
+				}
+				else {
+					tail[k]->next = p; tail[k] = p;
+				}
+			}
+			p = p->next;
+		}
+		p = NULL;
+		for (j = 0; j <= 9; j++) {
+			if (head[j] != NULL) {
+				if (p == NULL)
+				{
+					p = head[j];
+					t = tail[j];
+				}
+				else {
+					t->next = head[j];
+					t = tail[j];
+				}
+			}
+			t->next = NULL;
+		}
+	}
+
+}

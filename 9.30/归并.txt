@@ -1,0 +1,34 @@
+void Sort(int arr[], int low, int mid, int high) {
+	int* arr1 = new int[high - low +2];
+	int other = mid + 1,one=low;
+	int index = 0;
+	while (other<=high&&one<=mid) {
+		if (arr[one] > arr[other]) {
+			arr1[index++] = arr[other++];
+		}
+		else {
+			arr1[index++] = arr[one++];
+		}
+	}
+	if (one <= mid) {
+		for (int i = one; i <= mid; ++i) {
+			arr1[index++] = arr[i];
+		}
+	}
+	if (other < high) {
+		for (int i = other; i <= high; ++i)
+			arr1[index++] = arr[i];
+	}
+	for (int n = 0, m = low; m <=high && n < index; m++, n++) {
+		arr[m] = arr1[n];
+	}
+}
+void Msort(int arr[], int low, int high) {
+	if (low >= high||low<0||high<0) return;
+	else {
+		int mid = (low + high) / 2;
+		Msort(arr, low, mid);
+		Msort(arr, mid + 1, high);
+		Sort(arr, low, mid, high);
+	}
+}

@@ -1,0 +1,36 @@
+void swap(int* e1, int* e2) {
+	int temp = *e1;
+	*e1 = *e2;
+	*e2 = temp;
+}
+void sift(int arr[], int left, int right) {
+	int i;
+	if (left == 0) {
+		 i = 1;
+	}
+	else {
+		 i = 2 * left;
+	}
+	int temp = arr[left];
+	while (i <= right) {
+		if (i < right && arr[i] < arr[i + 1])
+			i++;
+		if (temp < arr[i]) {
+			arr[left] = arr[i];
+			left = i;
+			i = left * 2;
+		}
+		else break;
+	}
+	arr[left] = temp;
+}
+void heapSort(int arr[],int length) {
+	int m = length - 1;
+	for (int i = m / 2; i >= 0; --i) {
+		sift(arr, i, m);
+	}
+	for (int j = m; j >= 1; --j) {
+		swap(&arr[0],&arr[j]);
+		sift(arr,0, j-1);
+	}
+}

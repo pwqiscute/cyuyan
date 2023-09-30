@@ -1,0 +1,27 @@
+//'.'表示任意一个字符，'*'表示前一个字符可以任意次
+bool matchCore(char* str1, char* str2) {
+	if (*str1 == '\0' && *str2 == '\0')
+		return true;
+	if (*str1 != '\0' && *str2 == '\0')
+		return false;
+	if (*(str2 + 1) == '*')
+	{
+		if (*str1 == *str2 || (*str2 == '.' && *str1 != '\0')) {
+			return matchCore(str1 + 1, str2) //代表可能多次
+				|| matchCore(str1, str2 + 2) || //代表0次
+				matchCore(str1 + 1, str2 + 2);//代表1次
+		}
+		else {
+			return matchCore(str1, str2 + 2);
+		}
+	}
+	if (*str1 == *str2 || *str2 == '.' && *str1 != '\0')
+		return matchCore(str1 + 1, str2 + 1);
+	return false;
+ }
+bool match(char* str1, char* str2) {
+	if (str1 == NULL || str2 == NULL) {
+		return false;
+	}
+	return matchCore(str1, str2);
+}
