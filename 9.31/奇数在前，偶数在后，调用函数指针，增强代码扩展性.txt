@@ -1,0 +1,30 @@
+//增强代码可扩展性
+//奇数在前，偶数在后
+void reorderOddeven(int arr1[],int length,bool (*func) (int)) {
+	if (length <= 1)return;
+	int left = 0,right=length-1;
+	while (right > left) {
+		while (!func(arr1[left]) && left<right) {
+			left++;
+		}
+		while (func(arr1[right])&& left < right) {
+			right--;
+		}
+		if (left < right) {
+			int temp=arr1[left];
+			arr1[left] = arr1[right];
+			arr1[right] = temp;
+		}
+	}
+}
+bool func(int a) {
+	return (a & 1) == 0;
+}
+int main() {
+	int arr1[] = { 1,4,5,6,2,3,8,9 };
+	reorderOddeven(arr1, 8,func);
+	for (int i = 0; i <= 7; ++i) {
+		cout << arr1[i]<<" ";
+	}
+	return 0;
+}

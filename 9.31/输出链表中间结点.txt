@@ -1,0 +1,14 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+};
+//输出倒数第k个结点
+ListNode* outputKNode(ListNode* head) {
+	if (head == nullptr||head->m_Next==nullptr) return head;
+	ListNode* pNode = head,*pNext=head;
+	while (pNext&&pNext->m_Next) {
+		pNext = pNext->m_Next->m_Next;
+		pNode = pNode->m_Next;
+	}
+	return pNode;
+}

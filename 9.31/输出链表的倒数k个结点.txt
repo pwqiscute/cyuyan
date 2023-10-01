@@ -1,0 +1,17 @@
+	ListNode* pNode=nullptr,*pNext=head;
+	int count = 0;
+	while (pNext) {
+		pNext = pNext->m_Next;
+		count++;
+		if (count == k) {
+			pNode = head;
+		}
+		if (count > k) {
+			pNode = pNode->m_Next;
+		}
+	}
+	//if (!pNext && count < k) {
+	//	return NULL;
+	//}
+	return pNode;
+}
