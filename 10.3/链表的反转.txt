@@ -1,0 +1,29 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+ };
+void reverseList(ListNode*& head) {
+	if (head == nullptr || head->m_Next == nullptr) return; 
+	ListNode* pNode = head,*pNext=NULL,*ptr=NULL;
+	while (pNode!=nullptr) {
+		pNext = pNode->m_Next;
+		pNode->m_Next = ptr;
+		ptr = pNode;
+		pNode = pNext;
+	}
+	head = ptr;
+}
+int main(void) {
+	ListNode* ptr = NULL;
+	for (int i = 10; i >= 1; i--) {
+		ListNode* node = new ListNode;
+		node->m_Value = i;
+		node->m_Next = ptr;
+		ptr = node;
+	}
+	reverseList(ptr);
+	while (ptr != NULL) {
+		cout << ptr->m_Value << " ";
+		ptr = ptr->m_Next;
+	}
+}

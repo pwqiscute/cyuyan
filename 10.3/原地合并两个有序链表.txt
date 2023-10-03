@@ -1,0 +1,51 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+ };
+ListNode* ListConbine(ListNode* L1, ListNode* L2) {
+	if (L1 == nullptr) return L2;
+	if (L2 == nullptr) return L1;
+	ListNode* pNext = L2;
+	ListNode* head = new ListNode;
+	head->m_Next = L1;
+	head->m_Value = 0;
+	ListNode* pNode = L1,*pre=head;
+	while (pNext != NULL) {
+		ListNode* midnode = pNext->m_Next;
+		pNext->m_Next = NULL;
+		if (pNext->m_Value < pNode->m_Value) {
+			pre->m_Next = pNext;
+			pNext->m_Next = pNode;
+			pre = pNext;
+		}
+		else {
+			pNext->m_Next = pNode->m_Next;
+			pNode->m_Next = pNext;
+			pre = pNext;
+			pNode = pNext->m_Next;
+		}
+		pNext = midnode;
+	}
+	return head->m_Next;
+}
+int main(void) {
+	ListNode* ptr = NULL;
+	for (int i = 8; i >= 3; i--) {
+		ListNode* node = new ListNode;
+		node->m_Value = i;
+		node->m_Next = ptr;
+		ptr = node;
+	}
+	ListNode* ptr1 = NULL;
+	for (int i = 4; i >= 1; i--) {
+		ListNode* node = new ListNode;
+		node->m_Value = i;
+		node->m_Next = ptr1;
+		ptr1 = node;
+	}
+	ListNode* head=ListConbine(ptr, ptr1);
+	while (head != NULL) {
+		cout << head->m_Value << " ";
+		head = head -> m_Next;
+	}
+}

@@ -1,0 +1,18 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+ };
+ListNode* ListConbine(ListNode* L1, ListNode* L2) {
+	if (L1 == nullptr) return L2;
+	if (L2 == nullptr) return L1;
+	ListNode* head = NULL;
+	if (L1->m_Value > L2->m_Value) {
+		 head = L2;
+	     head->m_Next = ListConbine(L1, L2->m_Next);
+	}
+	else {
+		head = L1;
+		head->m_Next =ListConbine (L1->m_Next, L2);
+	}
+	return head;
+}
