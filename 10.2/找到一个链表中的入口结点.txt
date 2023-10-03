@@ -1,0 +1,40 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+};
+//找是否含有环
+ListNode* MeetingNode(ListNode* head) {
+	if (head == NULL) return nullptr;
+	ListNode* Node = head->m_Next;
+	ListNode* Next = Node->m_Next;
+	if (Node == NULL) return NULL;
+	while (Node && Next) {
+		if (Node == Next)
+			return Node;
+		Node = Node->m_Next;
+		Next = Next->m_Next;
+		if (Next != NULL)
+			Next = Next->m_Next;
+	}
+	return NULL;
+}
+//判断环的入口
+ListNode* EntryNode(ListNode* head) {
+	ListNode* meetingnode = MeetingNode(head);
+	if (meetingnode == nullptr) return nullptr;
+	int count = 1;
+	ListNode* Node = meetingnode->m_Next,*Node1=NULL;
+	while (Node != meetingnode) {
+		count++;
+		Node = Node->m_Next;
+	}
+	Node = head; Node1 = head;
+	for (int i = 0; i < count; i++) {
+		Node = Node->m_Next;
+	}
+	while (Node != Node1) {
+		Node = Node->m_Next;
+		Node1 = Node1->m_Next;
+	}
+	return Node;
+}
