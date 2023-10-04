@@ -1,0 +1,41 @@
+struct BinaryTreeNode {
+	int m_Value;
+	BinaryTreeNode* m_Lnode;
+	BinaryTreeNode* m_Rnode;
+};
+//判断B2是否是B1的子树
+//bool flag = true;
+//bool Ifsubtree(BinaryTreeNode* B1, BinaryTreeNode* B2) {
+//	if (B2 == nullptr&&flag) return false;
+//	flag = false;
+//	if (B2 == nullptr && !flag) return true;
+//	if (B1 == nullptr) return false;
+//	if (B1->m_Value != B2->m_Value) {
+//	     return Ifsubtree(B1->m_Lnode, B2)||Ifsubtree(B1->m_Rnode, B2);
+//	}
+//	else {
+//		bool ret,ret1;
+//		ret =Ifsubtree(B1->m_Lnode, B2->m_Lnode) && Ifsubtree(B1->m_Rnode, B2->m_Rnode);
+//      if(!ret)
+//		ret1=Ifsubtree(B1->m_Lnode, B2) || Ifsubtree(B1->m_Rnode, B2);
+//		return ret||ret1;
+//	}
+//}
+bool Tree2(BinaryTreeNode* B1, BinaryTreeNode* B2) {
+	if (B1 == NULL) return false;
+	if (B2 == NULL) return true;
+	if (B1->m_Value != B2->m_Value) return false;
+	return Tree2(B1->m_Lnode, B2->m_Lnode) && Tree2(B1->m_Rnode, B2->m_Rnode);
+}
+bool Ifsubtree(BinaryTreeNode* B1, BinaryTreeNode* B2) {
+	bool result = false;
+	if (B1 != NULL && B2 != NULL) {
+		if (B1->m_Value == B2->m_Value)
+			result = Tree2(B1, B2);
+		if (!result)
+			result = Ifsubtree(B1->m_Lnode, B2);
+		if (!result)
+			result = Ifsubtree(B1->m_Rnode, B2);
+	}
+	return result;
+}

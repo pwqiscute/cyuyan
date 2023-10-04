@@ -1,0 +1,43 @@
+//输出一个二叉树的镜像
+void MirrorTree(BinaryTreeNode*&head) {
+	if (head == NULL) return;
+	if (head->m_Lnode != NULL || head->m_Rnode != NULL) {
+		BinaryTreeNode* Midnode = head->m_Lnode;
+		head->m_Lnode = head->m_Rnode;
+		head->m_Rnode = Midnode;
+	}
+	if (head->m_Lnode) {
+		MirrorTree(head->m_Lnode);
+	}
+	if (head->m_Rnode) {
+		MirrorTree(head->m_Rnode);
+	}
+}
+
+
+
+
+---------------------------------------------循环
+void MirrorTree(BinaryTreeNode*& head) {
+	if (head == NULL) return;
+	deque<BinaryTreeNode*> Dbt;
+	Dbt.push_back(head);
+	while (Dbt.size()) {
+		BinaryTreeNode* Mid = Dbt[0];
+		Dbt.pop_back();
+		if (Mid->m_Lnode == NULL && Mid->m_Rnode == NULL) {
+
+		}
+		else {
+			BinaryTreeNode* trans = Mid->m_Lnode;
+			Mid->m_Lnode = Mid->m_Rnode;
+			Mid->m_Rnode = trans;
+			if (Mid->m_Lnode != NULL) {
+				Dbt.push_front(Mid->m_Lnode);
+			}
+			if (Mid->m_Rnode != NULL) {
+				Dbt.push_front(Mid->m_Rnode);
+			}
+		}
+	}
+}

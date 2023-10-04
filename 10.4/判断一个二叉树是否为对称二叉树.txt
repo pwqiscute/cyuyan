@@ -1,0 +1,18 @@
+struct BinaryTreeNode {
+	int m_Value;
+	BinaryTreeNode* m_Lnode;
+	BinaryTreeNode* m_Rnode;
+};
+//判断一个二叉树是否为对称二叉树
+bool Ifsymmetry2(BinaryTreeNode* Lnode, BinaryTreeNode* Rnode) {
+	if (Lnode == NULL && Rnode == NULL) return true;
+	if (Lnode == NULL || Rnode == NULL) return false;
+	if (Lnode->m_Value != Rnode->m_Value) return false;
+	else {
+		return Ifsymmetry2(Lnode->m_Lnode, Rnode->m_Lnode) && (Lnode->m_Rnode, Rnode->m_Rnode);
+	}
+}
+bool Ifsymmetry(BinaryTreeNode* head) {
+	if (head == NULL) return false;
+	return Ifsymmetry2(head->m_Lnode, head->m_Rnode);
+}

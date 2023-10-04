@@ -1,0 +1,25 @@
+//找出三个链表中的相同元素保存在第一个链表中
+void Commnode(ListNode* &L1, ListNode* L2, ListNode*L3) {
+	ListNode* p1 = L1->m_Next,*p2=L2->m_Next,*p3=L3->m_Next;
+	ListNode* head = L1;
+	while (p1) {
+		while (p2 != NULL && p2->m_Value < p1->m_Value) {
+			p2 = p2->m_Next;
+		}
+		while (p3 != NULL && p3->m_Value < p1->m_Value) {
+			p3 = p3->m_Next;
+		}
+		if (p3 != NULL && p3->m_Value == p1->m_Value && p2 != NULL && p2->m_Value == p1->m_Value) {
+			head->m_Next = p1;
+			head = p1;
+			p1 = p1->m_Next;
+			head->m_Next = NULL;
+		}
+		else {
+			ListNode* del = p1;
+			p1 = p1->m_Next;
+			delete del;
+			del = NULL;
+		}
+	}
+}

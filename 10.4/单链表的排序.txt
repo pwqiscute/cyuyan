@@ -1,0 +1,19 @@
+struct ListNode {
+	int m_Value;
+	ListNode* m_Next;
+};
+void sort(ListNode*& L) {
+	if (L->m_Next == NULL || L == NULL)return;
+	ListNode* pNode = L->m_Next,*pre,*q;
+	L->m_Next = NULL;
+	while (pNode != NULL) {
+		q = pNode->m_Next;
+		pre = L;
+		while (pre && pre->m_Value < pNode->m_Value) {
+			pre = pre->m_Next;
+		}
+		pNode->m_Next = pre->m_Next;
+		pre->m_Next = pNode;
+		pNode = q;
+	}
+}
