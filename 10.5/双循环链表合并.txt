@@ -1,0 +1,40 @@
+struct LinkNode {
+	int m_Value;
+	LinkNode* m_pre;
+	LinkNode* m_Next;
+};
+//双循环链表合并
+void Insert(LinkNode* ha, LinkNode* hb,int i) {
+	if (i <= 0) {
+		hb->m_pre->m_Next = ha->m_Next;
+		ha->m_Next->m_pre = hb->m_pre;
+		ha->m_pre->m_Next = hb;
+		hb->m_pre = ha->m_pre;
+		delete ha;
+		ha = NULL;
+	}
+	else {
+		LinkNode* pNode = ha;
+		int num = 0;
+		while (num < i && pNode) {
+			pNode = pNode->m_Next;
+			num++;
+		}
+		if (pNode == NULL) {
+			ha->m_pre->m_Next = hb->m_Next;
+			hb->m_Next->m_pre = ha->m_pre;
+			hb->m_pre->m_Next = ha;
+			ha->m_pre = hb->m_pre;
+			delete hb;
+			hb = NULL;
+		}
+		else {
+			pNode->m_Next->m_pre = hb->m_pre;
+			hb->m_pre->m_Next = pNode->m_Next;
+			pNode->m_Next = hb->m_Next;
+			hb->m_Next->m_pre = pNode;
+			delete hb;
+			hb = NULL;
+		}
+	}
+}

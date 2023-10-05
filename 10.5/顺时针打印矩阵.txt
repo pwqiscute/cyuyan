@@ -1,0 +1,17 @@
+void clockwise(int** arr, int row, int col) {
+	int a = min(row, col);
+	int num = (a % 2 == 0 ? a / 2 : a / 2 + 1);		
+	    int r1 = 0;
+		int r2 = row - 1;
+		int c1 = 0;
+		int c2 = col - 1;
+	while (num--) {
+		for (int i = c1; i <= c2; ++i) cout << arr[r1][i]<<" ";
+		for (int j = r1 + 1; j <= r2; ++j) cout << arr[j][c2] << " ";
+		if (r2 > r1 && c2 > c1) {
+			for (int m = c2 - 1; m >= c1; m--)cout << arr[r2][m] << " ";
+			for (int n = r2 - 1; n > r1; --n)cout<<arr[n][c1] << " ";
+		}
+		c1++; c2--; r1++; r2--;
+	}
+}

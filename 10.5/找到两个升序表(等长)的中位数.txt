@@ -1,0 +1,10 @@
+int M_Search(int arr1[], int arr2[], int length) {
+	int left = 0, right = 0;
+	while (right + left < (length - 1)) {
+		if (arr1[left] > arr2[right])
+			right++;
+		else
+			left++;
+	}
+	return (arr1[left]>arr2[right]?arr2[right]:arr1[left]);
+}

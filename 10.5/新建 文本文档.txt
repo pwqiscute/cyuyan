@@ -1,0 +1,29 @@
+//给出一个栈的压栈序列，判断一个序列是不是该栈的出序序列
+bool IspopOrder(const int* pPush, const int* pPop, int length) {
+	stack<int>  assist;
+	int Pushindex = 0;
+	int Popindex = 0;
+	while (pPop[Popindex] != pPush[Pushindex]&&Pushindex<length) {
+		assist.push(pPush[Pushindex]);
+		Pushindex++;
+	}
+	if (Pushindex >= length) return false;
+	Popindex++;
+	while (Popindex < length) {
+		if (assist.top() == pPop[Popindex]) {
+			assist.pop();
+			Popindex++;
+		}
+		else if (Pushindex + 1 < length &&  pPop[Popindex]==pPush[Pushindex + 1]) {
+			Pushindex++;
+			Popindex++;
+		}
+		else {
+			if (Pushindex + 1 < length)
+				assist.push(pPush[++Pushindex]);
+			else
+				return false;
+		}
+	}
+	return true;
+}
