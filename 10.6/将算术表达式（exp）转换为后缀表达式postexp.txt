@@ -1,0 +1,68 @@
+void trans(char* exp, char postexp[]) {
+	stack<char> operation;
+	int index = 0;
+	char e;
+	while (*exp != '\0') {
+		switch (*exp) {
+		case '(': {
+			operation.push(*exp);
+			exp++;
+			break;
+		}
+		case ')': {
+			e = operation.top();
+			operation.pop();
+			while (e != '(') {
+				postexp[index++] = e;
+				e = operation.top();
+				operation.pop();
+			}
+			exp++;
+			break;
+		}
+		case '+':
+		case '-': {
+			while (!operation.empty()) {
+				e = operation.top();
+				if (e != ')') {
+					postexp[index++] = e;
+					e = operation.top();
+					operation.pop();
+				}
+				else
+					break;
+			}
+			operation.push(e);
+			exp++;
+			break;
+		}
+		case '*':
+		case '/':
+			while (!operation.empty()) {
+				e = operation.top();
+				if (e == '*' || e == '/') {
+					postexp[index++] = e;
+					e = operation.top();
+					operation.pop();
+				}
+				else
+					break;
+			}
+			operation.push(e);
+			exp++;
+			break;
+		default:
+			while (*exp >= '0' && *exp <= '9') {
+				postexp[index++] = *exp;
+				exp++;
+			}
+			postexp[index++] = '#';
+		}
+	}
+	while (!operation.empty()) {
+		e = operation.top();
+		operation.pop();
+		postexp[index++] = e;
+	}
+	postexp[index] = '\0';
+}

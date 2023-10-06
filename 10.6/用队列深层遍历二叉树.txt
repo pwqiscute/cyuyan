@@ -1,0 +1,19 @@
+struct BinaryTreeNode {
+	int m_Value;
+	BinaryTreeNode* LeftNode;
+	BinaryTreeNode* RightNode;
+};
+void DepthPrintf(BinaryTreeNode* head) {
+	if (head == NULL)return;
+	deque<BinaryTreeNode*> d;
+	d.push_front(head);
+	while (!d.empty()) {
+		BinaryTreeNode* Tnode = d.front();
+		cout << Tnode->m_Value;
+		d.pop_front();
+		if (Tnode->LeftNode != NULL)
+			d.push_front(Tnode->LeftNode);
+		if (Tnode->RightNode != NULL)
+			d.push_front(Tnode->RightNode);
+	}
+}
