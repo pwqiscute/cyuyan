@@ -1,0 +1,28 @@
+void BinaryTreeZprintf(BinaryTreeNode* head) {
+	if (head == NULL)return;
+	stack<BinaryTreeNode*> level[2];
+	int current = 0;
+	int layel = 1;
+	level[current].push(head);
+	while (!level[0].empty() || !level[1].empty()) {
+		BinaryTreeNode* tem = level[current].top();
+		level[current].pop();
+		cout << tem->m_Value << " ";
+		if (layel % 2 == 1) {
+			if(tem->LeftNode!=NULL)
+			level[1].push(tem->LeftNode);
+			if(tem->RightNode!=NULL)
+			level[1].push(tem->RightNode);
+		}
+		else {
+			if (tem->RightNode != NULL)
+				level[0].push(tem->RightNode);
+			if (tem->LeftNode != NULL)
+				level[0].push(tem->LeftNode);
+		}
+		if (level[current].empty()) {
+			printf("\n");
+			current = 1 - current;
+		}
+	}
+}

@@ -1,0 +1,24 @@
+bool IsBinaryTree_Postorder(int* arr, int length) {
+	if (arr == NULL || length <= 0) return false;
+	int root = arr[length - 1];
+	int i = 0;
+	for (int i = 0; i < length; i++)
+		if (arr[i] > root)
+			break;
+    
+	for (int j = i; j < length; j++)
+		if (arr[j] < root)
+			return false;
+
+	for (int j = 0; j < i; j++)
+		if (arr[j] > root)
+			return false;
+
+	bool left = true;
+	if (i > 0)
+		left=IsBinaryTree_Postorder(arr, i);
+	bool right = true;
+	if(i<length-1)
+		right = IsBinaryTree_Postorder(arr, length-1-i);
+	return (left && right);
+ }
