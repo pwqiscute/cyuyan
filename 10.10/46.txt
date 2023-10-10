@@ -1,0 +1,30 @@
+class Solution {
+public:
+int jampPos(vector<int>& nums,int index){
+    int max=0;
+    for(int i=index+1;i<=index+nums[index];i++){
+        if(i==index+1)
+        max=i;
+        else
+        if(i+nums[i]>=max+nums[max])
+        max=i;
+    }
+    return max;
+}
+    int jump(vector<int>& nums) {
+    int max=0;
+    int len=nums.size(),index=0,time=0;
+    if(len==1) return time; 
+     if(nums[0]>=len-1) 
+     return time+1;
+    while(index<len-1){
+       max=jampPos(nums,index);
+       time++;
+       if(max+nums[max]>=len-1){
+           time++;
+       break;}
+       index=max;
+    }
+      return time;
+    }
+};

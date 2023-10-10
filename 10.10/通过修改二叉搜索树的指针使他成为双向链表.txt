@@ -1,0 +1,25 @@
+struct  BinaryTreeNode{
+	int m_Value;
+	BinaryTreeNode* m_LeftNode;
+	BinaryTreeNode* m_RightNode;
+};
+//通过修改二叉搜索树的指针使他成为双向链表
+BinaryTreeNode* Convert(BinaryTreeNode* head) {
+	BinaryTreeNode* pre = NULL;
+	ConvertNode(head, pre);
+	while (pre != NULL&&pre->m_LeftNode!=NULL) {
+		pre = pre->m_LeftNode;//此时左结点是保存他的前一个元素
+	}
+	return pre;
+}
+void ConvertNode(BinaryTreeNode* head,BinaryTreeNode*& pre) {
+	if (head == NULL) return;
+	if (head->m_LeftNode != NULL)
+		ConvertNode(head->m_LeftNode, pre);
+	head->m_LeftNode = pre;
+	if (pre != NULL)
+		pre->m_RightNode = head;
+	pre == head;
+	if (head->m_RightNode != NULL)
+		ConvertNode(head->m_RightNode, pre);
+}

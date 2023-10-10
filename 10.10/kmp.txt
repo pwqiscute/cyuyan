@@ -1,0 +1,38 @@
+int KMP(string& majorstr, string& substr) {
+	if (majorstr.length() < substr.length()) return -1;
+	int len = substr.length();
+	int* sub = new int[len];
+	sub[0] = 0;
+	int j = 0;
+	for (int i = 1; i < len; i++) {
+		while (j > 0 && substr[i] != substr[j]) {
+			j = sub[j - 1];
+		}
+		if (substr[i] == substr[j])
+		{
+			j++;
+		}
+		sub[i] = j;
+	}
+	j = 0;
+	for (int m= 0; m < majorstr.length(); m++) {
+		while (j > 0 && majorstr[m] != substr[j]) {
+			j = sub[j - 1];
+		}
+		if (majorstr[m] == substr[j])
+		{
+			j++;
+		}
+		if (j == len) {
+			return m - j + 1;
+		}
+	}
+}
+int main() {
+	string major_str = "abcabd";
+	string sub_str = "abd";
+	int ret = KMP(major_str, sub_str);
+	cout << ret;
+	return 0;
+
+}
