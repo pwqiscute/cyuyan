@@ -1,0 +1,1 @@
+for (string str: strs);  strs是一个容器将其中的字符串一个一个给str
